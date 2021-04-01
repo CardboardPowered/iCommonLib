@@ -1,9 +1,3 @@
-# Fabric Example Mod
+# iCommonLib [![GitHub license](https://img.shields.io/github/license/IsaiahMC/iCommonLib)](https://github.com/IsaiahMC/iCommonLib/blob/master/LICENCE)
 
-## Setup
-
-For setup instructions please see the [fabric wiki page](https://fabricmc.net/wiki/tutorial:setup) that relates to the IDE that you are using.
-
-## License
-
-This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
+A common library containing common functions for developing Minecraft mods
