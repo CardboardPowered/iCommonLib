@@ -15,4 +15,9 @@ public class FabricPlayer extends FabricEntity implements IPlayer {
         return new String[] {"Minecraft"};
     }
 
+    @Override
+    public PlayerEntity getMCEntity() {
+        return (PlayerEntity) mc;
+    }
+
 }

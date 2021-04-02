@@ -6,7 +6,9 @@ import me.isaiah.common.entity.IEntity;
 import me.isaiah.common.entity.IRemoveReason;
 import me.isaiah.common.fabric.entity.FabricEntity;
 import me.isaiah.common.fabric.entity.FabricPlayer;
+import me.isaiah.common.fabric.entity.FabricPrimedTnt;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.TntEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
@@ -26,6 +28,7 @@ public interface IMixinEntity {
             else {  } // TODO
             return new FabricPlayer(mc);
         }
+        else if (mc instanceof TntEntity) { return new FabricPrimedTnt(mc); }
         return new FabricEntity(mc);
     }
 
