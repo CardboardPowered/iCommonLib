@@ -9,6 +9,7 @@
   	"R1_15.MixinPlayer_15",
   	"R1_16.MixinEntity_16",
   	"R1_16.MixinPlayer_16",
+  	"R1_16.MixinWorld_16",
   	"R1_17.MixinEntity_17"
   ],
   "injectors": {

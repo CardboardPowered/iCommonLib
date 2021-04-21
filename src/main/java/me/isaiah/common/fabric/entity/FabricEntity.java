@@ -52,4 +52,9 @@ public class FabricEntity implements IEntity {
         ((IMixinEntity)mc).IsendText(new LiteralText(msg), UUID.randomUUID());
     }
 
+    @Override
+    public boolean isRemoved() {
+        return ((IMixinEntity)mc).ic_isRemoved();
+    }
+
 }

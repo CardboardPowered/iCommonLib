@@ -52,4 +52,14 @@ public class MixinEntity_17 implements IMixinEntity {
         IgetMCEntity().sendSystemMessage(text, id);
     }
 
+    @Override
+    public boolean ic_isRemoved() {
+        return method_31481();
+    }
+    
+    @Shadow(remap = false)
+    public boolean method_31481() {
+        return false;
+    }
+
 }

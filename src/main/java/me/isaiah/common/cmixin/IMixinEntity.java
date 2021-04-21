@@ -43,4 +43,10 @@ public interface IMixinEntity {
      */
     public void IsendText(Text text, UUID id);
 
+    /**
+     * 1.16 - removed
+     * 1.17 - isRemoved()
+     */
+    public boolean ic_isRemoved();
+
 }

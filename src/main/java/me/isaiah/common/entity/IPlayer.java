@@ -13,4 +13,9 @@ public interface IPlayer extends IEntity {
         return EntityType.PLAYER;
     }
 
+    /**
+     * Is player in Creative mode or not
+     */
+    boolean isCreativeMode();
+
 }

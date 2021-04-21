@@ -33,4 +33,9 @@ public class MixinEntity_16 implements IMixinEntity {
         IgetMCEntity().sendSystemMessage(text, id);
     }
 
+    @Override
+    public boolean ic_isRemoved() {
+        return ((Entity)(Object)this).removed;
+    }
+
 }
