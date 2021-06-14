@@ -57,4 +57,21 @@ public class FabricEntity implements IEntity {
         return ((IMixinEntity)mc).ic_isRemoved();
     }
 
+    @Override
+    public void collidesWith(IEntity e) {
+        getMCEntity().collidesWith((Entity)e.getMCEntity());
+    }
+
+    @Override
+    public void teleport(double x, double y, double z) {
+        getMCEntity().teleport(x, y, z);
+    }
+
+    @Override
+    public void teleport(double x, double y, double z, float yaw, float pitch) {
+        this.teleport(x, y, z);
+        getMCEntity().setYaw(yaw);
+        getMCEntity().pitch = pitch;
+    }
+
 }

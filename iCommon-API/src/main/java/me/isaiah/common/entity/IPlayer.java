@@ -1,6 +1,6 @@
 package me.isaiah.common.entity;
 
-public interface IPlayer extends IEntity {
+public interface IPlayer extends IAliveEntity {
 
     /**
      * Retrieves a list of mods installed on the client.<br>

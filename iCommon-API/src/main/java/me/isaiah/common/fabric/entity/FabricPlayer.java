@@ -4,7 +4,7 @@ import me.isaiah.common.entity.IPlayer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 
-public class FabricPlayer extends FabricEntity implements IPlayer {
+public class FabricPlayer extends FabricAliveEntity implements IPlayer {
 
     public FabricPlayer(Entity mc) {
         super((PlayerEntity)mc);
