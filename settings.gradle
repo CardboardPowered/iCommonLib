@@ -7,3 +7,8 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
+
+rootProject.name = 'iCommon'
+include 'iCommon-API'
+include 'iCommon-Fabric-1.16'
+include 'iCommon-Fabric-1.17'

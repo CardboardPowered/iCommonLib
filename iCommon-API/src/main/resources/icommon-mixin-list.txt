@@ -1,0 +1,12 @@
+# iCommon Mixin List
+# This is where Mixins are defined
+# Use this instead of mixins.json
+
+PREFIX=Mixin
+MCVER=ALL
+	MinecraftServer
+
+MCVER=1.16,1.17
+	Entity
+	Player
+	World

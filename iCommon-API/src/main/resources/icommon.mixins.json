@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "plugin": "me.isaiah.common.mixin.ICommonMixinPlugin",
+  "package": "me.isaiah.common.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+  	"MixinMinecraftServer",
+  ],
+  client: [
+    "MixinIntegratedServer",
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
