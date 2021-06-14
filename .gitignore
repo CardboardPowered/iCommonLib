@@ -1,9 +1,14 @@
 # gradle
 
 .gradle/
+.fabric/
 build/
 out/
 classes/
+**/.fabric/
+**/.gradle/
+/.fabric/
+/.gradle/
 
 # eclipse
 
