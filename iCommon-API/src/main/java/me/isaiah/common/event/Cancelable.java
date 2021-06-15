@@ -1,4 +1,4 @@
-package org.minecarts.api.event;
+package me.isaiah.common.event;
 
 public interface Cancelable {
 

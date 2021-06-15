@@ -32,7 +32,6 @@ public interface IMixinEntity {
         return new FabricEntity(mc);
     }
 
-
     /**
      * @reason 1.16 & 1.17 differ in entity removal
      */

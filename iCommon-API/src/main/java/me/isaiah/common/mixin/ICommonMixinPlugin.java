@@ -52,11 +52,11 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
         if (!start) {
             GameVersion ver = getGameVersion();
             logger.info("=======================================================");
-            logger.info("  iCommon - Isaiah's common library for Fabric Mods.");
-            logger.info("  Copyright (c) 2017-2021.");
-            logger.info("==============================================" + Integer.valueOf(ver.getReleaseTarget().substring(2)) + "/" + ver.getProtocolVersion());
-            logger.info("Loading...");
-            wait(200);
+            logger.info(" iCommon - Isaiah's common library for Fabric Mods.");
+            logger.info(" Copyright (c) 2018-2021. Running on MC " + ver.getReleaseTarget() + " (" + ver.getProtocolVersion() + ")");
+            logger.info("=======================================================");
+            wait(50, "Loading...");
+            wait(200, null);
         }
         start = true;
 
@@ -86,8 +86,9 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
         return false;
     }
 
-    public void wait(int ms) {
+    public void wait(int ms, String s) {
         try { Thread.sleep(ms*10); } catch (InterruptedException e) {}
+        if (s != null) logger.info(s);
     }
 
     @Override

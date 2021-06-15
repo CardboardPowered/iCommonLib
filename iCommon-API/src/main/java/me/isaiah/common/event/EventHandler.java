@@ -1,4 +1,4 @@
-package org.minecarts.api.event;
+package me.isaiah.common.event;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -9,8 +9,8 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface EventHandler {
 
-    public EventPriority priority() default EventPriority.NORMAL;
+    public Priority priority() default Priority.NORMAL;
 
-    public boolean ignoreCancelled() default false;
+    public boolean ignoreCancel() default false;
 
 }

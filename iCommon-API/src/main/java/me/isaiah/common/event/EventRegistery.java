@@ -1,4 +1,8 @@
-package org.minecarts.api.event;
+/**
+ * Copyright (C) 2018 ProjectMinecarts
+ * Copyright (C) 2018-2021 by Isaiah.
+ */
+package me.isaiah.common.event;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -68,6 +72,22 @@ public class EventRegistery {
                 e.printStackTrace();
             }
         }
+    }
+
+    public static class RegisteredListener {
+
+        public final Object l;
+        public final Priority p;
+        public final boolean ignoreCancelled;
+        public final Method method;
+
+        public RegisteredListener(Object l, EventHandler h, Method m) {
+            this.l = l;
+            this.p = h.priority();
+            this.ignoreCancelled = h.ignoreCancel();
+            this.method = m;
+        }
+
     }
 
 }
