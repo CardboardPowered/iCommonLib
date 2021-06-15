@@ -10,6 +10,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import me.isaiah.common.ICommonMod;
 import me.isaiah.common.cmixin.IMixinWorld;
 import me.isaiah.common.cmixin.SupportedVersion;
+import me.isaiah.common.event.EventRegistery;
+import me.isaiah.common.event.server.ServerWorldInitEvent;
 import me.isaiah.common.fabric.FabricServer;
 import me.isaiah.common.fabric.FabricWorld;
 import me.isaiah.common.world.IWorld;
@@ -42,6 +44,9 @@ public class MixinWorld implements IMixinWorld {
         ICommonMod.LOGGER.info("Setting IWorld for world \"" + name + "\"");
         this.icommon =  new FabricWorld(name, (World)(Object)this);
         ((FabricServer)ICommonMod.getIServer()).world(icommon, name);
+
+        // ServerWorldInitEvent
+        EventRegistery.invoke(ServerWorldInitEvent.class, new ServerWorldInitEvent(icommon));
     }
 
     @Override
