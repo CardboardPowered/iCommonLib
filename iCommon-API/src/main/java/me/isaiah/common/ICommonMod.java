@@ -3,7 +3,6 @@ package me.isaiah.common;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import me.isaiah.common.fabric.FabricServer;
 import net.fabricmc.api.ModInitializer;
 
 public class ICommonMod implements ModInitializer {

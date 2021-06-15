@@ -11,13 +11,13 @@ public class FabricAliveEntity extends FabricEntity implements IAliveEntity {
     }
 
     @Override
-    public LivingEntity getMCEntity() {
+    public LivingEntity getMC() {
         return (LivingEntity) mc;
     }
 
     @Override
     public void setHealth(float health) {
-        getMCEntity().setHealth(health);
+        getMC().setHealth(health);
     }
 
 }

@@ -18,23 +18,23 @@ public class FabricEntity implements IEntity {
 
     @Override
     public String getName() {
-        return getMCEntity().getEntityName();
+        return getMC().getEntityName();
     }
 
     @Override
-    public Entity getMCEntity() {
+    public Entity getMC() {
         return mc;
     }
 
     @Override
     public String getDisplayedName() {
-        return getMCEntity().getCustomName().asString();
+        return getMC().getCustomName().asString();
     }
 
     @Override
     public void setDisplayedName(String str) {
-        getMCEntity().setCustomNameVisible(true);
-        getMCEntity().setCustomName(new LiteralText(str));
+        getMC().setCustomNameVisible(true);
+        getMC().setCustomName(new LiteralText(str));
     }
 
     @Override
@@ -59,19 +59,19 @@ public class FabricEntity implements IEntity {
 
     @Override
     public void collidesWith(IEntity e) {
-        getMCEntity().collidesWith((Entity)e.getMCEntity());
+        getMC().collidesWith((Entity)e.getMC());
     }
 
     @Override
     public void teleport(double x, double y, double z) {
-        getMCEntity().teleport(x, y, z);
+        getMC().teleport(x, y, z);
     }
 
     @Override
     public void teleport(double x, double y, double z, float yaw, float pitch) {
         this.teleport(x, y, z);
-        getMCEntity().setYaw(yaw);
-        getMCEntity().pitch = pitch;
+        getMC().setYaw(yaw);
+        // TODO 1.17 getMC().pitch = pitch;
     }
 
 }

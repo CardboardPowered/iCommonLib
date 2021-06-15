@@ -4,7 +4,7 @@ import me.isaiah.common.ICommandSource;
 
 public interface IEntity extends ICommandSource {
 
-    public Object     getMCEntity();
+    public Object     getMC();
 
     public String     getName();
 

@@ -14,13 +14,13 @@ public class FabricPrimedTnt extends FabricEntity implements IPrimedTnt {
     }
 
     @Override
-    public TntEntity getMCEntity() {
+    public TntEntity getMC() {
         return (TntEntity) mc;
     }
 
     @Override
     public IEntity getSource() {
-        LivingEntity source = getMCEntity().getCausingEntity();
+        LivingEntity source = getMC().getCausingEntity();
         return (source != null) ? ((IMixinEntity)source).getAsICommon() : null;
     }
 

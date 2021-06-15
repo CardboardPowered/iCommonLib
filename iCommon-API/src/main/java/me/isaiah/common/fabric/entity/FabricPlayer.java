@@ -16,13 +16,13 @@ public class FabricPlayer extends FabricAliveEntity implements IPlayer {
     }
 
     @Override
-    public PlayerEntity getMCEntity() {
+    public PlayerEntity getMC() {
         return (PlayerEntity) mc;
     }
 
     @Override
     public boolean isCreativeMode() {
-        return getMCEntity().isCreative();
+        return getMC().isCreative();
     }
 
 }
