@@ -1,6 +1,7 @@
 package me.isaiah.common.fabric;
 
 import me.isaiah.common.world.IWorld;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 
@@ -32,5 +33,11 @@ public class FabricWorld implements IWorld {
     public boolean isDay() {
         return mc.isDay();
     }
+
+    @Override
+    public int getLoadedChunkCount() {
+        return ((ServerWorld)mc).getChunkManager().getLoadedChunkCount();
+    }
+    
 
 }

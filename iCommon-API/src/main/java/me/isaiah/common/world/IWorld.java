@@ -17,4 +17,9 @@ public interface IWorld {
      */
     boolean doDaylightCycle();
 
+    /**
+     * Return the count of the loaded chunks.
+     */
+    int getLoadedChunkCount();
+
 }
