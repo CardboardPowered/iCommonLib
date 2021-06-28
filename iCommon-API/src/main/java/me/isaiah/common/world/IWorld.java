@@ -21,5 +21,15 @@ public interface IWorld {
      * Return the count of the loaded chunks.
      */
     int getLoadedChunkCount();
+    
+    /**
+     * Gets the BlockState at the given pos
+     *
+     * @param x X-value of the block
+     * @param y Y-value of the block
+     * @param z Z-value of the block
+     */
+    public IBlockState getBlockState(int x, int y, int z);
+    
 
 }

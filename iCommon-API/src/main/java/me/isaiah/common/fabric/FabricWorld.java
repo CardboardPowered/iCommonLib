@@ -1,13 +1,16 @@
 package me.isaiah.common.fabric;
 
+import me.isaiah.common.cmixin.IMixinBlockState;
+import me.isaiah.common.world.IBlockState;
 import me.isaiah.common.world.IWorld;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 
 public class FabricWorld implements IWorld {
 
-    private World mc;
+    public World mc;
     private String name;
 
     public FabricWorld(String name, World world) {
@@ -37,6 +40,12 @@ public class FabricWorld implements IWorld {
     @Override
     public int getLoadedChunkCount() {
         return ((ServerWorld)mc).getChunkManager().getLoadedChunkCount();
+    }
+
+    @Override
+    public IBlockState getBlockState(int x, int y, int z) {
+        BlockPos pos = new BlockPos(x,y,z);
+        return ((IMixinBlockState)mc.getBlockState(pos)).getAsICommon(this, pos);
     }
     
 

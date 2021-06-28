@@ -16,6 +16,7 @@ import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 
 import com.mojang.bridge.game.GameVersion;
 
+import me.isaiah.common.cmixin.MixinList;
 import me.isaiah.common.cmixin.SupportedVersion;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.SharedConstants;
@@ -103,7 +104,9 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
         String[] forVer = {""};
 
         try {
-            List<String> l2 = Files.readAllLines(Paths.get(this.getClass().getClassLoader().getResource("icommon-mixin-list.txt").toURI()), Charset.defaultCharset());
+            
+            List<String> l2 = MixinList.list;
+            //List<String> l2 = Files.readAllLines(Paths.get(this.getClass().getClassLoader().getResource("icommon-mixin-list.txt").toURI()), Charset.defaultCharset());
             for (String s : l2) {
                 if (s.startsWith("#")) continue;
                 if (s.startsWith("MCVER=")) forVer = new String[] {s.split("=")[1]};
