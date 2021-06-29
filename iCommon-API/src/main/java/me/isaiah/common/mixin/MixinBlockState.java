@@ -5,7 +5,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import me.isaiah.common.cmixin.IMixinBlockState;
 import me.isaiah.common.fabric.FabricBlockState;
 import me.isaiah.common.fabric.FabricWorld;
-import me.isaiah.common.world.IBlockState;
+import me.isaiah.common.block.IBlockState;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 

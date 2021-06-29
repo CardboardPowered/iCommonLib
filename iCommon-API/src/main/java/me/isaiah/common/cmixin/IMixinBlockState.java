@@ -1,7 +1,7 @@
 package me.isaiah.common.cmixin;
 
 import me.isaiah.common.fabric.FabricWorld;
-import me.isaiah.common.world.IBlockState;
+import me.isaiah.common.block.IBlockState;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 

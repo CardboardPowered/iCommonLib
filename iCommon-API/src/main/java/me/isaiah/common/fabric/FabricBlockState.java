@@ -1,6 +1,6 @@
 package me.isaiah.common.fabric;
 
-import me.isaiah.common.world.IBlockState;
+import me.isaiah.common.block.IBlockState;
 import net.minecraft.util.math.BlockPos;
 
 public class FabricBlockState implements IBlockState {

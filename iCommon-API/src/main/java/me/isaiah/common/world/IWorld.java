@@ -1,5 +1,7 @@
 package me.isaiah.common.world;
 
+import me.isaiah.common.block.IBlockState;
+
 public interface IWorld {
 
     /**

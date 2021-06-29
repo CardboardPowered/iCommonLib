@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "icommon-17",
-  "version": "1.17",
+  "id": "icommon-16",
+  "version": "1.16",
 
-  "name": "iCommonLib 1.17",
+  "name": "iCommonLib 1.16",
   "description": "This is an example description! Tell everyone what your mod is about!",
   "authors": [
     "Me!"
@@ -23,8 +23,7 @@
     ]
   },
   "mixins": [
-    "icommon.mixins.json",
-    "icommon-117.mixins.json"
+    "icommon.mixins.json"
   ],
 
   "depends": {
