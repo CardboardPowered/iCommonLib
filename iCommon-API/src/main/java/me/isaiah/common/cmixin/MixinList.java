@@ -21,6 +21,7 @@ public class MixinList {
               "    NbtTag",
               "    BlockEntity",
               "    ChestBlockEntity",
+              "    ScreenHandler",
               ""
             );
 
