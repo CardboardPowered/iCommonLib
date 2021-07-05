@@ -43,10 +43,11 @@ val remapJar = tasks.getByName<RemapJarTask>("remapJar")
 
 publishing {
     publications {
-        create("main", MavenPublication::class.java) {
+        create<MavenPublication>("mavenJava") {
             groupId = project.group.toString()
             artifactId = project.name.toLowerCase()
             version = project.version.toString()
+
             artifact(remapJar)
         }
     }
