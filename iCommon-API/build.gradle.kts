@@ -38,36 +38,3 @@ tasks.getByName<ProcessResources>("processResources") {
         )
     }
 }
-
-val remapJar = tasks.getByName<RemapJarTask>("remapJar")
-
-publishing {
-    publications {
-        create<MavenPublication>("mavenJava") {
-            groupId = project.group.toString()
-            artifactId = project.name.toLowerCase()
-            version = project.version.toString()
-            
-            pom {
-                name.set(project.name.toLowerCase())
-                description.set("A concise description of my library")
-                url.set("http://www.example.com/")
-            }
-
-            artifact(remapJar)
-        }
-    }
-
-    repositories {
-        val mavenUsername: String? by project
-        val mavenPassword: String? by project
-        mavenPassword?.let {
-            maven(url = "https://repo.codemc.io/repository/maven-releases/") {
-                credentials {
-                    username = mavenUsername
-                    password = mavenPassword
-                }
-            }
-        }
-    }
-}
