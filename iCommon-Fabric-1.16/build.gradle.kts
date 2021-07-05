@@ -54,6 +54,13 @@ publishing {
             groupId = project.group.toString()
             artifactId = project.name.toLowerCase()
             version = project.version.toString()
+            
+            pom {
+                name.set(project.name.toLowerCase())
+                description.set("A concise description of my library")
+                url.set("http://www.example.com/")
+            }
+
             artifact(remapJar)
         }
     }

@@ -18,7 +18,6 @@ base {
 }
 
 
-
 dependencies {
     minecraft ("com.mojang:minecraft:1.17")
     mappings ("net.fabricmc:yarn:1.17+build.1:v2")
@@ -66,6 +65,13 @@ publishing {
             groupId = project.group.toString()
             artifactId = project.name.toLowerCase()
             version = project.version.toString()
+            
+            pom {
+                name.set(project.name.toLowerCase())
+                description.set("A concise description of my library")
+                url.set("http://www.example.com/")
+            }
+
             artifact(remapJar)
         }
     }
