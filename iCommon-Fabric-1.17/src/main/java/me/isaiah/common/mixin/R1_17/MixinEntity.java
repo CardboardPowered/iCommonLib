@@ -57,7 +57,7 @@ public class MixinEntity implements IMixinEntity {
         return isRemoved();
     }
     
-    @Shadow(remap = false)
+    @Shadow
     public boolean isRemoved() {
         return false;
     }
