@@ -22,6 +22,7 @@ public class MixinList {
               "    BlockEntity",
               "    ChestBlockEntity",
               "    ScreenHandler",
+              "    ChunkGenerator",
               ""
             );
 
