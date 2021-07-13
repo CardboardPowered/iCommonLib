@@ -18,4 +18,8 @@ public interface IServer {
      */
     public IWorld getWorld(String name);
 
+    /**
+     */
+    public int getProtocolVersion();
+
 }
