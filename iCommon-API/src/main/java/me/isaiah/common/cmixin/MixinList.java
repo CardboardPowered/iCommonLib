@@ -23,7 +23,7 @@ public class MixinList {
               "    ChestBlockEntity",
               "    ScreenHandler",
               "    ChunkGenerator",
-              "    MinecraftServer",
+             // "    MinecraftServer",
               ""
             );
 

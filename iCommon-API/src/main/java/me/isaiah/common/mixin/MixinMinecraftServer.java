@@ -21,7 +21,6 @@ public class MixinMinecraftServer {
     void onServerStart(CallbackInfoReturnable<Boolean> callbackInfo) {
         LOGGER.info("Setting IServer instance..");
         ICommonMod.set( new FabricServer((MinecraftServer)(Object)this) );
-        RegistryOps.of(null, (ResourceManager)null, null);
     }
 
 }
