@@ -13,7 +13,7 @@ java {
 
 base {
     archivesBaseName = "iCommon"
-    version = "1.16-b1"
+    version = "-The-API"
     group = "com.javazilla.mods"
 }
 
