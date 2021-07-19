@@ -12,7 +12,7 @@ java {
 }
 
 base {
-    archivesBaseName = "iCommon"
+    archivesBaseName = "iCommon-Fabric"
     version = "1.17"
     group = "com.javazilla.mods"
 }

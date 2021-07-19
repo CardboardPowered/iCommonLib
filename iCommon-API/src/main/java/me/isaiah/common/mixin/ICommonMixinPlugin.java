@@ -1,6 +1,5 @@
 package me.isaiah.common.mixin;
 
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -15,7 +14,7 @@ import com.mojang.bridge.game.GameVersion;
 
 import me.isaiah.common.cmixin.MixinList;
 import me.isaiah.common.cmixin.SupportedVersion;
-import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.MinecraftVersion;
 import net.minecraft.SharedConstants;
 
 public class ICommonMixinPlugin implements IMixinConfigPlugin {
@@ -35,14 +34,18 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
     private boolean start = false;
     
     public static GameVersion getGameVersion() {
-        try {
+        /*try {
             Method m = SharedConstants.class.getMethod(FabricLoader.getInstance().isDevelopmentEnvironment() ? "createGameVersion" : "method_36208");
             m.invoke(null, (Object[]) null); // 1.17
         } catch (Exception e) {
             // 1.16
-        }
+        }*/
 
-        return SharedConstants.getGameVersion();
+        try { 
+            return SharedConstants.getGameVersion();
+        } catch (IllegalStateException ver117) {
+            return MinecraftVersion.create();
+        }
     }
 
     @Override

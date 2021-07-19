@@ -4,6 +4,8 @@ pluginManagement {
             name = 'Fabric'
             url = 'https://maven.fabricmc.net/'
         }
+        maven { url "https://maven.architectury.dev/" }
+        maven { url "https://files.minecraftforge.net/maven/" }
         gradlePluginPortal()
     }
 }
@@ -12,3 +14,4 @@ rootProject.name = 'iCommon'
 include 'iCommon-API'
 include 'iCommon-Fabric-1.16'
 include 'iCommon-Fabric-1.17'
+include 'iCommon-Forge-1.16'
