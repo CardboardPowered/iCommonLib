@@ -65,26 +65,46 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
     }
     
     public boolean shouldApply(String mixinClassName, String output) {
-        try {
-            SupportedVersion sv = Class.forName(mixinClassName).getAnnotation(SupportedVersion.class);
-            String mixin = mixinClassName.substring(MIXIN_PACKAGE_ROOT.length());
-            if (null != sv) {
-                String s = SharedConstants.getGameVersion().getReleaseTarget();
+        //try {
+            /*SupportedVersion sv = Class.forName(mixinClassName).getAnnotation(SupportedVersion.class);*/
+            String mixin = mixinClassName.substring(MIXIN_PACKAGE_ROOT.length()).trim();
+            
+            boolean six = getGameVersion().getReleaseTarget().startsWith("1.16");
+            boolean sev = getGameVersion().getReleaseTarget().startsWith("1.17");
+
+            if (mixin.length() < 7 || mixin.startsWith("RALL") || mixin.startsWith("R.") || mixin.contains("MCVER") || mixin.equalsIgnoreCase("R1_16.Mixin")
+                    || (mixin.contains("R1_") && mixin.length() < 10)) {
+                return false;
+            }
+
+            if (mixin.contains("1_16")) {
+                if (six)
+                    logger.info("Applying mixin: " + mixin + "...");
+                return six;
+            }
+            if (mixin.contains("1_17")) {
+                if (sev)
+                    logger.info("Applying mixin: " + mixin + "...");
+                return sev;
+            }
+            
+            /*if (null != sv) {
+                String s = getGameVersion().getReleaseTarget();
                 for (String val : sv.value()) {
                     if (val.equalsIgnoreCase(s)) {
                         logger.info("Applying versioned " + val + " mixin " + mixin + "..." + output);
                         return true;
                     }
                 }
-            } else {
+            } else {*/
                 logger.info("Applying mixin: " + mixin + "...");
                 return true;
-            }
-        } catch (ClassNotFoundException e) {
-            return false;
-        }
+            //}
+        //} catch (ClassNotFoundException e) {
+        //    return false;
+        //}
 
-        return false;
+        //return false;
     }
 
     public void wait(int ms, String s) {

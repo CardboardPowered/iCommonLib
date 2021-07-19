@@ -3,9 +3,9 @@ package me.isaiah.common;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-//import net.fabricmc.api.ModInitializer;
+import net.fabricmc.api.ModInitializer;
 
-public class ICommonMod /*implements ModInitializer*/ {
+public class ICommonMod implements ModInitializer {
 
     public static final Logger LOGGER = LogManager.getLogger("iCommon");
     private static IServer iserver;

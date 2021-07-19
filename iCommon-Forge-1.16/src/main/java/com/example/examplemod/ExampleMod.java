@@ -1,20 +1,16 @@
 package com.example.examplemod;
 
-//import net.minecraft.world.item.Items;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.world.ExplosionEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import net.minecraft.server.network.ServerPlayerEntity;
+import me.isaiah.common.R116.ICommonMod_116;
 
-@Mod("examplemod")
+@Mod("icommon")
 public class ExampleMod {
 
     private static final Logger LOGGER = LogManager.getLogger();
@@ -27,7 +23,6 @@ public class ExampleMod {
         // This listener is fired on both client and server during setup.
         MOD_BUS.addListener(this::commonSetup);
         // This listener is only fired during client setup, so we can use client-side methods here.
-        MOD_BUS.addListener(this::clientSetup);
 
         // Most other events are fired on Forge's bus.
         // If we want to use annotations to register event listeners,
@@ -38,6 +33,10 @@ public class ExampleMod {
         // like automatically subscribing an entire class to an event bus
         // or using static methods to listen to events,
         // feel free to check out the Forge wiki!
+
+
+        ICommonMod_116 pl = new ICommonMod_116();
+        pl.onInitialize();
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
@@ -45,12 +44,4 @@ public class ExampleMod {
         //LOGGER.info("Look, I found a {}!", Items.DIAMOND.getRegistryName());
     }
 
-    private void clientSetup(final FMLClientSetupEvent event) {
-       // LOGGER.info("Hey, we're on Minecraft version {}!", event.getMinecraftSupplier().get().getLaunchedVersion());
-    }
-
-    @SubscribeEvent
-    public void kaboom(ExplosionEvent.Detonate event) {
-        LOGGER.info("Kaboom! Something just blew up in {}!", event.getWorld());
-    }
 }
