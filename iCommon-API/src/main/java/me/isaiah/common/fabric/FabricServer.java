@@ -6,6 +6,7 @@ import java.util.HashMap;
 import com.mojang.bridge.game.GameVersion;
 
 import me.isaiah.common.IServer;
+import me.isaiah.common.Side;
 import me.isaiah.common.world.IWorld;
 import net.minecraft.MinecraftVersion;
 import net.minecraft.SharedConstants;
@@ -46,16 +47,16 @@ public class FabricServer implements IServer {
     }
 
     public static GameVersion getGameVersion() {
-      /*  try {
-            Method m = SharedConstants.class.getMethod(FabricLoader.getInstance().isDevelopmentEnvironment() ? "createGameVersion" : "method_36208");
-            m.invoke(null, (Object[]) null); // 1.17
-        } catch (Exception ignore) {}*/
-
         try { 
             return SharedConstants.getGameVersion();
         } catch (IllegalStateException ver117) {
             return MinecraftVersion.create();
         }
+    }
+
+    @Override
+    public Side getSide() {
+        return mc.isDedicated() ? Side.SERVER : Side.CLIENT;
     }
 
 }

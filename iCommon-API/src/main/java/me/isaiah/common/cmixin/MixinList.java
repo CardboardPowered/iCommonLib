@@ -13,6 +13,7 @@ public class MixinList {
               "PREFIX=Mixin",
               "MCVER=ALL",
               "    MinecraftServer",
+              "    BlockState",
               "",
               "MCVER=1.16,1.17",
               "    Entity",

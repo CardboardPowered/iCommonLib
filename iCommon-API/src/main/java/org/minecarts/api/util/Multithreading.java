@@ -1,3 +1,7 @@
+/**
+ * Copyright (c) 2018 - ProjectMinecarts
+ * Copyright (c) 2018-2021 by Isaiah
+ */
 package org.minecarts.api.util;
 
 import java.util.concurrent.ExecutorService;

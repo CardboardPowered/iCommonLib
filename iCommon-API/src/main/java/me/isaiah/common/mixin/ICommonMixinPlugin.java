@@ -13,7 +13,6 @@ import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 import com.mojang.bridge.game.GameVersion;
 
 import me.isaiah.common.cmixin.MixinList;
-import me.isaiah.common.cmixin.SupportedVersion;
 import net.minecraft.MinecraftVersion;
 import net.minecraft.SharedConstants;
 
@@ -34,17 +33,10 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
     private boolean start = false;
     
     public static GameVersion getGameVersion() {
-        /*try {
-            Method m = SharedConstants.class.getMethod(FabricLoader.getInstance().isDevelopmentEnvironment() ? "createGameVersion" : "method_36208");
-            m.invoke(null, (Object[]) null); // 1.17
-        } catch (Exception e) {
-            // 1.16
-        }*/
-
         try { 
-            return SharedConstants.getGameVersion();
+            return SharedConstants.getGameVersion(); // 1.16
         } catch (IllegalStateException ver117) {
-            return MinecraftVersion.create();
+            return MinecraftVersion.create(); // 1.17
         }
     }
 
@@ -53,7 +45,7 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
         if (!start) {
             GameVersion ver = getGameVersion();
             logger.info("=======================================================");
-            logger.info(" iCommon - Isaiah's common library for Fabric Mods.");
+            logger.info(" iCommon - Isaiah's common library for mods.");
             logger.info(" Copyright (c) 2018-2021. Running on MC " + ver.getReleaseTarget() + " (" + ver.getProtocolVersion() + ")");
             logger.info("=======================================================");
             wait(50, "Loading...");
@@ -65,46 +57,29 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
     }
     
     public boolean shouldApply(String mixinClassName, String output) {
-        //try {
-            /*SupportedVersion sv = Class.forName(mixinClassName).getAnnotation(SupportedVersion.class);*/
-            String mixin = mixinClassName.substring(MIXIN_PACKAGE_ROOT.length()).trim();
-            
-            boolean six = getGameVersion().getReleaseTarget().startsWith("1.16");
-            boolean sev = getGameVersion().getReleaseTarget().startsWith("1.17");
+        String mixin = mixinClassName.substring(MIXIN_PACKAGE_ROOT.length()).trim();
 
-            if (mixin.length() < 7 || mixin.startsWith("RALL") || mixin.startsWith("R.") || mixin.contains("MCVER") || mixin.equalsIgnoreCase("R1_16.Mixin")
-                    || (mixin.contains("R1_") && mixin.length() < 10)) {
-                return false;
-            }
+        boolean six = getGameVersion().getReleaseTarget().startsWith("1.16");
+        boolean sev = getGameVersion().getReleaseTarget().startsWith("1.17");
 
-            if (mixin.contains("1_16")) {
-                if (six)
-                    logger.info("Applying mixin: " + mixin + "...");
-                return six;
-            }
-            if (mixin.contains("1_17")) {
-                if (sev)
-                    logger.info("Applying mixin: " + mixin + "...");
-                return sev;
-            }
-            
-            /*if (null != sv) {
-                String s = getGameVersion().getReleaseTarget();
-                for (String val : sv.value()) {
-                    if (val.equalsIgnoreCase(s)) {
-                        logger.info("Applying versioned " + val + " mixin " + mixin + "..." + output);
-                        return true;
-                    }
-                }
-            } else {*/
+        if (mixin.length() < 7 || mixin.startsWith("RALL") || mixin.startsWith("R.") || mixin.contains("MCVER") || mixin.equalsIgnoreCase("R1_16.Mixin")
+                || (mixin.contains("R1_") && mixin.length() < 10)) {
+            return false;
+        }
+
+        if (mixin.contains("1_16")) {
+            if (six)
+                logger.info("Applying mixin: " + mixin + "...");
+            return six;
+        }
+        if (mixin.contains("1_17")) {
+            if (sev)
+                logger.info("Applying mixin: " + mixin + "...");
+            return sev;
+        }
+
                 logger.info("Applying mixin: " + mixin + "...");
                 return true;
-            //}
-        //} catch (ClassNotFoundException e) {
-        //    return false;
-        //}
-
-        //return false;
     }
 
     public void wait(int ms, String s) {

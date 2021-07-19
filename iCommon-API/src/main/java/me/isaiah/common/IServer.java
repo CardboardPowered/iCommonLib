@@ -22,4 +22,23 @@ public interface IServer {
      */
     public int getProtocolVersion();
 
+    /**
+     * Find the {@link Side} of this server
+     * 
+     * @return {@link Side#SERVER} - If DedicatedServer
+     * @return {@link Side#CLIENT} - If IntegratedServer
+     */
+    public Side getSide();
+
+    /**
+     * Retrives the value of the current mod loader
+     * 
+     * Current possible values:
+     * @return {@link Loader#FABRIC}
+     * @return {@link Loader#FORGE}
+     */
+    public default Loader getLoaderType() {
+        return ICommonMod.modloader;
+    }
+
 }

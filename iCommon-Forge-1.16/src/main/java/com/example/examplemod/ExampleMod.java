@@ -8,6 +8,8 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import me.isaiah.common.ICommonMod;
+import me.isaiah.common.Loader;
 import me.isaiah.common.R116.ICommonMod_116;
 
 @Mod("icommon")
@@ -22,7 +24,6 @@ public class ExampleMod {
 
         // This listener is fired on both client and server during setup.
         MOD_BUS.addListener(this::commonSetup);
-        // This listener is only fired during client setup, so we can use client-side methods here.
 
         // Most other events are fired on Forge's bus.
         // If we want to use annotations to register event listeners,
@@ -37,10 +38,12 @@ public class ExampleMod {
 
         ICommonMod_116 pl = new ICommonMod_116();
         pl.onInitialize();
+        
+        ICommonMod.setLoader(Loader.FORGE);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        LOGGER.info("Hello from common setup! This is *after* registries are done, so we can do this:");
+        LOGGER.info("Hello from iCommon!");
         //LOGGER.info("Look, I found a {}!", Items.DIAMOND.getRegistryName());
     }
 
