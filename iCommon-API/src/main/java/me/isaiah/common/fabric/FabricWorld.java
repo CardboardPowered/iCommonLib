@@ -1,6 +1,7 @@
 package me.isaiah.common.fabric;
 
 import me.isaiah.common.cmixin.IMixinBlockState;
+import me.isaiah.common.entity.IEntity;
 import me.isaiah.common.block.IBlockState;
 import me.isaiah.common.world.IWorld;
 import net.minecraft.server.world.ServerWorld;
@@ -47,6 +48,5 @@ public class FabricWorld implements IWorld {
         BlockPos pos = new BlockPos(x,y,z);
         return ((IMixinBlockState)mc.getBlockState(pos)).getAsICommon(this, pos);
     }
-    
 
 }

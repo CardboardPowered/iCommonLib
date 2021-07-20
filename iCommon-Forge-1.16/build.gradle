@@ -95,11 +95,13 @@ dependencies {
     // at runtime, use the full JEI jar
     // modRuntime "mezz.jei:jei-1.16.4:${jei_version}"
     
-    //include project(":iCommon-API")
+    implementation project(":iCommon-API")
+     //modImplementation files(project(":iCommon-API").sourceSets.main.java.srcDirs)[0]
 }
 
 sourceSets {
     main {
+        project(":iCommon-API").sourceSets.main.java
         java {
             srcDir("src/main/java")
             srcDir("${rootProject.projectDir}/iCommon-API/src/main/java")
