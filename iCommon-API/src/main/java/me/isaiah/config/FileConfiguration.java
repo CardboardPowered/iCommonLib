@@ -18,6 +18,7 @@ public class FileConfiguration extends Configuration {
 
     private String lastSection;
     private int space;
+    private File file;
 
     private ArrayList<Integer> blanks;
 
@@ -29,6 +30,7 @@ public class FileConfiguration extends Configuration {
      * Creates a new {@link FileConfiguration} from a {@link File}
      */
     public FileConfiguration(File f) throws IOException {
+        this.file = f;
         this.blanks = new ArrayList<>();
         this.contentMap = new LinkedHashMap<>();
 
@@ -68,6 +70,12 @@ public class FileConfiguration extends Configuration {
         }
     }
 
+    @Override
+    public void save() throws IOException {
+        save(file);
+    }
+
+    @Override
     public void save(File to) throws IOException {
         ArrayList<String> s = new ArrayList<>();
         int a = 0;
