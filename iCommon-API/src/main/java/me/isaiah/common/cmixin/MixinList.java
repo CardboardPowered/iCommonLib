@@ -27,6 +27,7 @@ public class MixinList {
               "    ScreenHandler",
               "    ChunkGenerator",
               "    PersistentStateManager",
+              "    PlayerManager",
              // "    MinecraftServer",
               ""
             );
