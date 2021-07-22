@@ -13,6 +13,8 @@ import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 import com.mojang.bridge.game.GameVersion;
 
 import me.isaiah.common.cmixin.MixinList;
+import me.isaiah.common.event.EventRegistery;
+import me.isaiah.common.event.ShouldApplyMixinEvent;
 import net.minecraft.MinecraftVersion;
 import net.minecraft.SharedConstants;
 
@@ -60,7 +62,14 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
         boolean sev = getGameVersion().getReleaseTarget().startsWith("1.17");
 
         if (mixin.length() < 7 || mixin.startsWith("RALL") || mixin.startsWith("R.") || mixin.contains("MCVER") || mixin.equalsIgnoreCase("R1_16.Mixin")
-                || (mixin.contains("R1_") && mixin.length() < 10)) {
+                || (mixin.contains("R1_") && mixin.length() < 12)) {
+            return false;
+        }
+
+        ShouldApplyMixinEvent ev = (ShouldApplyMixinEvent)
+                EventRegistery.invoke(ShouldApplyMixinEvent.class, new ShouldApplyMixinEvent(mixin));
+
+        if (ev.isCanceled()) {
             return false;
         }
 
