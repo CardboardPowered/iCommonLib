@@ -22,13 +22,18 @@ dependencies {
     minecraft ("com.mojang:minecraft:1.16.5")
     mappings ("net.fabricmc:yarn:1.16.5+build.9:v2")
     modImplementation ("net.fabricmc:fabric-loader:0.11.3")
+    //api (project(":iCommon-API"))
+    //include (project(":iCommon-API"))
 }
 
 sourceSets {
+    project(":iCommon-API")
     main {
         java {
             srcDir("src/main/java")
-            srcDir("${rootProject.projectDir}/iCommon-API/src/main/java")
+          //  srcDir("${rootProject.projectDir}/iCommon-API/src/main/java")
+           // compileClasspath += project(":iCommon-API").sourceSets.main.java
+           // runtimeClasspath = output + compileClasspath
         }
         resources {
             srcDir("${rootProject.projectDir}/iCommon-API/src/main/resources")

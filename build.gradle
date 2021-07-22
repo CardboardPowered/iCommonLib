@@ -1,0 +1,17 @@
+subprojects {
+    plugins.withId('java-library', { _ ->
+        sourceSets {
+            main {
+                java {
+                    srcDir("src/main/java")
+                    srcDir("${rootProject.projectDir}/iCommon-API/src/main/java")
+                    srcDir("${rootProject.projectDir}/iCommon-API-Configuration/src/main/java")
+                }
+                resources {
+                    //srcDir("src/main/resources")
+                    srcDir("${rootProject.projectDir}/iCommon-API/src/main/resources")
+                }
+            }
+        }
+    })
+}
