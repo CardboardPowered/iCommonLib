@@ -34,9 +34,9 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
     
     public static GameVersion getGameVersion() {
         try { 
-            return SharedConstants.getGameVersion(); // 1.16
+            return SharedConstants.getGameVersion();  // 1.16
         } catch (IllegalStateException ver117) {
-            return MinecraftVersion.create(); // 1.17
+            return MinecraftVersion.create();         // 1.17+
         }
     }
 
@@ -44,12 +44,9 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
         if (!start) {
             GameVersion ver = getGameVersion();
+            logger.info(" iCommon - Isaiah's common library for mods - Copyright (c) 2018-2021.");
+            logger.info(" Running on MC " + ver.getReleaseTarget() + " (" + ver.getProtocolVersion() + ")");
             logger.info("=======================================================");
-            logger.info(" iCommon - Isaiah's common library for mods.");
-            logger.info(" Copyright (c) 2018-2021. Running on MC " + ver.getReleaseTarget() + " (" + ver.getProtocolVersion() + ")");
-            logger.info("=======================================================");
-            wait(50, "Loading...");
-            wait(200, null);
         }
         start = true;
 
@@ -78,8 +75,8 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
             return sev;
         }
 
-                logger.info("Applying mixin: " + mixin + "...");
-                return true;
+        logger.info("Applying mixin: " + mixin + "...");
+        return true;
     }
 
     public void wait(int ms, String s) {
@@ -101,7 +98,6 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
         try {
             
             List<String> l2 = MixinList.list;
-            //List<String> l2 = Files.readAllLines(Paths.get(this.getClass().getClassLoader().getResource("icommon-mixin-list.txt").toURI()), Charset.defaultCharset());
             for (String s : l2) {
                 if (s.startsWith("#")) continue;
                 if (s.startsWith("MCVER=")) forVer = new String[] {s.split("=")[1]};

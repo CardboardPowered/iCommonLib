@@ -21,6 +21,7 @@ public class FabricArmorStandEntity extends FabricAliveEntity implements IArmorS
         return getMC().isMarker();
     }
 
+    @Override
     public void setMarker(boolean marker) {
         DataTracker dataTracker = getMC().getDataTracker();
         dataTracker.set(ArmorStandEntity.ARMOR_STAND_FLAGS, this.setBitField1(dataTracker.get(ArmorStandEntity.ARMOR_STAND_FLAGS), 16, marker));
