@@ -9,6 +9,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import me.isaiah.common.Gamemode;
+import me.isaiah.common.cmixin.IMixinEntity;
 import me.isaiah.common.cmixin.SupportedVersion;
 import me.isaiah.common.entity.IPlayer;
 import me.isaiah.common.event.EventRegistery;
@@ -37,7 +38,7 @@ public class MixinPlayer extends MixinEntity {
             ci.cancel();
 
         if (null != gm) {
-            PlayerGamemodeChangeEvent event = new PlayerGamemodeChangeEvent((IPlayer)IgetMCEntity(), Gamemode.getById(old.getId()), Gamemode.getById(gm.getId()));
+            PlayerGamemodeChangeEvent event = new PlayerGamemodeChangeEvent((IPlayer)((IMixinEntity)IgetMCEntity()).getAsICommon(), Gamemode.getById(old.getId()), Gamemode.getById(gm.getId()));
 
             event = (PlayerGamemodeChangeEvent) EventRegistery.invoke(PlayerGamemodeChangeEvent.class, event);
             if (event.isCanceled())
