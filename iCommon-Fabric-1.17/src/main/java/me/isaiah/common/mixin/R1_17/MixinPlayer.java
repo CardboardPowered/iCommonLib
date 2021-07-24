@@ -34,6 +34,9 @@ public class MixinPlayer extends MixinEntity {
     public void setGameMode(NbtCompound nbt, CallbackInfo ci) {
         net.minecraft.world.GameMode gm = gameModeFromNbt(nbt, "playerGameType");
         GameMode old = ((ServerPlayerEntity)(Object)this).interactionManager.getGameMode(); 
+        if (null == old) {
+            return;
+        }
         if (gm == old)
             ci.cancel();
 

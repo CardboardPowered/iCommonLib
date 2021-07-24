@@ -31,6 +31,9 @@ public class MixinPlayer extends MixinEntity {
     @Inject(at = @At("HEAD"), method = "setGameMode", cancellable = true)
     public void setGameMode(net.minecraft.world.GameMode gm, CallbackInfo ci) {
         GameMode old = ((ServerPlayerEntity)(Object)this).interactionManager.getGameMode(); 
+        if (null == old) {
+            return;
+        }
         if (gm == old)
             ci.cancel();
 
