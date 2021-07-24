@@ -9,12 +9,15 @@ public class Gamemode {
     public static Gamemode ADVENTURE = new Gamemode(2);
     public static Gamemode SPECTATOR = new Gamemode(3);
 
-    private static HashMap<Integer, Gamemode> byId = new HashMap<>();
+    private static HashMap<Integer, Gamemode> byId;
 
     private int id;
 
     public Gamemode(int id) {
         this.id = id;
+        if (null == byId) {
+            byId = new HashMap<>();
+        }
         byId.put(id, this);
     }
 
