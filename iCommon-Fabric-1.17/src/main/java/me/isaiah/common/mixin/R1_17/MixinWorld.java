@@ -16,9 +16,15 @@ import me.isaiah.common.fabric.FabricServer;
 import me.isaiah.common.fabric.FabricWorld;
 import me.isaiah.common.world.IWorld;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.collection.IndexedIterable;
+import net.minecraft.util.math.ChunkPos;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.MutableWorldProperties;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.source.BiomeArray;
+import net.minecraft.world.biome.source.BiomeSource;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.level.ServerWorldProperties;
 
@@ -52,6 +58,11 @@ public class MixinWorld implements IMixinWorld {
     @Override
     public IWorld icommon() {
         return icommon;
+    }
+
+    @Override
+    public BiomeArray I_newBiomeArray(IndexedIterable<Biome> biomes, World world, ChunkPos pos, BiomeSource biomeSource) {
+        return new BiomeArray(((ServerWorld)world).getRegistryManager().get(Registry.BIOME_KEY), world, pos, ((ServerWorld)world).getChunkManager().getChunkGenerator().getBiomeSource());
     }
 
 }
