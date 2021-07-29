@@ -28,6 +28,7 @@ public class MixinList {
               "    ChunkGenerator",
               "    PersistentStateManager",
               "    PlayerManager",
+              "    Heightmap",
              // "    MinecraftServer",
               ""
             );
