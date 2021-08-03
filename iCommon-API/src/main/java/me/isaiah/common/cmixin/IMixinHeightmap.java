@@ -6,7 +6,7 @@ import net.minecraft.world.chunk.Chunk;
 public interface IMixinHeightmap {
 
     /**
-     * Method for {@link HeightMap#setTo()}
+     * Method for {@link Heightmap#setTo}
      * 
      * @implNote 1.16: setTo(long[]);
      * @implNote 1.17: setTo(Chunk, Type, long[])
