@@ -8,7 +8,7 @@ import net.minecraft.world.Heightmap.Type;
 import net.minecraft.world.chunk.Chunk;
 
 @Mixin(Heightmap.class)
-public class MixinHeightmap implements IMixinHeightmap {
+public class MixinHeighttmap implements IMixinHeightmap {
 
     @Override
     public void I_setTo(Chunk chunk, Type type, long[] ls) {
