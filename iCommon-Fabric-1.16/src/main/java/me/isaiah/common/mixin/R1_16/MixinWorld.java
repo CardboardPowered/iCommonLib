@@ -46,6 +46,11 @@ public class MixinWorld implements IMixinWorld {
         if (((FabricServer)ICommonMod.getIServer()).worlds.containsKey(name)) {
             if (nms.getRegistryKey() == World.NETHER) name = name + "_nether";
             if (nms.getRegistryKey() == World.END) name = name + "_the_end";
+
+            if (((FabricServer)ICommonMod.getIServer()).worlds.containsKey(name)) {
+                // World added by a mod.
+                name = nms.getRegistryKey().getValue().toString().replace('/', '_').replace(':', '_');
+            }
         }
         ICommonMod.LOGGER.info("Setting IWorld for world \"" + name + "\"");
         this.icommon =  new FabricWorld(name, (World)(Object)this);
