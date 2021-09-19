@@ -29,8 +29,8 @@ public class MixinList {
               "    PersistentStateManager",
               "    PlayerManager",
               "    Heighttmap",
-             // "    MinecraftServer",
-              ""
+              "MCVER=1.18",
+              "    World_18"
             );
 
 }

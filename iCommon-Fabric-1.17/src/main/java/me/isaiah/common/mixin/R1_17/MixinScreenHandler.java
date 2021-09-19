@@ -1,5 +1,8 @@
 package me.isaiah.common.mixin.R1_17;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
@@ -19,5 +22,5 @@ public class MixinScreenHandler implements IMixinScreenHandler {
     public void ic_setSlots(Object o) {
         this.slots = (DefaultedList<Slot>) o;
     }
-
+    
 }

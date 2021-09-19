@@ -5,7 +5,6 @@ import net.minecraft.util.collection.IndexedIterable;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.source.BiomeArray;
 import net.minecraft.world.biome.source.BiomeSource;
 
 public interface IMixinWorld {
@@ -18,6 +17,7 @@ public interface IMixinWorld {
      * @implNote 1.16  - new BiomeArray(IndexedIterable, ChunkPos, BiomeSource)
      * @implNote 1.17+ - new BiomeArray(IndexedIterable, World, ChunkPos, BiomeSource)
      */
-    public BiomeArray I_newBiomeArray(IndexedIterable<Biome> biomes, World world, ChunkPos chunkPos, BiomeSource biomeSource);
+    // @Deprecated
+    public Object I_newBiomeArray(IndexedIterable<Biome> biomes, World world, ChunkPos chunkPos, BiomeSource biomeSource);
 
 }

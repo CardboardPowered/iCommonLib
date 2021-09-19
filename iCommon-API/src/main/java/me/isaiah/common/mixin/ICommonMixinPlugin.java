@@ -1,5 +1,7 @@
 package me.isaiah.common.mixin;
 
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -10,13 +12,13 @@ import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 
-import com.mojang.bridge.game.GameVersion;
+import me.isaiah.common.GameVersion;
 
 import me.isaiah.common.cmixin.MixinList;
 import me.isaiah.common.event.EventRegistery;
 import me.isaiah.common.event.ShouldApplyMixinEvent;
 import net.minecraft.MinecraftVersion;
-import net.minecraft.SharedConstants;
+import net.minecraft.util.JsonHelper;
 
 public class ICommonMixinPlugin implements IMixinConfigPlugin {
 
@@ -35,10 +37,23 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
     private boolean start = false;
     
     public static GameVersion getGameVersion() {
-        try { 
-            return SharedConstants.getGameVersion();  // 1.16
-        } catch (IllegalStateException ver117) {
-            return MinecraftVersion.create();         // 1.17+
+        if (null == GameVersion.INSTANCE) {
+            GameVersion.INSTANCE = create();
+        }
+        return GameVersion.INSTANCE;
+    }
+    
+    /*
+     * Enabled aggressive exception aggregation
+     */
+    public static GameVersion create() {
+        try (InputStream inputStream = MinecraftVersion.class.getResourceAsStream("/version.json");){
+            if (inputStream == null) return null;
+            try (InputStreamReader inputStreamReader = new InputStreamReader(inputStream);){
+                return new GameVersion(JsonHelper.deserialize(inputStreamReader));
+            }
+        } catch (Exception exception) {
+            throw new IllegalStateException("Bad version info", exception);
         }
     }
 
@@ -58,8 +73,10 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
     public boolean shouldApply(String mixinClassName, String output) {
         String mixin = mixinClassName.substring(MIXIN_PACKAGE_ROOT.length()).trim();
 
-        boolean six = getGameVersion().getReleaseTarget().startsWith("1.16");
-        boolean sev = getGameVersion().getReleaseTarget().startsWith("1.17");
+        String relTar = getGameVersion().getReleaseTarget();
+        boolean six = relTar.startsWith("1.16");
+        boolean sev = relTar.startsWith("1.17");
+        boolean r8  = relTar.startsWith("1.18"); // Snapshot Testing
 
         if (mixin.length() < 7 || mixin.startsWith("RALL") || mixin.startsWith("R.") || mixin.contains("MCVER") || mixin.equalsIgnoreCase("R1_16.Mixin")
                 || (mixin.contains("R1_") && mixin.length() < 12)) {
@@ -79,9 +96,25 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
             return six;
         }
         if (mixin.contains("1_17")) {
+            if (r8) {
+                if (!mixin.contains("MixinWorld")) {
+                    // It seems all 1.17 mixins, excluding MixinWorld,
+                    // Will work on 1.18 (21w37a tested)
+
+                    logger.info("Applying mixin: " + mixin + "...");
+                    return true;
+                }
+            }
+            
             if (sev)
                 logger.info("Applying mixin: " + mixin + "...");
             return sev;
+        }
+        
+        if (mixin.contains("1_18")) {
+            if (r8)
+                logger.info("Applying mixin: " + mixin + "...");
+            return r8;
         }
 
         logger.info("Applying mixin: " + mixin + "...");

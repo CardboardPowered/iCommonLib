@@ -1,7 +1,7 @@
 import net.fabricmc.loom.task.RemapJarTask
 
 plugins {
-    id ("fabric-loom") version "0.8-SNAPSHOT"
+    id ("fabric-loom") version "0.10-SNAPSHOT"
     id ("maven-publish")
 	id ("java-library")
 }
@@ -13,24 +13,28 @@ java {
 
 base {
     archivesBaseName = "iCommon-Fabric"
-    version = "1.17"
+    version = "1.18"
     group = "com.javazilla.mods"
 }
 
 
 dependencies {
-    minecraft ("com.mojang:minecraft:1.17.1")
-    mappings ("net.fabricmc:yarn:1.17.1+build.61:v2")
-    modImplementation ("net.fabricmc:fabric-loader:0.11.3")
-    // modImplementation ("net.fabricmc.fabric-api:fabric-api:0.34.9+1.17")
+    minecraft ("com.mojang:minecraft:21w37a")
+    mappings ("net.fabricmc:yarn:21w37a+build.5:v2")
+    modImplementation ("net.fabricmc:fabric-loader:0.11.7")
 }
 
 
 sourceSets {
     main {
         java {
+            srcDir("${rootProject.projectDir}/iCommon-API/src/main/java/com")
+            srcDir("${rootProject.projectDir}/iCommon-Fabric-1.17/src/main/java")
+
+            // Needs fixing for 1.18:
+            exclude("**/MixinWorld.java")
+            
             srcDir("src/main/java")
-            srcDir("${rootProject.projectDir}/iCommon-API/src/main/java")
         }
         resources {
             srcDir("${rootProject.projectDir}/iCommon-API/src/main/resources")
@@ -40,6 +44,7 @@ sourceSets {
 
 
 tasks.getByName<ProcessResources>("processResources") {
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
     filesMatching("fabric.mod.json") {
         expand(
             mutableMapOf(
@@ -65,6 +70,7 @@ publishing {
             }
 
             artifact(remapJar)
+            from(components["java"])
         }
     }
 

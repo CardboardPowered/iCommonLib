@@ -5,13 +5,13 @@ import org.spongepowered.asm.mixin.Shadow;
 
 import me.isaiah.common.cmixin.IMixinChestBlockEntity;
 import net.minecraft.block.entity.ChestBlockEntity;
-import net.minecraft.block.entity.ChestStateManager;
+import net.minecraft.block.entity.ViewerCountManager;
 
 @Mixin(ChestBlockEntity.class)
 public class MixinChestBlockEntity implements IMixinChestBlockEntity {
 
     @Shadow
-    private ChestStateManager stateManager;
+    private ViewerCountManager stateManager;
 
     @Override
     public int I_getViewCount() {
