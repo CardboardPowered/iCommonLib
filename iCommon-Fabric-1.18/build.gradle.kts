@@ -70,7 +70,6 @@ publishing {
             }
 
             artifact(remapJar)
-            from(components["java"])
         }
     }
 
