@@ -30,7 +30,8 @@ public class MixinList {
               "    PlayerManager",
               "    Heighttmap",
               "MCVER=1.18",
-              "    World_18"
+              "    World_18",
+              "    BlockEntity"
             );
 
 }

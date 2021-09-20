@@ -97,9 +97,9 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
         }
         if (mixin.contains("1_17")) {
             if (r8) {
-                if (!mixin.contains("MixinWorld")) {
-                    // It seems all 1.17 mixins, excluding MixinWorld,
-                    // Will work on 1.18 (21w37a tested)
+                if (!(mixin.contains("MixinWorld") || mixin.contains("MixinBlockEntity"))) {
+                    // It seems most of 1.17's mixins
+                    // Currently work on 1.18 (21w37a tested)
 
                     logger.info("Applying mixin: " + mixin + "...");
                     return true;
@@ -110,7 +110,7 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
                 logger.info("Applying mixin: " + mixin + "...");
             return sev;
         }
-        
+
         if (mixin.contains("1_18")) {
             if (r8)
                 logger.info("Applying mixin: " + mixin + "...");

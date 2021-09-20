@@ -1,10 +1,9 @@
-package me.isaiah.common.mixin.R1_17;
+package me.isaiah.common.mixin.R1_18;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import me.isaiah.common.event.EventRegistery;
 import me.isaiah.common.event.block.BlockEntityWriteNbtEvent;
@@ -23,7 +22,7 @@ public class MixinBlockEntity {
     }
 
     @Inject(at = @At("RETURN"), method = "writeIdentifyingData")
-    public void saveEnd(NbtCompound tag, @SuppressWarnings("rawtypes") CallbackInfoReturnable callback) {
+    public void saveEnd(NbtCompound tag, CallbackInfo ci) {
         EventRegistery.invoke(BlockEntityWriteNbtEvent.class, 
                 new BlockEntityWriteNbtEvent((INbtElement) tag, (BlockEntity)(Object)this));
     }
