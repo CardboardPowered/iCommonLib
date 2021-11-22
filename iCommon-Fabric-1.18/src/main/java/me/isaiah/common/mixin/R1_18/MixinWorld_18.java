@@ -15,6 +15,9 @@ import me.isaiah.common.event.server.ServerWorldInitEvent;
 import me.isaiah.common.fabric.FabricServer;
 import me.isaiah.common.fabric.FabricWorld;
 import me.isaiah.common.world.IWorld;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.collection.IndexedIterable;
 import net.minecraft.util.math.ChunkPos;
@@ -25,10 +28,11 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.source.BiomeAccess;
 import net.minecraft.world.biome.source.BiomeSource;
+import net.minecraft.world.chunk.PalettedContainer;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.level.ServerWorldProperties;
 
-@SupportedVersion({"1.18"}) // TODO: Test 1.15
+@SupportedVersion({"1.18"})
 @Mixin(World.class)
 public class MixinWorld_18 implements IMixinWorld {
 
@@ -40,8 +44,6 @@ public class MixinWorld_18 implements IMixinWorld {
         if (!((Object)this instanceof ServerWorld)) {
             return;
         }
-        
-        ICommonMod.LOGGER.info("DEBUG: World Init tail.");
 
         ServerWorld nms = ((ServerWorld)(Object)this);
         String name = ((ServerWorldProperties) nms.getLevelProperties()).getLevelName();
@@ -70,6 +72,11 @@ public class MixinWorld_18 implements IMixinWorld {
     @Override
     public Object I_newBiomeArray(IndexedIterable<Biome> biomes, World world, ChunkPos pos, BiomeSource biomeSource) {
         return (BiomeAccess.Storage) world.getChunk(pos.x, pos.z);//new BiomeArray(((ServerWorld)world).getRegistryManager().get(Registry.BIOME_KEY), world, pos, ((ServerWorld)world).getChunkManager().getChunkGenerator().getBiomeSource());
+    }
+
+    @Override
+    public PalettedContainer<BlockState> I_emptyBlockIDs() {
+        return new PalettedContainer<>(Block.STATE_IDS, Blocks.AIR.getDefaultState(), PalettedContainer.PaletteProvider.BLOCK_STATE);
     }
 
 }

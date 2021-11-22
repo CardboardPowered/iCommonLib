@@ -19,9 +19,13 @@ base {
 
 
 dependencies {
-    minecraft ("com.mojang:minecraft:21w37a")
-    mappings ("net.fabricmc:yarn:21w37a+build.5:v2")
-    modImplementation ("net.fabricmc:fabric-loader:0.11.7")
+    minecraft ("com.mojang:minecraft:1.18-pre5")
+    mappings ("net.fabricmc:yarn:1.18-pre5+build.4:v2")
+    modImplementation ("net.fabricmc:fabric-loader:0.12.5")
+
+    //minecraft ("com.mojang:minecraft:21w37a")
+    //mappings ("net.fabricmc:yarn:21w37a+build.5:v2")
+    //modImplementation ("net.fabricmc:fabric-loader:0.11.7")
 }
 
 
@@ -42,6 +46,7 @@ sourceSets {
     }
 }
 
+tasks.withType<Jar> { duplicatesStrategy = DuplicatesStrategy.INHERIT }
 
 tasks.getByName<ProcessResources>("processResources") {
     duplicatesStrategy = DuplicatesStrategy.INCLUDE

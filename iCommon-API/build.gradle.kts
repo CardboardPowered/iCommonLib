@@ -1,7 +1,7 @@
 import net.fabricmc.loom.task.RemapJarTask
 
 plugins {
-    id ("fabric-loom") version "0.6-SNAPSHOT"
+    id ("fabric-loom") version "0.9-SNAPSHOT"
     id ("java-library")
     id ("maven-publish")
 }
@@ -23,6 +23,8 @@ repositories {
         }
 }
 
+tasks.withType<Jar> { duplicatesStrategy = DuplicatesStrategy.INCLUDE }
+
 dependencies {
     minecraft ("com.mojang:minecraft:1.16.5")
     mappings ("net.fabricmc:yarn:1.16.5+build.5:v2")
@@ -30,6 +32,7 @@ dependencies {
 }
 
 tasks.getByName<ProcessResources>("processResources") {
+duplicatesStrategy = DuplicatesStrategy.INCLUDE
     filesMatching("fabric.mod.json") {
         expand(
             mutableMapOf(

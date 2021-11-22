@@ -1,7 +1,7 @@
 import net.fabricmc.loom.task.RemapJarTask
 
 plugins {
-    id ("fabric-loom") version "0.8-SNAPSHOT"
+    id ("fabric-loom") version "0.9-SNAPSHOT"
     id ("maven-publish")
 	id ("java-library")
 }
@@ -40,6 +40,7 @@ sourceSets {
 
 
 tasks.getByName<ProcessResources>("processResources") {
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
     filesMatching("fabric.mod.json") {
         expand(
             mutableMapOf(

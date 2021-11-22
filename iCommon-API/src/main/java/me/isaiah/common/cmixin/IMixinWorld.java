@@ -6,6 +6,7 @@ import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.source.BiomeSource;
+import net.minecraft.world.chunk.PalettedContainer;
 
 public interface IMixinWorld {
 
@@ -19,5 +20,10 @@ public interface IMixinWorld {
      */
     // @Deprecated
     public Object I_newBiomeArray(IndexedIterable<Biome> biomes, World world, ChunkPos chunkPos, BiomeSource biomeSource);
+    
+    /**
+     * 1.17/1.18
+     */
+    public PalettedContainer<net.minecraft.block.BlockState> I_emptyBlockIDs();
 
 }

@@ -15,6 +15,7 @@ import me.isaiah.common.event.server.ServerWorldInitEvent;
 import me.isaiah.common.fabric.FabricServer;
 import me.isaiah.common.fabric.FabricWorld;
 import me.isaiah.common.world.IWorld;
+import net.minecraft.block.BlockState;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.collection.IndexedIterable;
 import net.minecraft.util.math.ChunkPos;
@@ -25,6 +26,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.source.BiomeArray;
 import net.minecraft.world.biome.source.BiomeSource;
+import net.minecraft.world.chunk.ChunkSection;
+import net.minecraft.world.chunk.PalettedContainer;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.level.ServerWorldProperties;
 
@@ -68,6 +71,11 @@ public class MixinWorld implements IMixinWorld {
     @Override
     public BiomeArray I_newBiomeArray(IndexedIterable<Biome> biomes, World world, ChunkPos pos, BiomeSource biomeSource) {
         return new BiomeArray(((ServerWorld)world).getRegistryManager().get(Registry.BIOME_KEY), world, pos, ((ServerWorld)world).getChunkManager().getChunkGenerator().getBiomeSource());
+    }
+
+    @Override
+    public PalettedContainer<BlockState> I_emptyBlockIDs() {
+        return new ChunkSection(0).getContainer();
     }
 
 }
