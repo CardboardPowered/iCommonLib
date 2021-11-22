@@ -19,13 +19,22 @@ base {
 
 
 dependencies {
-    minecraft ("com.mojang:minecraft:1.18-pre5")
-    mappings ("net.fabricmc:yarn:1.18-pre5+build.4:v2")
-    modImplementation ("net.fabricmc:fabric-loader:0.12.5")
+    annotationProcessor("com.github.bsideup.jabel:jabel-javac-plugin:0.4.1")
+
+    //minecraft ("com.mojang:minecraft:1.18-pre5")
+    //mappings ("net.fabricmc:yarn:1.18-pre5+build.4:v2")
+    //modImplementation ("net.fabricmc:fabric-loader:0.12.5")
+    
+    // Use pre1 as Jenkins currently does not support Java 17
+    //
+    minecraft("com.mojang:minecraft:1.18-pre1")
+    mappings("net.fabricmc:yarn:1.18-pre1+build.14:v2")
+    modImplementation("net.fabricmc:fabric-loader:0.12.5")
 
     //minecraft ("com.mojang:minecraft:21w37a")
     //mappings ("net.fabricmc:yarn:21w37a+build.5:v2")
     //modImplementation ("net.fabricmc:fabric-loader:0.11.7")
+    annotationProcessor("com.github.bsideup.jabel:jabel-javac-plugin:0.4.1")
 }
 
 
@@ -45,6 +54,21 @@ sourceSets {
         }
     }
 }
+
+/*configure([tasks.compileJava]) {
+    sourceCompatibility = 16 // for the IDE support
+    options.release = 8
+
+    javaCompiler = javaToolchains.compilerFor {
+        languageVersion = JavaLanguageVersion.of(16)
+    }
+}*/
+
+//tasks.getByName("compileJava") {
+    //sourceCompatibility = 16
+    //options.release = 8
+//}
+
 
 tasks.withType<Jar> { duplicatesStrategy = DuplicatesStrategy.INHERIT }
 
