@@ -59,4 +59,9 @@ public class FabricServer implements IServer {
         return mc.isDedicated() ? Side.SERVER : Side.CLIENT;
     }
 
+    @Override
+    public MinecraftServer getMinecraft() {
+        return mc;
+    }
+
 }

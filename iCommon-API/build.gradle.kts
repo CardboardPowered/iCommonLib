@@ -27,7 +27,7 @@ tasks.withType<Jar> { duplicatesStrategy = DuplicatesStrategy.INCLUDE }
 
 dependencies {
     minecraft ("com.mojang:minecraft:1.16.5")
-    mappings ("net.fabricmc:yarn:1.16.5+build.5:v2")
+    mappings ("net.fabricmc:yarn:1.16.5+build.10:v2")
     modImplementation ("net.fabricmc:fabric-loader:0.11.3")
 }
 

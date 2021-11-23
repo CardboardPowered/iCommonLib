@@ -3,6 +3,7 @@ package me.isaiah.common;
 import java.util.Collection;
 
 import me.isaiah.common.world.IWorld;
+import net.minecraft.server.MinecraftServer;
 
 public interface IServer {
 
@@ -40,5 +41,10 @@ public interface IServer {
     public default Loader getLoaderType() {
         return ICommonMod.modloader;
     }
+
+    /**
+     * Get the MinecraftServer object
+     */
+    public MinecraftServer getMinecraft();
 
 }

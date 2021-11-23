@@ -1,4 +1,4 @@
-package me.isaiah.common.mixin.R1_16;
+package me.isaiah.common.mixin.R1_18;
 
 import java.util.Random;
 
@@ -12,7 +12,6 @@ import net.minecraft.resource.ResourceManager;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.dedicated.MinecraftDedicatedServer;
 import net.minecraft.util.dynamic.RegistryOps;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.DynamicRegistryManager.Impl;
 import net.minecraft.world.gen.GeneratorOptions;
 import net.minecraft.world.gen.chunk.NoiseChunkGenerator;
@@ -28,7 +27,7 @@ public class MixinMinecraftServer implements IMixinMinecraftServer {
     @Override
     public NoiseChunkGenerator I_createOverworldGenerator() {
         MinecraftServer mc = ICommonMod.getIServer().getMinecraft();
-        return GeneratorOptions.createOverworldGenerator(mc.getRegistryManager().get(Registry.BIOME_KEY), mc.getRegistryManager().get(Registry.NOISE_SETTINGS_WORLDGEN), (new Random()).nextLong());
+        return GeneratorOptions.createOverworldGenerator(mc.getRegistryManager(), (new Random()).nextLong());
     }
 
 }

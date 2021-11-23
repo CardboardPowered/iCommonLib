@@ -17,9 +17,10 @@ public class MixinList {
               "    BlockItem",
               "",
               "MCVER=1.16,1.17",
+              "    World",
+              "MCVER=1.16,1.17,1.18",
               "    Entity",
               "    Player",
-              "    World",
               "    NbtTag",
               "    BlockEntity",
               "    ChestBlockEntity",
@@ -30,8 +31,7 @@ public class MixinList {
               "    PlayerManager",
               "    Heighttmap",
               "MCVER=1.18",
-              "    World_18",
-              "    BlockEntity"
+              "    World_18"
             );
 
 }

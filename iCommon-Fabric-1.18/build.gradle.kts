@@ -42,10 +42,10 @@ sourceSets {
     main {
         java {
             srcDir("${rootProject.projectDir}/iCommon-API/src/main/java/com")
-            srcDir("${rootProject.projectDir}/iCommon-Fabric-1.17/src/main/java")
+            //srcDir("${rootProject.projectDir}/iCommon-Fabric-1.17/src/main/java")
 
             // Needs fixing for 1.18:
-            exclude("**/MixinWorld.java")
+            //exclude("**/MixinWorld.java")
             
             srcDir("src/main/java")
         }
