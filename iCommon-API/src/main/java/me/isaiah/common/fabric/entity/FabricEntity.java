@@ -70,7 +70,7 @@ public class FabricEntity implements IEntity {
     @Override
     public void teleport(double x, double y, double z, float yaw, float pitch) {
         this.teleport(x, y, z);
-        getMC().yaw = (yaw);
+        getMC().setBodyYaw(yaw);
         // TODO 1.17 getMC().pitch = pitch;
     }
 
