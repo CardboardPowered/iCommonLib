@@ -12,7 +12,7 @@ pluginManagement {
 
 rootProject.name = 'iCommon'
 include 'iCommon-API'
-include 'iCommon-Fabric-1.16'
+//include 'iCommon-Fabric-1.16'
 include 'iCommon-Fabric-1.17'
 include 'iCommon-Fabric-1.18'
 //include 'iCommon-Forge-1.16'
