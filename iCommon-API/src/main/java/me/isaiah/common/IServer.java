@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import me.isaiah.common.world.IWorld;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.world.chunk.ChunkSection;
 
 public interface IServer {
 
