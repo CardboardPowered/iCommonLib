@@ -24,7 +24,7 @@ public class MixinBlockEntity implements IMixinBlockEntity {
     }
 
     @Inject(at = @At("RETURN"), method = "writeIdentifyingData")
-    public void saveEnd(NbtCompound tag, @SuppressWarnings("rawtypes") CallbackInfoReturnable callback) {
+    public void saveEnd(NbtCompound tag, CallbackInfo callback) {
         EventRegistery.invoke(BlockEntityWriteNbtEvent.class, 
                 new BlockEntityWriteNbtEvent((INbtElement) tag, (BlockEntity)(Object)this));
     }
