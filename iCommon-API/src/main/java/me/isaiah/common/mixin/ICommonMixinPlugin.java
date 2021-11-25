@@ -44,7 +44,6 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
     }
     
     /*
-     * Enabled aggressive exception aggregation
      */
     public static GameVersion create() {
         try (InputStream inputStream = MinecraftVersion.class.getResourceAsStream("/version.json");){
@@ -61,8 +60,9 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
         if (!start) {
             GameVersion ver = getGameVersion();
-            logger.info(" iCommon - Isaiah's common library for mods - Copyright (c) 2018-2021.");
-            logger.info(" Running on MC " + ver.getReleaseTarget() + " (" + ver.getProtocolVersion() + ")");
+            logger.info("=======================================================");
+            logger.info(" iCommon - Isaiah's common library for mods.");
+            logger.info(" Copyright (c) 2018-2021 by Isaiah. Running on MC " + ver.getReleaseTarget());
             logger.info("=======================================================");
         }
         start = true;
@@ -76,7 +76,7 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
         String relTar = getGameVersion().getReleaseTarget();
         boolean six = relTar.startsWith("1.16");
         boolean sev = relTar.startsWith("1.17");
-        boolean r8  = relTar.startsWith("1.18"); // Snapshot Testing
+        boolean r8  = relTar.startsWith("1.18");
 
         if (mixin.length() < 7 || mixin.startsWith("RALL") || mixin.startsWith("R.") || mixin.contains("MCVER") || mixin.equalsIgnoreCase("R1_16.Mixin")
                 || (mixin.contains("R1_") && mixin.length() < 12)) {
@@ -96,16 +96,6 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
             return six;
         }
         if (mixin.contains("1_17")) {
-            if (r8) {
-                if (!(mixin.contains("MixinWorld") || mixin.contains("MixinBlockEntity"))) {
-                    // It seems most of 1.17's mixins
-                    // Currently work on 1.18 (21w37a tested)
-
-                    logger.info("Applying mixin: " + mixin + "...");
-                    return true;
-                }
-            }
-            
             if (sev)
                 logger.info("Applying mixin: " + mixin + "...");
             return sev;
