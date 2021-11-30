@@ -21,7 +21,6 @@ public class MixinList {
               "MCVER=1.16,1.17,1.18",
               "    Entity",
               "    Player",
-              "    NbtTag",
               "    BlockEntity",
               "    ChestBlockEntity",
               "    CampfireBlockEntity",

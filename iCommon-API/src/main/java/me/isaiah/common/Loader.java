@@ -6,32 +6,9 @@ package me.isaiah.common;
  */
 public enum Loader {
 
-    /**
-     * Fabric - fabricmc.net
-     */
     FABRIC(true),
-
-    /**
-     * Minecraft Forge - minecraftforge.net
-     */
     FORGE(true),
-
-    /**
-     * Sponge - SpongePowered.org
-     */
-    SPONGE(false),
-
-    /**
-     * Sugarcane - Paper fork
-     * @see https://sugarcanemc.org/
-     */
-    SUGARCANE(false),
-
-    /**
-     * Minecraft Vanilla
-     */
-    NATIVE(false),
-
+    SPONGE(false)
     ;
 
     private boolean supported;

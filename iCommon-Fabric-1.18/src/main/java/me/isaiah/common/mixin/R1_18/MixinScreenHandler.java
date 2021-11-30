@@ -1,8 +1,5 @@
 package me.isaiah.common.mixin.R1_18;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
-
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 

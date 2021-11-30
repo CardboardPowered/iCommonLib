@@ -1,19 +1,19 @@
 package me.isaiah.common.event.entity;
 
 import me.isaiah.common.event.Event;
-import me.isaiah.common.nbt.INbtElement;
+import net.minecraft.nbt.NbtCompound;
 
 public class BlockEntityLoadEvent extends Event {
 
-    private INbtElement element;
+    private NbtCompound element;
     private Object mc;
 
-    public BlockEntityLoadEvent(INbtElement element, Object mc) {
+    public BlockEntityLoadEvent(NbtCompound element, Object mc) {
         this.element = element;
         this.mc = mc;
     }
 
-    public INbtElement getElement() {
+    public NbtCompound getElement() {
         return element;
     }
 

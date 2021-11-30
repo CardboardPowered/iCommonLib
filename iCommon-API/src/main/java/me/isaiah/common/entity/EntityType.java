@@ -44,7 +44,6 @@ public class EntityType {
     public static EntityType ARROW                 = new EntityType("arrow");
     public static EntityType SNOWBALL              = new EntityType("snowball");
     public static EntityType FIREBALL              = new EntityType("fireball");
-    public static EntityType SMALL_FIREBALL        = new EntityType("small_fireball");
     public static EntityType ENDER_PEARL           = new EntityType("ender_pearl");
     public static EntityType EYE_OF_ENDER          = new EntityType("eye_of_ender");
     public static EntityType SPLASH_POTION         = new EntityType("potion");
@@ -52,7 +51,6 @@ public class EntityType {
     public static EntityType ITEM_FRAME            = new EntityType("item_frame");
     public static EntityType WITHER_SKULL          = new EntityType("wither_skull");
     public static EntityType TNT                   = new EntityType("tnt");
-    public static EntityType FALLING_BLOCK         = new EntityType("falling_block");
     public static EntityType FIREWORK              = new EntityType("firework_rocket");
     public static EntityType HUSK                  = new EntityType("husk");
     public static EntityType SPECTRAL_ARROW        = new EntityType("spectral_arrow");
@@ -69,14 +67,8 @@ public class EntityType {
     public static EntityType VEX                   = new EntityType("vex");
     public static EntityType VINDICATOR            = new EntityType("vindicator");
     public static EntityType ILLUSIONER            = new EntityType("illusioner");
-    public static EntityType MINECART_COMMAND      = new EntityType("command_block_minecart");
     public static EntityType BOAT                  = new EntityType("boat");
     public static EntityType MINECART              = new EntityType("minecart");
-    public static EntityType MINECART_CHEST        = new EntityType("chest_minecart");
-    public static EntityType MINECART_FURNACE      = new EntityType("furnace_minecart");
-    public static EntityType MINECART_TNT          = new EntityType("tnt_minecart");
-    public static EntityType MINECART_HOPPER       = new EntityType("hopper_minecart");
-    public static EntityType MINECART_MOB_SPAWNER  = new EntityType("spawner_minecart");
     public static EntityType CREEPER               = new EntityType("creeper");
     public static EntityType SKELETON              = new EntityType("skeleton");
     public static EntityType SPIDER                = new EntityType("spider");
