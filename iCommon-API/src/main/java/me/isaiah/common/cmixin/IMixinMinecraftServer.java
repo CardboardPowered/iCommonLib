@@ -4,15 +4,16 @@ import com.mojang.serialization.DynamicOps;
 
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.util.dynamic.RegistryOps;
-import net.minecraft.util.registry.DynamicRegistryManager.Impl;
+//import net.minecraft.util.registry.DynamicRegistryManager.Impl;
 import net.minecraft.world.chunk.ChunkSection;
 import net.minecraft.world.gen.chunk.NoiseChunkGenerator;
 
 public interface IMixinMinecraftServer {
 
     /**
+     * note: unused?
      */
-    public RegistryOps<Object> Iof(DynamicOps<Object> delegate, ResourceManager resourceManager, Impl impl);
+    // public RegistryOps<Object> Iof(DynamicOps<Object> delegate, ResourceManager resourceManager, Impl impl);
 
     /**
      * 1.17/1.18 safe replacement for GeneratorOptions.createOverworldGenerator

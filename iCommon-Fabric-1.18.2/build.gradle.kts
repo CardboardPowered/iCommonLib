@@ -13,7 +13,7 @@ java {
 
 base {
     archivesBaseName = "iCommon-Fabric"
-    version = "1.18"
+    version = "1.18.2"
     group = "com.javazilla.mods"
 }
 
@@ -21,10 +21,10 @@ base {
 dependencies {
     annotationProcessor("com.github.bsideup.jabel:jabel-javac-plugin:0.4.1")
 
-    // 1.18.1
-    minecraft("com.mojang:minecraft:1.18.1")
-    mappings("net.fabricmc:yarn:1.18.1+build.22:v2")
-    modImplementation("net.fabricmc:fabric-loader:0.12.5")
+    // 1.18.2
+    minecraft("com.mojang:minecraft:1.18.2") 
+    mappings("net.fabricmc:yarn:1.18.2+build.2:v2")
+    modImplementation("net.fabricmc:fabric-loader:0.13.3")
 
     annotationProcessor("com.github.bsideup.jabel:jabel-javac-plugin:0.4.1")
 }
