@@ -20,6 +20,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.collection.IndexedIterable;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.profiler.Profiler;
 import net.minecraft.util.registry.RegistryKey;
@@ -77,6 +78,11 @@ public class MixinWorld_18 implements IMixinWorld {
     @Override
     public PalettedContainer<BlockState> I_emptyBlockIDs() {
         return new PalettedContainer<>(Block.STATE_IDS, Blocks.AIR.getDefaultState(), PalettedContainer.PaletteProvider.BLOCK_STATE);
+    }
+
+    @Override
+    public Biome I_get_biome_for_noise_gen(int biomeX, int biomeY, int biomeZ) {
+        return ((World)(Object)this).getBiomeForNoiseGen(biomeX, biomeY, biomeZ);
     }
 
 }

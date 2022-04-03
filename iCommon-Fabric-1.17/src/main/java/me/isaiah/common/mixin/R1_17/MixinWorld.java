@@ -18,6 +18,7 @@ import me.isaiah.common.world.IWorld;
 import net.minecraft.block.BlockState;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.collection.IndexedIterable;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
@@ -76,6 +77,11 @@ public class MixinWorld implements IMixinWorld {
     @Override
     public PalettedContainer<BlockState> I_emptyBlockIDs() {
         return new ChunkSection(0).getContainer();
+    }
+
+    @Override
+    public Biome I_get_biome_for_noise_gen(int biomeX, int biomeY, int biomeZ) {
+        return ((World)(Object)this).getBiomeForNoiseGen(biomeX, biomeY, biomeZ);
     }
 
 }
