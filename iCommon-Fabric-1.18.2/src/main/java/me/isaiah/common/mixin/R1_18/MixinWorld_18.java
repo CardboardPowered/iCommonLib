@@ -23,6 +23,7 @@ import net.minecraft.util.collection.IndexedIterable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.profiler.Profiler;
+import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.MutableWorldProperties;
 import net.minecraft.world.World;
@@ -41,7 +42,8 @@ public class MixinWorld_18 implements IMixinWorld {
 
     @SuppressWarnings("resource")
     @Inject(method = "<init>", at = @At("TAIL"))
-    public void init(MutableWorldProperties a, RegistryKey<?> b, DimensionType d, Supplier<Profiler> e, boolean f, boolean g, long h, CallbackInfo ci){
+    public void init(MutableWorldProperties a, RegistryKey<?> b, RegistryEntry<DimensionType> registryEntry, Supplier<Profiler> profiler, boolean f, boolean g, long h, CallbackInfo ci){
+    //public void init(MutableWorldProperties a, RegistryKey<?> b, DimensionType d, Supplier<Profiler> e, boolean f, boolean g, long h, CallbackInfo ci){
         if (!((Object)this instanceof ServerWorld)) {
             return;
         }
