@@ -7,7 +7,7 @@ import me.isaiah.common.entity.EntityType;
 import me.isaiah.common.entity.IEntity;
 import me.isaiah.common.entity.IRemoveReason;
 import net.minecraft.entity.Entity;
-import net.minecraft.text.LiteralText;
+import net.minecraft.text.Text;
 
 public class FabricEntity implements IEntity {
 
@@ -28,13 +28,13 @@ public class FabricEntity implements IEntity {
 
     @Override
     public String getDisplayedName() {
-        return getMC().getCustomName().asString();
+        return getMC().getCustomName().getString();
     }
 
     @Override
     public void setDisplayedName(String str) {
         getMC().setCustomNameVisible(true);
-        getMC().setCustomName(new LiteralText(str));
+        getMC().setCustomName(Text.of(str));
     }
 
     @Override
@@ -49,7 +49,7 @@ public class FabricEntity implements IEntity {
 
     @Override
     public void message(String msg) {
-        ((IMixinEntity)mc).IsendText(new LiteralText(msg), UUID.randomUUID());
+        ((IMixinEntity)mc).IsendText(Text.of(msg), UUID.randomUUID());
     }
 
     @Override

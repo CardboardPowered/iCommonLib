@@ -18,7 +18,7 @@ public class MixinList {
               "",
               "MCVER=1.16,1.17",
               "    World",
-              "MCVER=1.16,1.17,1.18",
+              "MCVER=1.16,1.17,1.18,1.19",
               "    Entity",
               "    Player",
               "    BlockEntity",
@@ -29,7 +29,7 @@ public class MixinList {
               "    PersistentStateManager",
               "    PlayerManager",
               "    Heighttmap",
-              "MCVER=1.18",
+              "MCVER=1.18,1.19",
               "    World_18"
             );
 
