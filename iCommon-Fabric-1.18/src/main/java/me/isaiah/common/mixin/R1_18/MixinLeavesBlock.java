@@ -20,8 +20,13 @@ public class MixinLeavesBlock {
     @Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/block/LeavesBlock;dropStacks(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;)V"),
             method = "randomTick", cancellable = true)
     public void cardboard_doLeavesDecayEvent(BlockState state, ServerWorld world, BlockPos pos, Random ra, CallbackInfo ci) {        
-    	EventRegistery.invoke(LeavesDecayEvent.class, 
+    	LeavesDecayEvent ev = (LeavesDecayEvent) EventRegistery.invoke(LeavesDecayEvent.class, 
                 new LeavesDecayEvent(state, world, pos));
+    	
+    	if (ev.isCanceled()) {
+    		ci.cancel();
+    		return;
+    	}
     }
 
 }
