@@ -26,9 +26,20 @@ repositories {
 tasks.withType<Jar> { duplicatesStrategy = DuplicatesStrategy.INCLUDE }
 
 dependencies {
-    minecraft ("com.mojang:minecraft:1.16.5")
-    mappings ("net.fabricmc:yarn:1.16.5+build.10:v2")
-    modImplementation ("net.fabricmc:fabric-loader:0.11.3")
+    minecraft ("com.mojang:minecraft:1.17.1")
+    mappings ("net.fabricmc:yarn:1.17.1+build.65:v2")
+    modImplementation ("net.fabricmc:fabric-loader:0.14.9")
+    //modImplementation "net.fabricmc.fabric-api:fabric-api:0.28.5+1.15"
+	
+	setOf(
+		"fabric-api-base",
+		"fabric-command-api-v1",
+		"fabric-lifecycle-events-v1",
+		"fabric-networking-api-v1"
+	).forEach {
+		// Add each module as a dependency
+		modImplementation(fabricApi.module(it, "0.46.1+1.17"))
+	}
 }
 
 tasks.getByName<ProcessResources>("processResources") {
