@@ -1,6 +1,9 @@
 package me.isaiah.common;
 
 import java.util.Collection;
+import java.util.UUID;
+
+import com.mojang.authlib.GameProfile;
 
 import me.isaiah.common.world.IWorld;
 import net.minecraft.server.MinecraftServer;
@@ -47,4 +50,10 @@ public interface IServer {
      */
     public MinecraftServer getMinecraft();
 
+    
+    /**
+     * Get UUID from Profile
+     */
+    public UUID get_uuid_from_profile(GameProfile profile);
+    
 }

@@ -1,13 +1,16 @@
 package me.isaiah.common.mixin.R1_18;
 
 import java.util.Random;
+import java.util.UUID;
 
 import org.spongepowered.asm.mixin.Mixin;
 
+import com.mojang.authlib.GameProfile;
 import com.mojang.serialization.DynamicOps;
 
 import me.isaiah.common.ICommonMod;
 import me.isaiah.common.cmixin.IMixinMinecraftServer;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.dedicated.MinecraftDedicatedServer;
@@ -37,5 +40,10 @@ public class MixinMinecraftServer implements IMixinMinecraftServer {
         MinecraftServer mc = ICommonMod.getIServer().getMinecraft();
         return new ChunkSection(pos, mc.getRegistryManager().get(Registry.BIOME_KEY));
     }
+
+	@Override
+	public UUID get_uuid_from_profile(GameProfile profile) {
+		return PlayerEntity.getUuidFromProfile(profile);
+	}
 
 }

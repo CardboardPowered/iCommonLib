@@ -1,17 +1,21 @@
 package me.isaiah.common.mixin.R1_19;
 
 import java.util.Random;
+import java.util.UUID;
 
 import org.spongepowered.asm.mixin.Mixin;
 
+import com.mojang.authlib.GameProfile;
 import com.mojang.serialization.DynamicOps;
 
 import me.isaiah.common.ICommonMod;
 import me.isaiah.common.cmixin.IMixinMinecraftServer;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.dedicated.MinecraftDedicatedServer;
 import net.minecraft.structure.StructureSet;
+import net.minecraft.util.dynamic.DynamicSerializableUuid;
 import net.minecraft.util.dynamic.RegistryOps;
 import net.minecraft.util.math.noise.DoublePerlinNoiseSampler;
 import net.minecraft.util.registry.Registry;
@@ -73,5 +77,11 @@ public class MixinMinecraftServer implements IMixinMinecraftServer {
         
         return new NoiseChunkGenerator(iregistry1, iregistry3, bs, /*seed,*/ iregistry2.getOrCreateEntry(settings));
     }
+    
+
+	@Override
+	public UUID get_uuid_from_profile(GameProfile profile) {
+		return DynamicSerializableUuid.getUuidFromProfile(profile);
+	}
 
 }

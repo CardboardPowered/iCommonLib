@@ -1,5 +1,8 @@
 package me.isaiah.common.cmixin;
 
+import java.util.UUID;
+
+import com.mojang.authlib.GameProfile;
 import com.mojang.serialization.DynamicOps;
 
 import net.minecraft.resource.ResourceManager;
@@ -32,5 +35,13 @@ public interface IMixinMinecraftServer {
      * @implNote 1.18 - ChunkSection(int chunkPos, Registry<Biome> biomeRegistry)
      */
     public ChunkSection newChunkSection(int yOffset);
+
+    /**
+     * Retrieve UUID from a GameProfile
+     * 
+     * @implNote 1.18 -
+     * @implNote 1.19 -
+     */
+    public UUID get_uuid_from_profile(GameProfile profile);
 
 }

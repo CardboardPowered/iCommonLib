@@ -2,7 +2,9 @@ package me.isaiah.common.fabric;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.UUID;
 
+import com.mojang.authlib.GameProfile;
 import com.mojang.bridge.game.GameVersion;
 
 import me.isaiah.common.IServer;
@@ -63,5 +65,11 @@ public class FabricServer implements IServer {
     public MinecraftServer getMinecraft() {
         return mc;
     }
+
+	@Override
+	public UUID get_uuid_from_profile(GameProfile profile) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

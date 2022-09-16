@@ -29,6 +29,7 @@ public class MixinList {
               "    PersistentStateManager",
               "    PlayerManager",
               "    Heighttmap",
+              "    LeavesBlock",
               "MCVER=1.18,1.19",
               "    World_18"
             );

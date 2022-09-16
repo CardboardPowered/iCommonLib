@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import net.fabricmc.api.ModInitializer;
+import net.minecraft.world.WorldAccess;
 
 public class ICommonMod implements ModInitializer {
 
@@ -12,6 +13,12 @@ public class ICommonMod implements ModInitializer {
     public static final Logger LOGGER = LogManager.getLogger("iCommon");
     private static IServer iserver;
     static Loader modloader;
+    
+    public static WorldAccess fake_world;
+    
+    public static void set_fake_world(WorldAccess world) {
+    	fake_world = world;
+    }
 
     /**
      * Set the instance of the {@link IServer}
