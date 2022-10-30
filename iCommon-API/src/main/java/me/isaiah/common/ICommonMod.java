@@ -6,9 +6,16 @@ import org.apache.logging.log4j.Logger;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.world.WorldAccess;
 
+/**
+ * iCommon
+ */
 public class ICommonMod implements ModInitializer {
 
-    private static final double API_VERSION = 0.1;
+	/** 
+	 * Change API version for new or breaking changes
+	 * Dependents can use this as a compatibility check
+     */
+    private static final double API_VERSION = 0.2;
 
     public static final Logger LOGGER = LogManager.getLogger("iCommon");
     private static IServer iserver;

@@ -13,6 +13,8 @@ import me.isaiah.common.cmixin.IMixinMinecraftServer;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.command.CommandManager;
+import net.minecraft.server.command.CommandManager.RegistrationEnvironment;
 import net.minecraft.server.dedicated.MinecraftDedicatedServer;
 import net.minecraft.util.dynamic.RegistryOps;
 import net.minecraft.util.registry.Registry;
@@ -46,4 +48,10 @@ public class MixinMinecraftServer implements IMixinMinecraftServer {
 		return PlayerEntity.getUuidFromProfile(profile);
 	}
 
+
+	@Override
+	public CommandManager new_command_manager(RegistrationEnvironment env) {
+		return new CommandManager(env);
+	}
+	
 }

@@ -3,10 +3,8 @@ package me.isaiah.common.cmixin;
 import java.util.UUID;
 
 import com.mojang.authlib.GameProfile;
-import com.mojang.serialization.DynamicOps;
-
-import net.minecraft.resource.ResourceManager;
-import net.minecraft.util.dynamic.RegistryOps;
+import net.minecraft.server.command.CommandManager;
+import net.minecraft.server.command.CommandManager.RegistrationEnvironment;
 //import net.minecraft.util.registry.DynamicRegistryManager.Impl;
 import net.minecraft.world.chunk.ChunkSection;
 import net.minecraft.world.gen.chunk.NoiseChunkGenerator;
@@ -43,5 +41,13 @@ public interface IMixinMinecraftServer {
      * @implNote 1.19 -
      */
     public UUID get_uuid_from_profile(GameProfile profile);
+
+    /**
+     * Create new instance of CommandManager
+     * 
+     * @implNote 1.18 - new CommandManager(RegistrationEnvironment)
+     * @implNote 1.19 - new CommandManager(RegistrationEnvironment, CommandRegistryAccess)
+     */
+    public CommandManager new_command_manager(RegistrationEnvironment env);
 
 }

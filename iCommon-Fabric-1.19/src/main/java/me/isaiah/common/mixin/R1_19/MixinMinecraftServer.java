@@ -10,9 +10,12 @@ import com.mojang.serialization.DynamicOps;
 
 import me.isaiah.common.ICommonMod;
 import me.isaiah.common.cmixin.IMixinMinecraftServer;
+import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.command.CommandManager;
+import net.minecraft.server.command.CommandManager.RegistrationEnvironment;
 import net.minecraft.server.dedicated.MinecraftDedicatedServer;
 import net.minecraft.structure.StructureSet;
 import net.minecraft.util.dynamic.DynamicSerializableUuid;
@@ -82,6 +85,12 @@ public class MixinMinecraftServer implements IMixinMinecraftServer {
 	@Override
 	public UUID get_uuid_from_profile(GameProfile profile) {
 		return DynamicSerializableUuid.getUuidFromProfile(profile);
+	}
+
+	@Override
+	public CommandManager new_command_manager(RegistrationEnvironment env) {
+		MinecraftDedicatedServer mc = (MinecraftDedicatedServer) (Object) this;
+		return new CommandManager(env, new CommandRegistryAccess(mc.getRegistryManager()));
 	}
 
 }
