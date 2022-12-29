@@ -22,8 +22,13 @@ dependencies {
 
     // 1.19.2
     minecraft("com.mojang:minecraft:1.19.2") 
-    mappings("net.fabricmc:yarn:1.19.2+build.1:v2")
+    mappings("net.fabricmc:yarn:1.19.2+build.28:v2")
     modImplementation("net.fabricmc:fabric-loader:0.14.9")
+	
+	// 1.19.3
+    // minecraft("com.mojang:minecraft:1.19.3") 
+    // mappings("net.fabricmc:yarn:1.19.3+build.3:v2")
+    // modImplementation("net.fabricmc:fabric-loader:0.14.11")
 }
 
 

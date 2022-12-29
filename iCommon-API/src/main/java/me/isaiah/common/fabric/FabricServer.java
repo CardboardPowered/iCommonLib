@@ -9,6 +9,7 @@ import com.mojang.bridge.game.GameVersion;
 
 import me.isaiah.common.IServer;
 import me.isaiah.common.Side;
+import me.isaiah.common.cmixin.IMixinMinecraftServer;
 import me.isaiah.common.world.IWorld;
 import net.minecraft.MinecraftVersion;
 import net.minecraft.SharedConstants;
@@ -66,10 +67,12 @@ public class FabricServer implements IServer {
         return mc;
     }
 
+    /**
+     * See IMixinMinecraftServer.get_uuid_from_profile
+     */
 	@Override
 	public UUID get_uuid_from_profile(GameProfile profile) {
-		// TODO Auto-generated method stub
-		return null;
+		return ((IMixinMinecraftServer)mc).get_uuid_from_profile(profile);
 	}
 
 }
