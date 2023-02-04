@@ -58,19 +58,19 @@ public class MixinMinecraftServer implements IMixinMinecraftServer {
         return new ChunkSection(pos, mc.getRegistryManager().get(Registry.BIOME_KEY));
     }
     
-    public static NoiseChunkGenerator createOverworldGenerator(DynamicRegistryManager registryManager, long seed) {
+    private static NoiseChunkGenerator createOverworldGenerator(DynamicRegistryManager registryManager, long seed) {
         return createOverworldGenerator(registryManager, seed, true);
     }
 
-    public static NoiseChunkGenerator createOverworldGenerator(DynamicRegistryManager registryManager, long seed, boolean flag) {
+    private static NoiseChunkGenerator createOverworldGenerator(DynamicRegistryManager registryManager, long seed, boolean flag) {
         return createGenerator(registryManager, seed, ChunkGeneratorSettings.OVERWORLD, flag);
     }
 
-    public static NoiseChunkGenerator createGenerator(DynamicRegistryManager registryManager, long seed, RegistryKey<ChunkGeneratorSettings> settings) {
+    private static NoiseChunkGenerator createGenerator(DynamicRegistryManager registryManager, long seed, RegistryKey<ChunkGeneratorSettings> settings) {
         return createGenerator(registryManager, seed, settings, true);
     }
     
-    public static NoiseChunkGenerator createGenerator(DynamicRegistryManager registryManager, long seed, RegistryKey<ChunkGeneratorSettings> settings, boolean flag) {
+    private static NoiseChunkGenerator createGenerator(DynamicRegistryManager registryManager, long seed, RegistryKey<ChunkGeneratorSettings> settings, boolean flag) {
         Registry<Biome> iregistry = registryManager.get(Registry.BIOME_KEY);
         Registry<StructureSet> iregistry1 = registryManager.get(Registry.STRUCTURE_SET_KEY);
         Registry<ChunkGeneratorSettings> iregistry2 = registryManager.get(Registry.CHUNK_GENERATOR_SETTINGS_KEY);
