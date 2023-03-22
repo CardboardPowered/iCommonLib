@@ -5,7 +5,10 @@ import java.util.HashMap;
 import java.util.UUID;
 
 import com.mojang.authlib.GameProfile;
-import com.mojang.bridge.game.GameVersion;
+import me.isaiah.common.GameVersion;
+import net.minecraft.util.JsonHelper;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 import me.isaiah.common.IServer;
 import me.isaiah.common.Side;
@@ -44,17 +47,29 @@ public class FabricServer implements IServer {
         return worlds.get(name);
     }
 
+	public static GameVersion getGameVersion() {
+        if (null == GameVersion.INSTANCE) {
+            GameVersion.INSTANCE = create();
+        }
+        return GameVersion.INSTANCE;
+    }
+
+    /*
+     */
+    public static GameVersion create() {
+        try (InputStream inputStream = MinecraftVersion.class.getResourceAsStream("/version.json");){
+            if (inputStream == null) return null;
+            try (InputStreamReader inputStreamReader = new InputStreamReader(inputStream);){
+                return new GameVersion(JsonHelper.deserialize(inputStreamReader));
+            }
+        } catch (Exception exception) {
+            throw new IllegalStateException("Bad version info", exception);
+        }
+    }
+
     @Override
     public int getProtocolVersion() {
         return getGameVersion().getProtocolVersion();
-    }
-
-    public static GameVersion getGameVersion() {
-        try { 
-            return SharedConstants.getGameVersion();
-        } catch (IllegalStateException ver117) {
-            return MinecraftVersion.create();
-        }
     }
 
     @Override
