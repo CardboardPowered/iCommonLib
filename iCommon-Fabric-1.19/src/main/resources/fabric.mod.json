@@ -19,7 +19,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "me.isaiah.common.R117.ICommonMod_117"
+      "me.isaiah.common.ICommonModFabric"
     ]
   },
   "mixins": [
