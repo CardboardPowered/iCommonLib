@@ -20,8 +20,10 @@ public class FabricPrimedTnt extends FabricEntity implements IPrimedTnt {
 
     @Override
     public IEntity getSource() {
-        LivingEntity source = getMC().getCausingEntity();
-        return (source != null) ? ((IMixinEntity)source).getAsICommon() : null;
+        // LivingEntity source = getMC().getCausingEntity();
+        //return (source != null) ? ((IMixinEntity)source).getAsICommon() : null;
+		// TODO: Update to also support 1.19.4
+		return null;
     }
 
 }

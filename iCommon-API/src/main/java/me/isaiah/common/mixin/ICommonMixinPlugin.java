@@ -62,7 +62,7 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
             GameVersion ver = getGameVersion();
             logger.info("=======================================================");
             logger.info(" iCommon - Isaiah's common library for mods.");
-            logger.info(" Copyright (c) 2018-2021 by Isaiah. Running on MC " + ver.getReleaseTarget());
+            logger.info(" Copyright (c) 2018-2023 Isaiah. Running on MC " + ver.getReleaseTarget());
             logger.info("=======================================================");
         }
         start = true;
