@@ -76,7 +76,7 @@ public class MixinMinecraftServer implements IMixinMinecraftServer {
         Registry<ChunkGeneratorSettings> iregistry2 = registryManager.get(Registry.CHUNK_GENERATOR_SETTINGS_KEY);
         Registry<DoublePerlinNoiseSampler.NoiseParameters> iregistry3 = registryManager.get(Registry.NOISE_KEY);
         
-        BiomeSource bs = (BiomeSource)MultiNoiseBiomeSource.Preset.OVERWORLD.getBiomeSource(iregistry, flag);
+        BiomeSource bs = MultiNoiseBiomeSource.Preset.OVERWORLD.getBiomeSource(iregistry, flag);
         
         return new NoiseChunkGenerator(iregistry1, iregistry3, bs, /*seed,*/ iregistry2.getOrCreateEntry(settings));
     }

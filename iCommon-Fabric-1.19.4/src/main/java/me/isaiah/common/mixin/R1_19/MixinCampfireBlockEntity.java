@@ -17,7 +17,7 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-@Mixin(CampfireBlockEntity.class)
+@Mixin(value = CampfireBlockEntity.class, priority = 90)
 public class MixinCampfireBlockEntity implements ICampfireBlockEntity {
 
     @Shadow
@@ -28,7 +28,7 @@ public class MixinCampfireBlockEntity implements ICampfireBlockEntity {
      * @reason Fire events
      */
 	 // TODO: Update to 1.19.4
-    /*@Overwrite
+    @Overwrite
     public static void litServerTick(World world, BlockPos pos, BlockState state, CampfireBlockEntity mc) {
         ICampfireBlockEntity helper = (ICampfireBlockEntity)(Object)mc;
         for (int i = 0; i < mc.getItemsBeingCooked().size(); ++i) {
@@ -40,7 +40,7 @@ public class MixinCampfireBlockEntity implements ICampfireBlockEntity {
                 if (helper.IgetCookingTimes()[i] >= helper.IgetCookingTotalTimes()[i]) {
                     SimpleInventory inventorysubcontainer = new SimpleInventory(new ItemStack[]{itemstack});
                     ItemStack itemstack1 = (ItemStack) mc.getWorld().getRecipeManager().getFirstMatch(RecipeType.CAMPFIRE_COOKING, inventorysubcontainer, mc.getWorld()).map((recipecampfire) -> {
-                        return recipecampfire.craft(inventorysubcontainer);
+                        return recipecampfire.craft(inventorysubcontainer, world.getRegistryManager());
                     }).orElse(itemstack);
                     BlockPos blockposition = mc.getPos();
 
@@ -58,7 +58,7 @@ public class MixinCampfireBlockEntity implements ICampfireBlockEntity {
             }
         }
 
-    }*/
+    }
 
     @Shadow
     public int[] cookingTimes;

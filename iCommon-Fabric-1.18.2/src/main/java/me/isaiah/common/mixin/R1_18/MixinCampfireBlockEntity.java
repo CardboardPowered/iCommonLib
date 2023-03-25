@@ -17,7 +17,7 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-@Mixin(CampfireBlockEntity.class)
+@Mixin(value = CampfireBlockEntity.class, priority = 90)
 public class MixinCampfireBlockEntity implements ICampfireBlockEntity {
 
     @Shadow
