@@ -31,6 +31,7 @@ public class MixinList {
               "    PlayerManager",
               "    Heighttmap",
               "    LeavesBlock",
+              "    Cat",
               "MCVER=1.18,1.19",
               "    World_18"
             );

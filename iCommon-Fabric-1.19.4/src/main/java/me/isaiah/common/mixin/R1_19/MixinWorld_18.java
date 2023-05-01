@@ -33,6 +33,7 @@ import net.minecraft.world.biome.source.BiomeSource;
 import net.minecraft.world.chunk.PalettedContainer;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.level.ServerWorldProperties;
+import net.minecraft.registry.DynamicRegistryManager;
 
 @SupportedVersion({"1.18", "1.19", "1.19.4"})
 @Mixin(World.class)
@@ -42,8 +43,9 @@ public class MixinWorld_18 implements IMixinWorld {
 
     @SuppressWarnings("resource")
     @Inject(method = "<init>", at = @At("TAIL"))
-    public void init(MutableWorldProperties a, RegistryKey<?> b, RegistryEntry<DimensionType> registryEntry, Supplier<Profiler> profiler, boolean f, boolean g, long h, int i, CallbackInfo ci){
-    //public void init(MutableWorldProperties a, RegistryKey<?> b, DimensionType d, Supplier<Profiler> e, boolean f, boolean g, long h, CallbackInfo ci){
+    public void init(MutableWorldProperties a, RegistryKey<?> b, DynamicRegistryManager rm, RegistryEntry<DimensionType> registryEntry, Supplier<Profiler> profiler, boolean f, boolean g, long h, int i, CallbackInfo ci){
+    // public void init(MutableWorldProperties a, RegistryKey<?> b, RegistryEntry<DimensionType> registryEntry, Supplier<Profiler> profiler, boolean f, boolean g, long h, int i, CallbackInfo ci){
+    // public void init(MutableWorldProperties a, RegistryKey<?> b, DimensionType d, Supplier<Profiler> e, boolean f, boolean g, long h, CallbackInfo ci){
         if (!((Object)this instanceof ServerWorld)) {
             return;
         }
