@@ -37,7 +37,8 @@ public class MixinPlayer extends MixinEntity {
     }
 
     @Inject(method = "<init>", at = @At("TAIL"))
-    public void init(MinecraftServer server, ServerWorld world, GameProfile profile, PlayerPublicKey key, CallbackInfo ci) {
+    //public void init(MinecraftServer server, ServerWorld world, GameProfile profile, PlayerPublicKey key, CallbackInfo ci) {
+    public void init(MinecraftServer server, ServerWorld world, GameProfile profile, CallbackInfo ci) {
         EventRegistery.invoke(ServerPlayerInitEvent.class, new ServerPlayerInitEvent((IPlayer)((IMixinEntity)IgetMCEntity()).getAsICommon()));
     }
 
