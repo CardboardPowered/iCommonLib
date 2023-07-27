@@ -18,7 +18,7 @@ public class MixinList {
               "",
               "MCVER=1.16,1.17",
               "    World",
-              "MCVER=1.16,1.17,1.18,1.19",
+              "MCVER=1.16,1.17,1.18,1.19,1.20",
               "    MinecraftServer",
               "    Entity",
               "    Player",
@@ -32,7 +32,7 @@ public class MixinList {
               "    Heighttmap",
               "    LeavesBlock",
               "    Cat",
-              "MCVER=1.18,1.19",
+              "MCVER=1.18,1.19,1.20",
               "    World_18"
             );
 
