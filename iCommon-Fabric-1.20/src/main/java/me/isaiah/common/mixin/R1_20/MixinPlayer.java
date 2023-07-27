@@ -1,4 +1,4 @@
-package me.isaiah.common.mixin.R1_19;
+package me.isaiah.common.mixin.R1_20;
 
 import java.util.UUID;
 
