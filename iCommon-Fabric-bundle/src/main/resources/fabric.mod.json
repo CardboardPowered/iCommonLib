@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "icommon",
-  "version": "1.19",
+  "id": "icommon-bundle",
+  "version": "bundle",
 
-  "name": "iCommonLib 1.19",
+  "name": "iCommonLib-bundle",
   "description": "Common API for multi-version functions. ",
   "authors": [
     "Me!"
@@ -19,16 +19,10 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "me.isaiah.common.ICommonModFabric"
     ]
   },
-  "mixins": [
-    "icommon.mixins.json",
-    "icommon-117.mixins.json"
-  ],
 
   "depends": {
-    "fabricloader": ">=0.7.4",
-    "minecraft": "1.19.4"
+    "fabricloader": ">=0.7.4"
   }
 }
