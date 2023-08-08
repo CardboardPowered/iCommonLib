@@ -17,6 +17,7 @@ import me.isaiah.common.GameVersion;
 import me.isaiah.common.cmixin.MixinList;
 import me.isaiah.common.event.EventRegistery;
 import me.isaiah.common.event.ShouldApplyMixinEvent;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.MinecraftVersion;
 import net.minecraft.util.JsonHelper;
 
@@ -90,6 +91,15 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
 
         if (ev.isCanceled()) {
             return false;
+        }
+        
+        boolean has_lithium = FabricLoader.getInstance().isModLoaded("lithium");
+
+        if (mixin.contains("CampfireBlockEntity")) {
+        	if (has_lithium) {
+        		logger.info("Lithium detected");
+        		return false;
+        	}
         }
 
         if (mixin.contains("1_16")) {
