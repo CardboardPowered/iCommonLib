@@ -43,7 +43,7 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
         }
         return GameVersion.INSTANCE;
     }
-    
+
     /*
      */
     public static GameVersion create() {
