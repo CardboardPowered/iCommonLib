@@ -1,10 +1,5 @@
 package me.isaiah.common.mixin.R1_20;
 
-import java.util.Random;
-import java.util.UUID;
-
-import org.spongepowered.asm.mixin.Mixin;
-
 import com.mojang.authlib.GameProfile;
 import me.isaiah.common.ICommonMod;
 import me.isaiah.common.cmixin.IMixinMinecraftServer;
@@ -12,8 +7,8 @@ import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.registry.BuiltinRegistries;
 import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.CommandManager.RegistrationEnvironment;
@@ -27,6 +22,10 @@ import net.minecraft.world.biome.source.BiomeSource;
 import net.minecraft.world.chunk.ChunkSection;
 import net.minecraft.world.gen.chunk.ChunkGeneratorSettings;
 import net.minecraft.world.gen.chunk.NoiseChunkGenerator;
+import org.spongepowered.asm.mixin.Mixin;
+
+import java.util.Random;
+import java.util.UUID;
 
 @Mixin(MinecraftDedicatedServer.class)
 public class MixinMinecraftServer implements IMixinMinecraftServer {
@@ -82,7 +81,9 @@ public class MixinMinecraftServer implements IMixinMinecraftServer {
 
 	// @Override
 	public UUID get_uuid_from_profile(GameProfile profile) {
-		return Uuids.getUuidFromProfile(profile);
+		return profile.getId() != null
+				? profile.getId()
+				: Uuids.getOfflinePlayerUuid(profile.getName());
 	}
 
 	// @Override
