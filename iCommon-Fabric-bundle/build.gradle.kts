@@ -33,7 +33,8 @@ dependencies {
 	include(project(":iCommon-Fabric-1.18.2"))
 	include(project(":iCommon-Fabric-1.19"))
 	include(project(":iCommon-Fabric-1.19.4"))
-	include(project(":iCommon-Fabric-1.20"))
+	include(project(":iCommon-Fabric-1.20.1"))
+	include(project(":iCommon-Fabric-1.20.2"))
 }
 
 
