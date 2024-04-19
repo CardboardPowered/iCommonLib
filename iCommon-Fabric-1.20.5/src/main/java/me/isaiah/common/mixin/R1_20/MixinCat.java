@@ -12,13 +12,13 @@ public class MixinCat implements ICat {
 	@Override
     public CatType get_cat_type() {
     	CatEntity mc_cat = (CatEntity) (Object) this;
-        return CatType.values()[Registries.CAT_VARIANT.getRawId(mc_cat.getVariant())];
+        return CatType.values()[Registries.CAT_VARIANT.getRawId(mc_cat.getVariant().comp_349())];
     }
 
     @Override
     public void set_cat_type(CatType type) {
     	CatEntity mc_cat = (CatEntity) (Object) this;
-        mc_cat.setVariant(Registries.CAT_VARIANT.get(type.ordinal()));
+        mc_cat.setVariant(Registries.CAT_VARIANT.getEntry(type.ordinal()).get());
     }
 
 }

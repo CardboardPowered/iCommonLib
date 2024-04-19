@@ -18,7 +18,8 @@ public class FabricEntity implements IEntity {
 
     @Override
     public String getName() {
-        return getMC().getEntityName();
+    	// TODO: 1.20.5
+        return getMC().getName().getString();
     }
 
     @Override

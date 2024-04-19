@@ -29,7 +29,8 @@ public class MixinBlockEntity implements IMixinBlockEntity {
 
     @Override
     public NbtCompound I_createNbtWithIdentifyingData() {
-        return ((BlockEntity)(Object)this).createNbtWithIdentifyingData();
+    	// TODO: 1.20.5
+        return ((BlockEntity)(Object)this).createNbtWithIdentifyingData(null);
     }
 
 }

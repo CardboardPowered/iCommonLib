@@ -22,12 +22,14 @@ public class MixinCampfireBlockEntity implements ICampfireBlockEntity {
     @Shadow
     public DefaultedList<ItemStack> itemsBeingCooked;
 
+    // TODO: 1.20.5 Update
+    
     /**
      * @author Isaiah
      * @reason Fire events
      */
 	 // TODO: Update to 1.19.4
-    @Overwrite
+    /*@Overwrite
     public static void litServerTick(World world, BlockPos pos, BlockState state, CampfireBlockEntity mc) {
         ICampfireBlockEntity helper = (ICampfireBlockEntity)(Object)mc;
         for (int i = 0; i < mc.getItemsBeingCooked().size(); ++i) {
@@ -57,7 +59,7 @@ public class MixinCampfireBlockEntity implements ICampfireBlockEntity {
             }
         }
 
-    }
+    }*/
 
     @Shadow
     public int[] cookingTimes;

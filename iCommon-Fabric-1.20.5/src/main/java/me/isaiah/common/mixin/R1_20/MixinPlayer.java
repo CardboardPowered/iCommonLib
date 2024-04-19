@@ -39,8 +39,9 @@ public class MixinPlayer extends MixinEntity {
 	public void init(MinecraftServer server, ServerWorld world, GameProfile profile, SyncedClientOptions clientOptions, CallbackInfo ci) {
 		EventRegistery.invoke(ServerPlayerInitEvent.class, new ServerPlayerInitEvent((IPlayer) ((IMixinEntity) IgetMCEntity()).getAsICommon()));
 	}
-
-	@Inject(at = @At("HEAD"), method = "setGameMode", cancellable = true)
+	
+	// Note: 1.20.5=readGameModeNbt, <=1.20.4=setGameMode
+	@Inject(at = @At("HEAD"), method = "readGameModeNbt", cancellable = true)
 	public void setGameMode(NbtCompound nbt, CallbackInfo ci) {
 		net.minecraft.world.GameMode gm = gameModeFromNbt(nbt, "playerGameType");
 		GameMode old = ((ServerPlayerEntity) (Object) this).interactionManager.getGameMode();

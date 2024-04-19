@@ -13,8 +13,9 @@ import org.spongepowered.asm.mixin.Mixin;
 public class MixinPlayerManager implements IMixinPlayerManager {
 
     @Override
+    @Deprecated
     public ServerPlayerEntity InewPlayer(MinecraftServer server, ServerWorld world, GameProfile profile) {	
-        return new ServerPlayerEntity(server, world, profile, SyncedClientOptions.createDefault());
+        return null; // new ServerPlayerEntity(server, world, profile, SyncedClientOptions.createDefault());
     }
 
 }

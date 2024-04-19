@@ -35,7 +35,7 @@ import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.level.ServerWorldProperties;
 import net.minecraft.registry.DynamicRegistryManager;
 
-@SupportedVersion({"1.18", "1.19", "1.19.4"})
+@SupportedVersion({"1.18", "1.19", "1.19.4", "1.20.5"})
 @Mixin(World.class)
 public class MixinWorld_18 implements IMixinWorld {
 
@@ -86,7 +86,7 @@ public class MixinWorld_18 implements IMixinWorld {
 
     @Override
     public Biome I_get_biome_for_noise_gen(int biomeX, int biomeY, int biomeZ) {
-        return ((World)(Object)this).getBiomeForNoiseGen(biomeX, biomeY, biomeZ).value();
+        return ((World)(Object)this).getBiomeForNoiseGen(biomeX, biomeY, biomeZ).comp_349();
     }
 
 }

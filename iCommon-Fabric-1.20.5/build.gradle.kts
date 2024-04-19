@@ -7,8 +7,8 @@ plugins {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_21
-    targetCompatibility = JavaVersion.VERSION_21
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 base {
@@ -18,6 +18,12 @@ base {
 }
 
 dependencies {
+	// annotationProcessor("com.github.bsideup.jabel:jabel-javac-plugin:0.4.2")
+    // compileOnly("com.github.bsideup.jabel:jabel-javac-plugin:0.4.2")
+	
+	annotationProcessor("com.pkware.jabel:jabel-javac-plugin:1.0.1-1")
+    compileOnly("com.pkware.jabel:jabel-javac-plugin:1.0.1-1")
+
     implementation(project(mapOf("path" to ":iCommon-API")))
     implementation(project(mapOf("path" to ":iCommon-API")))
 
@@ -44,14 +50,17 @@ sourceSets {
     }
 }
 
-/*configure([tasks.compileJava]) {
-    sourceCompatibility = 16 // for the IDE support
-    options.release = 8
+// 1.20.5 now requires JDK 21
+tasks.withType<JavaCompile>().configureEach {
+    sourceCompatibility = JavaVersion.VERSION_21.toString() // for the IDE support
+    options.release.set(11)
 
-    javaCompiler = javaToolchains.compilerFor {
-        languageVersion = JavaLanguageVersion.of(16)
-    }
-}*/
+    javaCompiler.set(
+        javaToolchains.compilerFor {
+            languageVersion.set(JavaLanguageVersion.of(21))
+        }
+    )
+}
 
 //tasks.getByName("compileJava") {
     //sourceCompatibility = 16
