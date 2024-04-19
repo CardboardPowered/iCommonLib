@@ -53,7 +53,7 @@ sourceSets {
 // 1.20.5 now requires JDK 21
 tasks.withType<JavaCompile>().configureEach {
     sourceCompatibility = JavaVersion.VERSION_21.toString() // for the IDE support
-    options.release.set(11)
+    options.release.set(16)
 
     javaCompiler.set(
         javaToolchains.compilerFor {

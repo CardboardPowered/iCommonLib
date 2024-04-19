@@ -19,16 +19,26 @@ base {
 
 
 dependencies {
-    annotationProcessor("com.github.bsideup.jabel:jabel-javac-plugin:0.4.1")
-
     // 1.18.2
     minecraft("com.mojang:minecraft:1.18.2") 
     mappings("net.fabricmc:yarn:1.18.2+build.2:v2")
     modImplementation("net.fabricmc:fabric-loader:0.13.3")
 
-    annotationProcessor("com.github.bsideup.jabel:jabel-javac-plugin:0.4.1")
+	annotationProcessor("com.pkware.jabel:jabel-javac-plugin:1.0.1-1")
+    compileOnly("com.pkware.jabel:jabel-javac-plugin:1.0.1-1")
 }
 
+// 1.20.5 now requires JDK 21
+tasks.withType<JavaCompile>().configureEach {
+    sourceCompatibility = JavaVersion.VERSION_21.toString() // for the IDE support
+    options.release.set(16)
+
+    javaCompiler.set(
+        javaToolchains.compilerFor {
+            languageVersion.set(JavaLanguageVersion.of(21))
+        }
+    )
+}
 
 sourceSets {
     main {

@@ -25,10 +25,25 @@ dependencies {
     //mappings("net.fabricmc:yarn:1.19.2+build.28:v2")
     //modImplementation("net.fabricmc:fabric-loader:0.14.9")
 	
+	annotationProcessor("com.pkware.jabel:jabel-javac-plugin:1.0.1-1")
+    compileOnly("com.pkware.jabel:jabel-javac-plugin:1.0.1-1")
+	
 	// 1.20
     minecraft("com.mojang:minecraft:1.20.2")
     mappings("net.fabricmc:yarn:1.20.2+build.4:v2")
     modImplementation("net.fabricmc:fabric-loader:0.14.21")
+}
+
+// 1.20.5 now requires JDK 21
+tasks.withType<JavaCompile>().configureEach {
+    sourceCompatibility = JavaVersion.VERSION_21.toString() // for the IDE support
+    options.release.set(16)
+
+    javaCompiler.set(
+        javaToolchains.compilerFor {
+            languageVersion.set(JavaLanguageVersion.of(21))
+        }
+    )
 }
 
 sourceSets {

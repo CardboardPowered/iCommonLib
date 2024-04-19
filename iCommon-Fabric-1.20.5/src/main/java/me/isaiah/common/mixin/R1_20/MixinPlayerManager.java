@@ -15,7 +15,7 @@ public class MixinPlayerManager implements IMixinPlayerManager {
     @Override
     @Deprecated
     public ServerPlayerEntity InewPlayer(MinecraftServer server, ServerWorld world, GameProfile profile) {	
-        return null; // new ServerPlayerEntity(server, world, profile, SyncedClientOptions.createDefault());
+        return new ServerPlayerEntity(server, world, profile, SyncedClientOptions.createDefault());
     }
 
 }
