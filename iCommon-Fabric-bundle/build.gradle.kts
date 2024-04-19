@@ -35,7 +35,7 @@ dependencies {
 	include(project(":iCommon-Fabric-1.19.4"))
 	include(project(":iCommon-Fabric-1.20.1"))
 	include(project(":iCommon-Fabric-1.20.2"))
-	include(project(":iCommon-Fabric-1.20.5"))
+	// include(project(":iCommon-Fabric-1.20.5"))
 
 	annotationProcessor("com.pkware.jabel:jabel-javac-plugin:1.0.1-1")
     compileOnly("com.pkware.jabel:jabel-javac-plugin:1.0.1-1")
