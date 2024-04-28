@@ -3,8 +3,11 @@ package me.isaiah.common.cmixin;
 import java.util.UUID;
 
 import com.mojang.authlib.GameProfile;
+
+import net.minecraft.item.ItemStack;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.CommandManager.RegistrationEnvironment;
+import net.minecraft.village.TradeOffer;
 //import net.minecraft.util.registry.DynamicRegistryManager.Impl;
 import net.minecraft.world.chunk.ChunkSection;
 import net.minecraft.world.gen.chunk.NoiseChunkGenerator;
@@ -49,5 +52,9 @@ public interface IMixinMinecraftServer {
      * @implNote 1.19 - new CommandManager(RegistrationEnvironment, CommandRegistryAccess)
      */
     public CommandManager new_command_manager(RegistrationEnvironment env);
+    
+    /**
+     */
+    public TradeOffer create_new_trade_offer(ItemStack result, int uses, int maxUses, boolean experienceReward, int experience, float priceMultiplier, int demand, int specialPrice);
 
 }

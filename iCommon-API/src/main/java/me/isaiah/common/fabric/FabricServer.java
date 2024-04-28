@@ -7,6 +7,8 @@ import java.util.UUID;
 import com.mojang.authlib.GameProfile;
 import me.isaiah.common.GameVersion;
 import net.minecraft.util.JsonHelper;
+import net.minecraft.village.TradeOffer;
+
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
@@ -16,6 +18,7 @@ import me.isaiah.common.cmixin.IMixinMinecraftServer;
 import me.isaiah.common.world.IWorld;
 import net.minecraft.MinecraftVersion;
 import net.minecraft.SharedConstants;
+import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 
 public class FabricServer implements IServer {
@@ -88,6 +91,14 @@ public class FabricServer implements IServer {
 	@Override
 	public UUID get_uuid_from_profile(GameProfile profile) {
 		return ((IMixinMinecraftServer)mc).get_uuid_from_profile(profile);
+	}
+	
+	/**
+	 * @see {@link IMixinMinecraftServer.create_new_trade_offer}
+	 */
+	@Override
+	public TradeOffer create_trade_offer(ItemStack result, int uses, int maxUses, boolean experienceReward, int experience, float priceMultiplier, int demand, int specialPrice) {
+		return ((IMixinMinecraftServer)mc).create_new_trade_offer(result, uses, maxUses, experienceReward, experience, priceMultiplier, demand, specialPrice);
 	}
 
 }

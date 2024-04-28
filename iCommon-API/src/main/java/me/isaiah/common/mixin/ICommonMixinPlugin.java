@@ -61,10 +61,10 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
         if (!start) {
             GameVersion ver = getGameVersion();
-            logger.info("=======================================================");
+            logger.info("-------------------------------------------------");
             logger.info(" iCommon - Isaiah's common library for mods.");
             logger.info(" Copyright (c) 2018-2024 Isaiah. Running on MC " + ver.getReleaseTarget());
-            logger.info("=======================================================");
+            logger.info("-------------------------------------------------");
         }
         start = true;
 
@@ -97,7 +97,7 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
 
         if (mixin.contains("CampfireBlockEntity")) {
         	if (has_lithium) {
-        		logger.info("Lithium detected");
+        		// logger.info("Lithium detected");
         		return false;
         	}
         }
@@ -126,8 +126,9 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
         }
 
         if (mixin.contains("1_20")) {
-            if (r20)
+            if (r20) {
                 logger.info("Applying mixin: " + mixin + "...");
+            }
             return r20;
         }
 

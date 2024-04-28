@@ -11,6 +11,7 @@ import com.mojang.serialization.DynamicOps;
 import me.isaiah.common.ICommonMod;
 import me.isaiah.common.cmixin.IMixinMinecraftServer;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.command.CommandManager;
@@ -18,6 +19,7 @@ import net.minecraft.server.command.CommandManager.RegistrationEnvironment;
 import net.minecraft.server.dedicated.MinecraftDedicatedServer;
 import net.minecraft.util.dynamic.RegistryOps;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.village.TradeOffer;
 import net.minecraft.util.registry.DynamicRegistryManager;
 //import net.minecraft.util.registry.DynamicRegistryManager.Impl;
 import net.minecraft.world.chunk.ChunkSection;
@@ -53,6 +55,19 @@ public class MixinMinecraftServer implements IMixinMinecraftServer {
 	@Override
 	public CommandManager new_command_manager(RegistrationEnvironment env) {
 		return new CommandManager(env);
+	}
+	
+	@Override
+	public TradeOffer create_new_trade_offer(ItemStack result, int uses, int maxUses, boolean experienceReward,
+			int experience, float priceMultiplier, int demand, int specialPrice) {
+		return new net.minecraft.village.TradeOffer(
+        		net.minecraft.item.ItemStack.EMPTY,
+        		net.minecraft.item.ItemStack.EMPTY,
+                result,
+                uses,
+                maxUses,
+                experience,
+                priceMultiplier);
 	}
     
 }

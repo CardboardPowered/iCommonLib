@@ -4,6 +4,7 @@ import com.mojang.authlib.GameProfile;
 import me.isaiah.common.ICommonMod;
 import me.isaiah.common.cmixin.IMixinMinecraftServer;
 import net.minecraft.command.CommandRegistryAccess;
+import net.minecraft.item.ItemStack;
 import net.minecraft.registry.BuiltinRegistries;
 import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.registry.Registry;
@@ -16,12 +17,14 @@ import net.minecraft.server.dedicated.MinecraftDedicatedServer;
 import net.minecraft.structure.StructureSet;
 import net.minecraft.util.Uuids;
 import net.minecraft.util.math.noise.DoublePerlinNoiseSampler;
+import net.minecraft.village.TradeOffer;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.source.BiomeSource;
 import net.minecraft.world.chunk.ChunkSection;
 import net.minecraft.world.gen.chunk.ChunkGeneratorSettings;
 import net.minecraft.world.gen.chunk.NoiseChunkGenerator;
+
 import org.spongepowered.asm.mixin.Mixin;
 
 import java.util.Random;
@@ -93,6 +96,19 @@ public class MixinMinecraftServer implements IMixinMinecraftServer {
 
 		CommandRegistryAccess ac = CommandManager.createRegistryAccess(BuiltinRegistries.createWrapperLookup());
 		return new CommandManager(env, ac);
+	}
+
+	@Override
+	public TradeOffer create_new_trade_offer(ItemStack result, int uses, int maxUses, boolean experienceReward,
+			int experience, float priceMultiplier, int demand, int specialPrice) {
+		return new net.minecraft.village.TradeOffer(
+        		net.minecraft.item.ItemStack.EMPTY,
+        		net.minecraft.item.ItemStack.EMPTY,
+                result,
+                uses,
+                maxUses,
+                experience,
+                priceMultiplier);
 	}
 
 
