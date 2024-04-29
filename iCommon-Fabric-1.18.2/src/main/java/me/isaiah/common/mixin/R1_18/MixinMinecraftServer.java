@@ -10,8 +10,10 @@ import com.mojang.serialization.DynamicOps;
 
 import me.isaiah.common.ICommonMod;
 import me.isaiah.common.cmixin.IMixinMinecraftServer;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.packet.s2c.play.EntityStatusEffectS2CPacket;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.command.CommandManager;
@@ -68,6 +70,11 @@ public class MixinMinecraftServer implements IMixinMinecraftServer {
                 maxUses,
                 experience,
                 priceMultiplier);
+	}
+
+	@Override
+	public EntityStatusEffectS2CPacket new_status_effect_packet(int id, StatusEffectInstance effect, boolean bl) {
+		return new EntityStatusEffectS2CPacket(id, effect);
 	}
     
 }

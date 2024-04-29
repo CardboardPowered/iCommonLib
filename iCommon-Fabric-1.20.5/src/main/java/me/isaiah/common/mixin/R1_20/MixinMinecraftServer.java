@@ -4,8 +4,10 @@ import com.mojang.authlib.GameProfile;
 import me.isaiah.common.ICommonMod;
 import me.isaiah.common.cmixin.IMixinMinecraftServer;
 import net.minecraft.command.CommandRegistryAccess;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.network.packet.s2c.play.EntityStatusEffectS2CPacket;
 import net.minecraft.registry.BuiltinRegistries;
 import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.registry.Registry;
@@ -116,5 +118,9 @@ public class MixinMinecraftServer implements IMixinMinecraftServer {
         );
 	}
 
+	@Override
+	public EntityStatusEffectS2CPacket new_status_effect_packet(int id, StatusEffectInstance effect, boolean bl) {
+		return new EntityStatusEffectS2CPacket(id, effect, bl);
+	}
 
 }
