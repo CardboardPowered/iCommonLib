@@ -3,6 +3,7 @@ package me.isaiah.common.fabric.entity;
 import java.util.UUID;
 
 import me.isaiah.common.cmixin.IMixinEntity;
+import me.isaiah.common.cmixin.IMixinTameableEntity;
 import me.isaiah.common.entity.EntityType;
 import me.isaiah.common.entity.IEntity;
 import me.isaiah.common.entity.IRemoveReason;
@@ -73,6 +74,15 @@ public class FabricEntity implements IEntity {
         this.teleport(x, y, z);
         getMC().setBodyYaw(yaw);
         // TODO 1.17 getMC().pitch = pitch;
+    }
+    
+    @Override
+    public void set_tamed(boolean tame, boolean updateAttrib) {
+    	if (mc instanceof IMixinTameableEntity) {
+    		((IMixinTameableEntity)mc).IC$set_tamed(tame, updateAttrib);
+    	} else {
+    		// Not TameableEntity
+    	}
     }
 
 }

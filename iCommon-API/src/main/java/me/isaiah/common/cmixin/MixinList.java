@@ -33,6 +33,7 @@ public class MixinList {
               "    LeavesBlock",
               "    Cat",
               "    ItemStack",
+              "    TameableEntity",
               "MCVER=1.18,1.19,1.20",
               "    World_18"
             );

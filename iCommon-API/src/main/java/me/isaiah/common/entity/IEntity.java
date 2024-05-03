@@ -24,4 +24,9 @@ public interface IEntity extends ICommandSource {
 
     void teleport(double x, double y, double z, float yaw, float pitch);
 
+    /**
+     * @see IMixinTameableEntity#set_tamed
+     */
+	void set_tamed(boolean tame, boolean updateAttrib);
+
 }
