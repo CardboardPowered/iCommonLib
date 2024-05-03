@@ -34,6 +34,7 @@ public class MixinList {
               "    Cat",
               "    ItemStack",
               "    TameableEntity",
+              "    GlobalPos",
               "MCVER=1.18,1.19,1.20",
               "    World_18"
             );
