@@ -19,6 +19,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.CommandManager.RegistrationEnvironment;
 import net.minecraft.server.dedicated.MinecraftDedicatedServer;
+import net.minecraft.text.Text;
 import net.minecraft.util.dynamic.RegistryOps;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.village.TradeOffer;
@@ -75,6 +76,16 @@ public class MixinMinecraftServer implements IMixinMinecraftServer {
 	@Override
 	public EntityStatusEffectS2CPacket new_status_effect_packet(int id, StatusEffectInstance effect, boolean bl) {
 		return new EntityStatusEffectS2CPacket(id, effect);
+	}
+
+	@Override
+	public Text IC$from_json(String json) {
+		return Text.Serializer.fromJson(json);
+	}
+
+	@Override
+	public String IC$to_json(Text text) {
+		return Text.Serializer.toJson(text);
 	}
     
 }

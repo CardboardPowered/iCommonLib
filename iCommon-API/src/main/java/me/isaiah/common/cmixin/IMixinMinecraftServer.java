@@ -9,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.packet.s2c.play.EntityStatusEffectS2CPacket;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.CommandManager.RegistrationEnvironment;
+import net.minecraft.text.Text;
 import net.minecraft.village.TradeOffer;
 //import net.minecraft.util.registry.DynamicRegistryManager.Impl;
 import net.minecraft.world.chunk.ChunkSection;
@@ -63,4 +64,12 @@ public interface IMixinMinecraftServer {
      */
     public EntityStatusEffectS2CPacket new_status_effect_packet(int id, StatusEffectInstance effect, boolean bl);
 
+    /**
+     */
+    public Text IC$from_json(String json); // Serialization
+    
+    /**
+     */
+    public String IC$to_json(Text text);
+    
 }

@@ -28,8 +28,8 @@ dependencies {
     implementation(project(mapOf("path" to ":iCommon-API")))
 
 	// 1.20
-    minecraft("com.mojang:minecraft:1.20.5-rc1")
-    mappings("net.fabricmc:yarn:1.20.5-rc1+build.3")
+    minecraft("com.mojang:minecraft:1.20.5")
+    mappings("net.fabricmc:yarn:1.20.5+build.1")
     modImplementation("net.fabricmc:fabric-loader:0.15.10")
 }
 
