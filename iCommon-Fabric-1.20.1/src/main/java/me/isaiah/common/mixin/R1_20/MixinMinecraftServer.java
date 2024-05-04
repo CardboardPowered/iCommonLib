@@ -6,11 +6,15 @@ import java.util.UUID;
 import org.spongepowered.asm.mixin.Mixin;
 
 import com.mojang.authlib.GameProfile;
+
+import me.isaiah.common.ConnectionState;
 import me.isaiah.common.ICommonMod;
 import me.isaiah.common.cmixin.IMixinMinecraftServer;
 import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.NetworkState;
+import net.minecraft.network.packet.c2s.handshake.HandshakeC2SPacket;
 import net.minecraft.network.packet.s2c.play.EntityStatusEffectS2CPacket;
 import net.minecraft.registry.BuiltinRegistries;
 import net.minecraft.registry.DynamicRegistryManager;
@@ -125,6 +129,24 @@ public class MixinMinecraftServer implements IMixinMinecraftServer {
 	@Override
 	public String IC$to_json(Text text) {
 		return Text.Serializer.toJson(text);
+	}
+	
+	@Override
+	public int IC$get_connection_state(HandshakeC2SPacket packet) {
+		NetworkState state = packet.getIntendedState();
+		switch (state) {
+			case HANDSHAKING:
+				return ConnectionState.HANDSHAKING;
+			case LOGIN:
+				return ConnectionState.LOGIN;
+			case PLAY:
+				return ConnectionState.PLAY;
+			case STATUS:
+				return ConnectionState.STATUS;
+			default:
+				break;
+		}
+		return -2;
 	}
 	
 }

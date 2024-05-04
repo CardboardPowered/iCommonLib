@@ -9,8 +9,12 @@ import me.isaiah.common.cmixin.IMixinBlockEntity;
 import me.isaiah.common.event.EventRegistery;
 import me.isaiah.common.event.block.BlockEntityWriteNbtEvent;
 import me.isaiah.common.event.entity.BlockEntityLoadEvent;
+import net.minecraft.block.entity.BeehiveBlockEntity;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.passive.BeeEntity;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.server.world.ServerWorld;
 
 @Mixin(BlockEntity.class)
 public class MixinBlockEntity implements IMixinBlockEntity {
@@ -31,5 +35,15 @@ public class MixinBlockEntity implements IMixinBlockEntity {
     public NbtCompound I_createNbtWithIdentifyingData() {
         return ((BlockEntity)(Object)this).createNbtWithIdentifyingData();
     }
+    
+	@Override
+	public void IC$add_bee_to_beehive(ServerWorld world, int rand) {
+		BlockEntity tileentity = (BlockEntity) (Object) this;
+		if (tileentity instanceof BeehiveBlockEntity) {
+            BeehiveBlockEntity beehive = (BeehiveBlockEntity) tileentity;
+            BeeEntity bee = new BeeEntity(EntityType.BEE, world);
+            beehive.tryEnterHive(bee, false, rand);
+        }
+	}
 
 }

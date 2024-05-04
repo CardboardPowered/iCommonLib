@@ -6,6 +6,7 @@ import com.mojang.authlib.GameProfile;
 
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.packet.c2s.handshake.HandshakeC2SPacket;
 import net.minecraft.network.packet.s2c.play.EntityStatusEffectS2CPacket;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.CommandManager.RegistrationEnvironment;
@@ -71,5 +72,9 @@ public interface IMixinMinecraftServer {
     /**
      */
     public String IC$to_json(Text text);
+    
+    /**
+     */
+    public int IC$get_connection_state(HandshakeC2SPacket packet);
     
 }
