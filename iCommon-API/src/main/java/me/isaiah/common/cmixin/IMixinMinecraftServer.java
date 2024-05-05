@@ -77,4 +77,8 @@ public interface IMixinMinecraftServer {
      */
     public int IC$get_connection_state(HandshakeC2SPacket packet);
     
+    /**
+     */
+    // public Identifier IC$get_loot_table_id(LootableContainerBlockEntity bl);
+    
 }
