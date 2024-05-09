@@ -1,6 +1,7 @@
 package me.isaiah.common.mixin.R1_20;
 
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -13,6 +14,7 @@ import me.isaiah.common.event.entity.BlockEntityLoadEvent;
 import net.minecraft.block.entity.BeehiveBlockEntity;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.server.world.ServerWorld;
 
 @Mixin(BlockEntity.class)
@@ -43,6 +45,21 @@ public class MixinBlockEntity implements IMixinBlockEntity {
             BeehiveBlockEntity beehive = (BeehiveBlockEntity) tileentity;
             beehive.addBee(BeehiveBlockEntity.BeeData.create(rand));
         }
+	}
+	
+	@Override
+	public void IC$read_nbt(NbtCompound nbt) {
+		readNbt(nbt, ICommonMod.getIServer().getMinecraft().getRegistryManager());
+	}
+	
+	/**
+	 * Lnet/minecraft/block/entity/BlockEntity;readNbt(Lnet/minecraft/nbt/NbtCompound;Lnet/minecraft/registry/RegistryWrapper$WrapperLookup;)V
+	 * @param nbt
+	 * @param lookup
+	 */
+	@Shadow
+	public void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup lookup) {
+		// Shadow Method
 	}
 
 }

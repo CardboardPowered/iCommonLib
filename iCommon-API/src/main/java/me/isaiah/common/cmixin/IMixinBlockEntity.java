@@ -11,4 +11,8 @@ public interface IMixinBlockEntity {
      */
     public void IC$add_bee_to_beehive(ServerWorld world, int rand);
     
+    /**
+     */
+    public void IC$read_nbt(NbtCompound nbt);
+    
 }

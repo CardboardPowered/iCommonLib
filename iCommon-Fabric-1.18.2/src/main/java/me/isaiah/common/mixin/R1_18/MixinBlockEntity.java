@@ -46,4 +46,10 @@ public class MixinBlockEntity implements IMixinBlockEntity {
         }
 	}
 
+	@Override
+	public void IC$read_nbt(NbtCompound nbt) {
+		BlockEntity be = (BlockEntity) (Object) this;
+		be.readNbt(nbt);
+	}
+
 }
