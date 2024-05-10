@@ -30,5 +30,15 @@ public class MixinTradeOffer implements IMixinTradeOffer {
 		}
 		return secondBuyItem;
 	}
+	
+	@Override
+	public void IC$set_first_buy_itemstack(ItemStack stack) {
+		this.firstBuyItem = stack;
+	}
+
+	@Override
+	public void IC$set_second_buy_itemstack(ItemStack stack) {
+		this.secondBuyItem = stack;
+	}
 
 }

@@ -1,7 +1,6 @@
 package me.isaiah.common.cmixin;
 
 import net.minecraft.item.ItemStack;
-import net.minecraft.village.TradeOffer;
 
 /**
  */
@@ -34,5 +33,13 @@ public interface IMixinTradeOffer {
 	 * secondBuyItem is not present.
 	 */
 	public ItemStack IC$get_second_buy_itemstack();
+	
+	/**
+	 */
+	public void IC$set_first_buy_itemstack(ItemStack stack);
+	
+	/**
+	 */
+	public void IC$set_second_buy_itemstack(ItemStack stack);
 	
 }
