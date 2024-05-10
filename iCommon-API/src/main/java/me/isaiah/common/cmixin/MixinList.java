@@ -37,6 +37,7 @@ public class MixinList {
               "    GlobalPos",
               "    LootableContainerBlockEntity",
               "    EntityAttributeModifier",
+              "    TradeOffer",
               "MCVER=1.18,1.19,1.20",
               "    World_18"
             );
