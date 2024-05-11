@@ -11,6 +11,7 @@ import me.isaiah.common.fabric.entity.FabricPrimedTnt;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.TntEntity;
 import net.minecraft.entity.decoration.ArmorStandEntity;
+import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
@@ -53,4 +54,7 @@ public interface IMixinEntity {
      */
     public boolean ic_isRemoved();
 
+    /**
+     */
+    public boolean IC$has_status_effect(StatusEffect effect);
 }

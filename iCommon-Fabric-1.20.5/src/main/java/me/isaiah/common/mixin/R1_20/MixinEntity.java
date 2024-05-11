@@ -11,6 +11,10 @@ import me.isaiah.common.cmixin.SupportedVersion;
 import me.isaiah.common.entity.IEntity;
 import me.isaiah.common.entity.IRemoveReason;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.text.Text;
 
 @SupportedVersion({"1.17"})
@@ -61,5 +65,17 @@ public class MixinEntity implements IMixinEntity {
     public boolean isRemoved() {
         return false;
     }
+
+	@Override
+	public boolean IC$has_status_effect(StatusEffect effect) {
+		Entity thiz = (Entity) (Object) this;
+		if (!(thiz instanceof LivingEntity)) {
+			ICommonMod.LOGGER.info("ERROR: Entity is not living enitity");
+			return false;
+		}
+		LivingEntity entity = (LivingEntity) thiz;
+		RegistryEntry<StatusEffect> key = Registries.STATUS_EFFECT.getEntry(effect);
+        return entity.hasStatusEffect(key);
+	}
 
 }
