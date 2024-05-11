@@ -57,4 +57,9 @@ public interface IMixinEntity {
     /**
      */
     public boolean IC$has_status_effect(StatusEffect effect);
+    
+    /**
+     */
+    public void IC$add_status_effect(StatusEffect effect, int duration, int amp, boolean ambient, boolean particles);
+
 }

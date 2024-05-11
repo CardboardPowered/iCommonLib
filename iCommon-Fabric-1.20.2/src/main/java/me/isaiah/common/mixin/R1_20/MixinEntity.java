@@ -13,6 +13,7 @@ import me.isaiah.common.entity.IRemoveReason;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.text.Text;
@@ -75,6 +76,17 @@ public class MixinEntity implements IMixinEntity {
 		}
 		LivingEntity entity = (LivingEntity) (Object) this;
         return entity.hasStatusEffect(effect);
+	}
+	
+	@Override
+	public void IC$add_status_effect(StatusEffect effect, int duration, int amp, boolean ambient, boolean particles) {
+		Entity thiz = (Entity) (Object) this;
+		if (!(thiz instanceof LivingEntity)) {
+			ICommonMod.LOGGER.info("ERROR: Entity is not living enitity");
+			return;
+		}
+		LivingEntity entity = (LivingEntity) thiz;
+        entity.addStatusEffect(new StatusEffectInstance(effect, duration, amp, ambient, particles));
 	}
 
 }
