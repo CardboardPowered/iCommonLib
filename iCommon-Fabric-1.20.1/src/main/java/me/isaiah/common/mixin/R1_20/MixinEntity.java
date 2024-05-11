@@ -14,6 +14,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.registry.Registries;
 import net.minecraft.text.Text;
 
 @SupportedVersion({"1.17"})
@@ -86,5 +87,37 @@ public class MixinEntity implements IMixinEntity {
 		LivingEntity entity = (LivingEntity) thiz;
         entity.addStatusEffect(new StatusEffectInstance(effect, duration, amp, ambient, particles));
 	}
+	
+	@Override
+	public void IC$remove_status_effect(StatusEffect effect) {
+		Entity thiz = (Entity) (Object) this;
+		if (!(thiz instanceof LivingEntity)) {
+			ICommonMod.LOGGER.info("ERROR: Entity is not living enitity");
+			return;
+		}
+		LivingEntity entity = (LivingEntity) thiz;
+        entity.removeStatusEffect(effect);
+	}
+	
+	@Override
+	public StatusEffectInstance IC$get_status_effect(int typeId) {
+		Entity thiz = (Entity) (Object) this;
+		if (!(thiz instanceof LivingEntity)) {
+			ICommonMod.LOGGER.info("ERROR: Entity is not living enitity");
+			return null;
+		}
+		LivingEntity entity = (LivingEntity) thiz;
+		StatusEffect effect = Registries.STATUS_EFFECT.get(typeId);
+		StatusEffectInstance handle = entity.getStatusEffect(effect);
+		return handle;
+	}
+
+	@Override
+	public int IC$get_status_effect_id(StatusEffectInstance handle) {
+		StatusEffect effect = handle.getEffectType();
+		return Registries.STATUS_EFFECT.getRawId(effect);
+	}
+
+
 
 }

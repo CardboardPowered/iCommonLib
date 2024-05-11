@@ -92,4 +92,38 @@ public class MixinEntity implements IMixinEntity {
 
 	}
 
+	@Override
+	public void IC$remove_status_effect(StatusEffect effect) {
+		Entity thiz = (Entity) (Object) this;
+		if (!(thiz instanceof LivingEntity)) {
+			ICommonMod.LOGGER.info("ERROR: Entity is not living enitity");
+			return;
+		}
+		LivingEntity entity = (LivingEntity) thiz;
+		RegistryEntry<StatusEffect> reg = Registries.STATUS_EFFECT.getEntry(effect);
+        entity.removeStatusEffect(reg);
+
+	}
+
+	@Override
+	public StatusEffectInstance IC$get_status_effect(int typeId) {
+		Entity thiz = (Entity) (Object) this;
+		if (!(thiz instanceof LivingEntity)) {
+			ICommonMod.LOGGER.info("ERROR: Entity is not living enitity");
+			return null;
+		}
+		LivingEntity entity = (LivingEntity) thiz;
+		
+		// StatusEffectInstance handle = entity.getStatusEffect(Registries.STATUS_EFFECT.get(typeId));
+		RegistryEntry<StatusEffect> reg = Registries.STATUS_EFFECT.getEntry(Registries.STATUS_EFFECT.get(typeId));
+		StatusEffectInstance handle = entity.getStatusEffect(reg);
+		return handle;
+	}
+
+	@Override
+	public int IC$get_status_effect_id(StatusEffectInstance handle) {
+		StatusEffect effect = handle.getEffectType().comp_349();
+		return Registries.STATUS_EFFECT.getRawId(effect);
+	}
+
 }

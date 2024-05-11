@@ -12,6 +12,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.TntEntity;
 import net.minecraft.entity.decoration.ArmorStandEntity;
 import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
@@ -61,5 +62,18 @@ public interface IMixinEntity {
     /**
      */
     public void IC$add_status_effect(StatusEffect effect, int duration, int amp, boolean ambient, boolean particles);
+    
+
+    /**
+     */
+    public void IC$remove_status_effect(StatusEffect effect);
+    
+    /**
+     */
+    public StatusEffectInstance IC$get_status_effect(int type);
+    
+    /**
+     */
+    public int IC$get_status_effect_id(StatusEffectInstance effect);
 
 }
