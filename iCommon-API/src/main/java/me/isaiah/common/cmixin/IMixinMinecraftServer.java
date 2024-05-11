@@ -4,13 +4,17 @@ import java.util.UUID;
 
 import com.mojang.authlib.GameProfile;
 
+import net.minecraft.block.BlockState;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.packet.c2s.handshake.HandshakeC2SPacket;
 import net.minecraft.network.packet.s2c.play.EntityStatusEffectS2CPacket;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.CommandManager.RegistrationEnvironment;
 import net.minecraft.text.Text;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.village.TradeOffer;
 //import net.minecraft.util.registry.DynamicRegistryManager.Impl;
 import net.minecraft.world.chunk.ChunkSection;
@@ -80,5 +84,8 @@ public interface IMixinMinecraftServer {
     /**
      */
     // public Identifier IC$get_loot_table_id(LootableContainerBlockEntity bl);
-    
+
+    /**
+     */
+    public BlockEntity IC$create_blockentity_from_nbt(BlockPos pos, BlockState state, NbtCompound nbt);
 }

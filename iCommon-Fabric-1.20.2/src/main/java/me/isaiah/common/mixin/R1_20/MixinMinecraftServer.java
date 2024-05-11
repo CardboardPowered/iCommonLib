@@ -5,9 +5,12 @@ import com.mojang.authlib.GameProfile;
 import me.isaiah.common.ConnectionState;
 import me.isaiah.common.ICommonMod;
 import me.isaiah.common.cmixin.IMixinMinecraftServer;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.NetworkState;
 import net.minecraft.network.packet.c2s.handshake.ConnectionIntent;
 import net.minecraft.network.packet.c2s.handshake.HandshakeC2SPacket;
@@ -24,6 +27,7 @@ import net.minecraft.server.dedicated.MinecraftDedicatedServer;
 import net.minecraft.structure.StructureSet;
 import net.minecraft.text.Text;
 import net.minecraft.util.Uuids;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.noise.DoublePerlinNoiseSampler;
 import net.minecraft.village.TradeOffer;
 import net.minecraft.world.World;
@@ -163,6 +167,11 @@ public class MixinMinecraftServer implements IMixinMinecraftServer {
 
 		}
 		return -2;
+	}
+	
+	@Override
+	public BlockEntity IC$create_blockentity_from_nbt(BlockPos pos, BlockState state, NbtCompound nbt) {
+		return BlockEntity.createFromNbt(pos, state, nbt);
 	}
 
 }

@@ -11,11 +11,13 @@ import me.isaiah.common.cmixin.IMixinBlockEntity;
 import me.isaiah.common.event.EventRegistery;
 import me.isaiah.common.event.block.BlockEntityWriteNbtEvent;
 import me.isaiah.common.event.entity.BlockEntityLoadEvent;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BeehiveBlockEntity;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.math.BlockPos;
 
 @Mixin(BlockEntity.class)
 public class MixinBlockEntity implements IMixinBlockEntity {
@@ -60,6 +62,11 @@ public class MixinBlockEntity implements IMixinBlockEntity {
 	@Shadow
 	public void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup lookup) {
 		// Shadow Method
+	}
+	
+	@Override
+	public BlockEntity IC$create_from_nbt(BlockPos pos, BlockState state, NbtCompound nbt) {
+		return BlockEntity.createFromNbt(pos, state, nbt, ICommonMod.getIServer().getMinecraft().getRegistryManager());
 	}
 
 }
