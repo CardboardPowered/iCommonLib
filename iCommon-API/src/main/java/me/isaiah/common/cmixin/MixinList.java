@@ -38,6 +38,7 @@ public class MixinList {
               "    LootableContainerBlockEntity",
               "    EntityAttributeModifier",
               "    TradeOffer",
+              "    SkullBlockEntity",
               "MCVER=1.18,1.19,1.20",
               "    World_18"
             );
