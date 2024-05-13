@@ -18,6 +18,7 @@ import me.isaiah.common.world.IWorld;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.item.map.MapState;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.collection.IndexedIterable;
 import net.minecraft.util.math.BlockPos;
@@ -86,5 +87,10 @@ public class MixinWorld_18 implements IMixinWorld {
     public Biome I_get_biome_for_noise_gen(int biomeX, int biomeY, int biomeZ) {
         return ((World)(Object)this).getBiomeForNoiseGen(biomeX, biomeY, biomeZ).value();
     }
+    
+	@Override
+	public MapState IC$get_map_state(int id) {
+		return ((ServerWorld)(Object)this).getMapState("map_" + id);
+	}
 
 }

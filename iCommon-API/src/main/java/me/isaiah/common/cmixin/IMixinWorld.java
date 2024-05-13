@@ -1,6 +1,7 @@
 package me.isaiah.common.cmixin;
 
 import me.isaiah.common.world.IWorld;
+import net.minecraft.item.map.MapState;
 import net.minecraft.util.collection.IndexedIterable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
@@ -32,5 +33,9 @@ public interface IMixinWorld {
      * >= 1.18.2: World.getBiomeForNoiseGen(int, int, int).value()
      */
     public Biome I_get_biome_for_noise_gen(int biomeX, int biomeY, int biomeZ);
+    
+    /**
+     */
+    public MapState IC$get_map_state(int id);
     
 }
