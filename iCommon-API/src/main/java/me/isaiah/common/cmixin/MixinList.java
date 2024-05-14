@@ -40,6 +40,7 @@ public class MixinList {
               "    TradeOffer",
               "    SkullBlockEntity",
               "    BeaconBlockEntity",
+              "    MobEntity",
               "MCVER=1.18,1.19,1.20",
               "    World_18"
             );
