@@ -1,25 +1,25 @@
 package me.isaiah.common.fabric;
 
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.UUID;
 
 import com.mojang.authlib.GameProfile;
+
 import me.isaiah.common.GameVersion;
-import net.minecraft.util.JsonHelper;
-import net.minecraft.village.TradeOffer;
-
-import java.io.InputStream;
-import java.io.InputStreamReader;
-
+import me.isaiah.common.IDatapack;
 import me.isaiah.common.IServer;
 import me.isaiah.common.Side;
 import me.isaiah.common.cmixin.IMixinMinecraftServer;
 import me.isaiah.common.world.IWorld;
 import net.minecraft.MinecraftVersion;
-import net.minecraft.SharedConstants;
 import net.minecraft.item.ItemStack;
+import net.minecraft.resource.ResourcePackProfile;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.JsonHelper;
+import net.minecraft.village.TradeOffer;
 
 public class FabricServer implements IServer {
 
@@ -99,6 +99,11 @@ public class FabricServer implements IServer {
 	@Override
 	public TradeOffer create_trade_offer(ItemStack result, int uses, int maxUses, boolean experienceReward, int experience, float priceMultiplier, int demand, int specialPrice) {
 		return ((IMixinMinecraftServer)mc).create_new_trade_offer(result, uses, maxUses, experienceReward, experience, priceMultiplier, demand, specialPrice);
+	}
+
+	@Override
+	public IDatapack get_datapack(ResourcePackProfile handler) {
+		return new FabricDatapack(handler);
 	}
 
 }

@@ -7,6 +7,7 @@ import com.mojang.authlib.GameProfile;
 
 import me.isaiah.common.world.IWorld;
 import net.minecraft.item.ItemStack;
+import net.minecraft.resource.ResourcePackProfile;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.village.TradeOffer;
 
@@ -62,4 +63,8 @@ public interface IServer {
      */
 	TradeOffer create_trade_offer(ItemStack result, int uses, int maxUses, boolean experienceReward, int experience, float priceMultiplier, int demand, int specialPrice);
     
+	/**
+	 */
+	IDatapack get_datapack(ResourcePackProfile handler);
+	
 }

@@ -15,7 +15,7 @@ public class ICommonMod implements ModInitializer {
 	 * Change API version for new or breaking changes
 	 * Dependents can use this as a compatibility check
      */
-    private static final double API_VERSION = 0.2;
+    private static final double API_VERSION = 0.3;
 
     public static final Logger LOGGER = LogManager.getLogger("iCommon");
     private static IServer iserver;
