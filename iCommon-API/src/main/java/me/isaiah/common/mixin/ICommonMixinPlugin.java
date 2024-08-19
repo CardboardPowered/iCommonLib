@@ -26,6 +26,9 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
     private static final String MIXIN_PACKAGE_ROOT = "me.isaiah.common.mixin.";
     private final Logger logger = LogManager.getLogger("iCommon");
 
+    public static boolean EXTRA_VERBOSE = false;
+    public static int mixin_apply_count = 0;
+    
     @Override
     public void onLoad(String mixinPackage) {
     }
@@ -120,20 +123,33 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
         }
         
         if (mixin.contains("1_19")) {
-            if (r9)
-                logger.info("Applying mixin: " + mixin + "...");
+            if (r9) {
+            	print_apply(mixin);
+            }
             return r9;
         }
 
         if (mixin.contains("1_20")) {
             if (r20) {
-                logger.info("Applying mixin: " + mixin + "...");
+            	print_apply(mixin);
             }
             return r20;
         }
 
         logger.info("Applying mixin: " + mixin + "...");
         return true;
+    }
+    
+    private void print_apply(String mixin) {
+    	if (EXTRA_VERBOSE) {
+    		logger.info("Applied mixin: " + mixin + "..");
+    	} else {
+    		mixin_apply_count += 1;
+    		if (mixin.contains("MixinWorld_18")) {
+    			EXTRA_VERBOSE = true;
+    			logger.info("Applied " + mixin_apply_count + " mixins.");
+    		}
+    	}
     }
 
     public void wait(int ms, String s) {

@@ -23,7 +23,7 @@ import net.minecraft.util.math.BlockPos;
 public class MixinBlockEntity implements IMixinBlockEntity {
 
     @Inject(at = @At("TAIL"), method = "readNbt")
-    public void loadEnd(NbtCompound tag, CallbackInfo ci) {
+    public void loadEnd(NbtCompound tag, RegistryWrapper.WrapperLookup registryLookup, CallbackInfo ci) {
         EventRegistery.invoke(BlockEntityLoadEvent.class, 
                 new BlockEntityLoadEvent(tag, (BlockEntity)(Object)this));
     }
