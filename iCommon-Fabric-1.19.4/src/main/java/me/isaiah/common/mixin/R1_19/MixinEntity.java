@@ -15,6 +15,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.registry.Registries;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 
 @SupportedVersion({"1.17"})
@@ -116,6 +117,11 @@ public class MixinEntity implements IMixinEntity {
 	public int IC$get_status_effect_id(StatusEffectInstance handle) {
 		StatusEffect effect = handle.getEffectType();
 		return Registries.STATUS_EFFECT.getRawId(effect);
+	}
+	
+	@Override
+	public void IC$teleport(ServerWorld world, double x, double y, double z) {
+		((Entity) (Object) this).teleport(x, y, z);
 	}
 
 

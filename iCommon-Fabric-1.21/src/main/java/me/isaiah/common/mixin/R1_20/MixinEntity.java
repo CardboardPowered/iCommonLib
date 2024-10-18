@@ -16,8 +16,12 @@ import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.server.world.ChunkTicketType;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
+import net.minecraft.world.TeleportTarget;
 
 @SupportedVersion({"1.17"})
 @Mixin(Entity.class)
@@ -67,7 +71,7 @@ public class MixinEntity implements IMixinEntity {
     public boolean isRemoved() {
         return false;
     }
-    
+
 	@Override
 	public boolean IC$has_status_effect(StatusEffect effect) {
 		Entity thiz = (Entity) (Object) this;
@@ -75,10 +79,11 @@ public class MixinEntity implements IMixinEntity {
 			ICommonMod.LOGGER.info("ERROR: Entity is not living enitity");
 			return false;
 		}
-		LivingEntity entity = (LivingEntity) (Object) this;
-        return entity.hasStatusEffect(effect);
+		LivingEntity entity = (LivingEntity) thiz;
+		RegistryEntry<StatusEffect> key = Registries.STATUS_EFFECT.getEntry(effect);
+        return entity.hasStatusEffect(key);
 	}
-	
+
 	@Override
 	public void IC$add_status_effect(StatusEffect effect, int duration, int amp, boolean ambient, boolean particles) {
 		Entity thiz = (Entity) (Object) this;
@@ -87,9 +92,11 @@ public class MixinEntity implements IMixinEntity {
 			return;
 		}
 		LivingEntity entity = (LivingEntity) thiz;
-        entity.addStatusEffect(new StatusEffectInstance(effect, duration, amp, ambient, particles));
+		RegistryEntry<StatusEffect> reg = Registries.STATUS_EFFECT.getEntry(effect);
+        entity.addStatusEffect(new StatusEffectInstance(reg, duration, amp, ambient, particles));
+
 	}
-	
+
 	@Override
 	public void IC$remove_status_effect(StatusEffect effect) {
 		Entity thiz = (Entity) (Object) this;
@@ -98,9 +105,11 @@ public class MixinEntity implements IMixinEntity {
 			return;
 		}
 		LivingEntity entity = (LivingEntity) thiz;
-        entity.removeStatusEffect(effect);
+		RegistryEntry<StatusEffect> reg = Registries.STATUS_EFFECT.getEntry(effect);
+        entity.removeStatusEffect(reg);
+
 	}
-	
+
 	@Override
 	public StatusEffectInstance IC$get_status_effect(int typeId) {
 		Entity thiz = (Entity) (Object) this;
@@ -109,20 +118,32 @@ public class MixinEntity implements IMixinEntity {
 			return null;
 		}
 		LivingEntity entity = (LivingEntity) thiz;
-		StatusEffect effect = Registries.STATUS_EFFECT.get(typeId);
-		StatusEffectInstance handle = entity.getStatusEffect(effect);
+		
+		// StatusEffectInstance handle = entity.getStatusEffect(Registries.STATUS_EFFECT.get(typeId));
+		RegistryEntry<StatusEffect> reg = Registries.STATUS_EFFECT.getEntry(Registries.STATUS_EFFECT.get(typeId));
+		StatusEffectInstance handle = entity.getStatusEffect(reg);
 		return handle;
 	}
 
 	@Override
 	public int IC$get_status_effect_id(StatusEffectInstance handle) {
-		StatusEffect effect = handle.getEffectType();
+		StatusEffect effect = handle.getEffectType().comp_349();
 		return Registries.STATUS_EFFECT.getRawId(effect);
 	}
-	
+
 	@Override
 	public void IC$teleport(ServerWorld world, double x, double y, double z) {
-		((Entity) (Object) this).teleport(x, y, z);
+		IC$teleport(x, y, z);
 	}
+
+    private void IC$teleport(double destX, double destY, double destZ) {
+    	Entity thiz = ((Entity) (Object) this);
+        if (thiz.getWorld() instanceof ServerWorld) {
+            ChunkPos chunkcoordintpair = new ChunkPos(BlockPos.ofFloored(destX, destY, destZ));
+            ((ServerWorld)thiz.getWorld()).getChunkManager().addTicket(ChunkTicketType.POST_TELEPORT, chunkcoordintpair, 0, thiz.getId());
+            thiz.getWorld().getChunk(chunkcoordintpair.x, chunkcoordintpair.z);
+            thiz.requestTeleport(destX, destY, destZ);
+        }
+    }
 
 }

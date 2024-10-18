@@ -2,7 +2,7 @@
  * Isaiah's Configuration File Format
  * Tiny two file YAML-like configuration parser
  * 
- * Copyright (c) 2021. All Rights Reserved.
+ * Copyright (c) 2021-2024. All Rights Reserved.
  * 
  */
 package me.isaiah.config;
@@ -26,7 +26,7 @@ public class Configuration {
     /**
      */
     public <T> T getOrDefault(String key, T defaul) {
-        return (T) (Object)contentMap.get(key);
+        return (T) (Object)contentMap.getOrDefault(key, defaul);
     }
 
     /**

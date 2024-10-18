@@ -15,6 +15,7 @@ import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 
 public interface IMixinEntity {
@@ -75,5 +76,11 @@ public interface IMixinEntity {
     /**
      */
     public int IC$get_status_effect_id(StatusEffectInstance effect);
+    
+    /**
+     * <= 1.20.6: Entity.teleport(x,y,z)
+     * >= 1.20: Entity.teleportTo(TeleportTarget)
+     */
+    public void IC$teleport(ServerWorld world, double x, double y, double z);
 
 }

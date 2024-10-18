@@ -8,6 +8,7 @@ import me.isaiah.common.entity.EntityType;
 import me.isaiah.common.entity.IEntity;
 import me.isaiah.common.entity.IRemoveReason;
 import net.minecraft.entity.Entity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 
 public class FabricEntity implements IEntity {
@@ -66,7 +67,9 @@ public class FabricEntity implements IEntity {
 
     @Override
     public void teleport(double x, double y, double z) {
-        getMC().teleport(x, y, z);
+    	// TODO: ServerWorld argument is currently null;
+    	// used to future proof
+    	((IMixinEntity)mc).IC$teleport(null, x, y, z);
     }
 
     @Override
