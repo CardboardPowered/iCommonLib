@@ -83,6 +83,7 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
         boolean r8  = relTar.startsWith("1.18");
         boolean r9  = relTar.startsWith("1.19");
 		boolean r20 = relTar.startsWith("1.20");
+		boolean r21 = relTar.startsWith("1.21");
 
         if (mixin.length() < 7 || mixin.startsWith("RALL") || mixin.startsWith("R.") || mixin.contains("MCVER") || mixin.equalsIgnoreCase("R1_16.Mixin")
                 || (mixin.contains("R1_") && mixin.length() < 12)) {
@@ -134,6 +135,13 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
             	print_apply(mixin);
             }
             return r20;
+        }
+        
+        if (mixin.contains("1_21")) {
+            if (r21) {
+            	print_apply(mixin);
+            }
+            return r21;
         }
 
         logger.info("Applying mixin: " + mixin + "...");

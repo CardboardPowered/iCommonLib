@@ -18,7 +18,7 @@ public class MixinList {
               "",
               "MCVER=1.16,1.17",
               "    World",
-              "MCVER=1.16,1.17,1.18,1.19,1.20",
+              "MCVER=1.16,1.17,1.18,1.19,1.20,1.21",
               "    MinecraftServer",
               "    Entity",
               "    Player",
@@ -41,7 +41,7 @@ public class MixinList {
               "    SkullBlockEntity",
               "    BeaconBlockEntity",
               "    MobEntity",
-              "MCVER=1.18,1.19,1.20",
+              "MCVER=1.18,1.19,1.20,1.21",
               "    World_18"
             );
 

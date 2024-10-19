@@ -4,7 +4,7 @@
   "package": "me.isaiah.common.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "R1_20.MixinPlayerManager"
+    "R1_21.MixinPlayerManager"
   ],
   "injectors": {
     "defaultRequire": 1

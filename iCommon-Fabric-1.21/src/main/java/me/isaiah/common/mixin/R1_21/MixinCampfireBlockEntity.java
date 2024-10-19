@@ -1,4 +1,4 @@
-package me.isaiah.common.mixin.R1_20;
+package me.isaiah.common.mixin.R1_21;
 
 import me.isaiah.common.R117.ICampfireBlockEntity;
 import me.isaiah.common.event.EventRegistery;

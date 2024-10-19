@@ -1,4 +1,4 @@
-package me.isaiah.common.mixin.R1_20;
+package me.isaiah.common.mixin.R1_21;
 
 import me.isaiah.common.cmixin.IMixinPersistentStateManager;
 import net.minecraft.world.ForcedChunkState;
