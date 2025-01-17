@@ -10,10 +10,16 @@ import net.minecraft.world.World;
 
 public class FabricWorld implements IWorld {
 
-    public World mc;
+    public ServerWorld mc;
     private String name;
 
+    @Deprecated
     public FabricWorld(String name, World world) {
+        this.mc = (ServerWorld) world;
+        this.name = name;
+    }
+    
+    public FabricWorld(String name, ServerWorld world) {
         this.mc = world;
         this.name = name;
     }
