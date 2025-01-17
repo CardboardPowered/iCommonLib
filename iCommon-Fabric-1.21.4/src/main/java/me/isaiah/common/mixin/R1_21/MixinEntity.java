@@ -24,6 +24,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.TeleportTarget;
+import net.minecraft.world.World;
 
 @SupportedVersion({"1.17"})
 @Mixin(Entity.class)
@@ -31,6 +32,8 @@ public class MixinEntity implements IMixinEntity {
 
     @Override
     public void Iremove(IRemoveReason r) {
+    	Entity thiz = ((Entity)(Object)this);
+    	
         switch (r) {
             case DIMENSION_CHANGE:
                 removeFromDimension();
@@ -39,7 +42,11 @@ public class MixinEntity implements IMixinEntity {
                 discard();
                 break;
             case KILLED:
-                kill();
+            	
+            	World world = thiz.getWorld();
+            	if (world instanceof ServerWorld) {
+            		kill( (ServerWorld) world );
+            	}
                 break;
             default:
                 ICommonMod.LOGGER.warn("Unknown RemoveReason: " + r.toString());
@@ -55,7 +62,7 @@ public class MixinEntity implements IMixinEntity {
         return icommon;
     }
 
-    @Shadow public void kill()  {} // Dimension change
+    @Shadow public void kill(ServerWorld world)  {} // Dimension change
     @Shadow public void discard() {} // Discard
     @Shadow public void removeFromDimension() {} // Kill
 

@@ -1,5 +1,7 @@
 package me.isaiah.common.mixin.R1_21;
 
+import java.util.Optional;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
@@ -16,12 +18,15 @@ public class MixinMobEntity implements IMixinMobEntity {
 	// <=1.20.4: Lnet/minecraft/entity/mob/MobEntity;lootTable:Lnet/minecraft/util/Identifier;
 	// >=1.20.5: Lnet/minecraft/entity/mob/MobEntity;lootTable:Lnet/minecraft/registry/RegistryKey;
 	
-	@Shadow
-	public RegistryKey<LootTable> lootTable;
+	//@Shadow
+	//public RegistryKey<LootTable> lootTable;
 
+	@Shadow
+    public Optional<RegistryKey<LootTable>> lootTable; // = Optional.empty();
+	
 	@Override
 	public void IC$set_loot_table(Identifier id) {
-		this.lootTable = IC$identifier_to_table(id);
+		this.lootTable = Optional.of(IC$identifier_to_table(id));
 	}
 
     private RegistryKey<net.minecraft.loot.LootTable> IC$identifier_to_table(Identifier key) {
@@ -32,10 +37,10 @@ public class MixinMobEntity implements IMixinMobEntity {
 	public Identifier IC$get_loot_table_id() {
 		MobEntity e = ((MobEntity) (Object) this);
 		
-        if (lootTable == null) {
-            lootTable = e.getLootTableKey().get();
+        if (lootTable == null || lootTable.isEmpty()) {
+            lootTable = Optional.of( e.getLootTableKey().get() );
         }
-		return lootTable.getValue();
+		return lootTable.get().getValue();
 	}
 
 }
