@@ -37,5 +37,13 @@ public interface IMixinWorld {
     /**
      */
     public MapState IC$get_map_state(int id);
+
+    /**
+     */
+	public boolean icommon$is_the_end();
+
+	/**
+	 */
+	public BlockPos icommon$get_spawn_point();
     
 }

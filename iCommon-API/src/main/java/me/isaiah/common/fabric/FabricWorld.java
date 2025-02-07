@@ -2,6 +2,7 @@ package me.isaiah.common.fabric;
 
 import me.isaiah.common.block.IBlockState;
 import me.isaiah.common.cmixin.IMixinBlockState;
+import me.isaiah.common.cmixin.IMixinWorld;
 import me.isaiah.common.world.IWorld;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
@@ -10,12 +11,14 @@ import net.minecraft.world.World;
 
 public class FabricWorld implements IWorld {
 
-    public ServerWorld mc;
+	public World mc; // Backwards Compact
+    public ServerWorld mc1;
     private String name;
 
     @Deprecated
     public FabricWorld(String name, World world) {
         this.mc = (ServerWorld) world;
+        this.mc1 = (ServerWorld) world;
         this.name = name;
     }
     
@@ -30,7 +33,7 @@ public class FabricWorld implements IWorld {
     }
 
     private GameRules gr() {
-        return mc.getGameRules();
+        return mc1.getGameRules();
     }
 
     @Override
@@ -53,5 +56,15 @@ public class FabricWorld implements IWorld {
         BlockPos pos = new BlockPos(x,y,z);
         return ((IMixinBlockState)mc.getBlockState(pos)).getAsICommon(this, pos);
     }
+
+	@Override
+	public boolean isTheEnd(ServerWorld world) {
+		return ((IMixinWorld) mc1).icommon$is_the_end();
+	}
+
+	@Override
+	public BlockPos getSpawnPoint() {
+		return ((IMixinWorld) mc1).icommon$get_spawn_point();
+	}
 
 }

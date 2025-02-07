@@ -1,6 +1,6 @@
 /**
- * Copyright (C) 2018 ProjectMinecarts
- * Copyright (C) 2018-2021 by Isaiah.
+ * Copyright (C) 2018-2025 by Isaiah.
+ * Copyright (C) 2018 ProjectMinecarts & Isaiah
  */
 package me.isaiah.common.event;
 

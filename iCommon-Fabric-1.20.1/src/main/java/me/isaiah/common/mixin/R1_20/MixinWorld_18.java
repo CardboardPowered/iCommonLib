@@ -28,11 +28,13 @@ import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.profiler.Profiler;
 import net.minecraft.world.MutableWorldProperties;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldProperties;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.source.BiomeAccess;
 import net.minecraft.world.biome.source.BiomeSource;
 import net.minecraft.world.chunk.PalettedContainer;
 import net.minecraft.world.dimension.DimensionType;
+import net.minecraft.world.dimension.DimensionTypes;
 import net.minecraft.world.level.ServerWorldProperties;
 import net.minecraft.registry.DynamicRegistryManager;
 
@@ -93,6 +95,17 @@ public class MixinWorld_18 implements IMixinWorld {
 	@Override
 	public MapState IC$get_map_state(int id) {
 		return ((ServerWorld)(Object)this).getMapState("map_" + id);
+	}
+	
+	@Override
+	public boolean icommon$is_the_end() {
+		return ((ServerWorld)(Object)this).getDimensionKey() == DimensionTypes.THE_END;
+	}
+
+	@Override
+	public BlockPos icommon$get_spawn_point() {
+		WorldProperties prop = ((ServerWorld)(Object)this).getLevelProperties();
+		return new BlockPos(prop.getSpawnX(), prop.getSpawnY(), prop.getSpawnZ());
 	}
 
 }

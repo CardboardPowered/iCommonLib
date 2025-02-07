@@ -28,6 +28,7 @@ import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.MutableWorldProperties;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldProperties;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.source.BiomeAccess;
 import net.minecraft.world.biome.source.BiomeSource;
@@ -91,6 +92,21 @@ public class MixinWorld_18 implements IMixinWorld {
 	@Override
 	public MapState IC$get_map_state(int id) {
 		return ((ServerWorld)(Object)this).getMapState("map_" + id);
+	}
+
+	@Override
+	public boolean icommon$is_the_end() {
+		ServerWorld thiz = ((ServerWorld)(Object)this);
+		if (!thiz.getDimension().isBedWorking() && !thiz.getDimension().hasCeiling()) {
+	        return true;
+		}
+		return false;
+	}
+
+	@Override
+	public BlockPos icommon$get_spawn_point() {
+		WorldProperties prop = ((ServerWorld)(Object)this).getLevelProperties();
+		return new BlockPos(prop.getSpawnX(), prop.getSpawnY(), prop.getSpawnZ());
 	}
 
 }
