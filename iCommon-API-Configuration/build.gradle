@@ -1,0 +1,24 @@
+plugins {
+	id "java-library"
+}
+
+group 'me.isaiah' // Defines the group ID for your project
+version '1.0' // Sets the project version
+
+base {
+    archivesBaseName = "icommon-configuration"
+    version = "1.0"
+    group = "me.isaiah"
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+repositories {
+    mavenCentral() // Specifies Maven Central as a repository for dependencies
+}
+
+dependencies {
+}

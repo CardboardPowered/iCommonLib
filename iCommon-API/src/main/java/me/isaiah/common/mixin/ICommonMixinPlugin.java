@@ -13,7 +13,8 @@ import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 
 import me.isaiah.common.GameVersion;
-
+import me.isaiah.common.McVersion;
+import me.isaiah.common.cmixin.MixinInfo;
 import me.isaiah.common.cmixin.MixinList;
 import me.isaiah.common.event.EventRegistery;
 import me.isaiah.common.event.ShouldApplyMixinEvent;
@@ -66,7 +67,7 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
             GameVersion ver = getGameVersion();
             logger.info("-------------------------------------------------");
             logger.info(" iCommon - Isaiah's common library for mods.");
-            logger.info(" Copyright (c) 2018-2024 Isaiah. Running on MC " + ver.getReleaseTarget());
+            logger.info(" Copyright (c) 2018-2025 Isaiah. Running on MC " + ver.getReleaseTarget());
             logger.info("-------------------------------------------------");
         }
         start = true;
@@ -105,6 +106,38 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
         		return false;
         	}
         }
+        
+        try {
+			Class<?> cl = Class.forName(mixinClassName);
+			MixinInfo in = cl.getDeclaredAnnotation(MixinInfo.class);
+			
+			// logger.info("INF: " + in + " / " + mixinClassName);
+			
+			if (null != in) {
+				String min = in.minVersion();
+				String max = in.maxVersion();
+				
+				McVersion c = McVersion.getRunning();
+				
+				McVersion a = McVersion.string(min);
+				McVersion b = McVersion.string(max);
+				
+				if (a.check(c) == -1) {
+					return false;
+				}
+				
+				if (b.check(c) == 1) {
+					return false;
+				}
+				logger.info("Applying Mixin: " + mixin + "...");
+				return true;
+			}
+        } catch (ClassNotFoundException e) {
+        	// Ignore
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
         if (mixin.contains("1_16")) {
             if (six)
@@ -186,6 +219,15 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
                 if (s.startsWith("MCVER=") && s.contains(",")) {
                     String vers = s.split("=")[1];
                     forVer = vers.split(",");
+                    continue;
+                }
+                
+                if (forVer.length == 1 && forVer[0].equalsIgnoreCase("ALL")) {
+                	if (!list.contains( prefix + s.trim() )) {
+                        boolean should = shouldApply(MIXIN_PACKAGE_ROOT + prefix + s.trim(), "");
+                        if (should) list.add(prefix + s.trim());
+                    }
+                	continue;
                 }
 
                 for (String mver : forVer) {

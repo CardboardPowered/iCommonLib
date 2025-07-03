@@ -6,11 +6,23 @@ pluginManagement {
         }
         maven { url "https://maven.architectury.dev/" }
         maven { url "https://files.minecraftforge.net/maven/" }
+		maven {
+            name = 'Jitpack'
+            url = 'https://jitpack.io'
+        }
         gradlePluginPortal()
+    }
+	resolutionStrategy {
+        eachPlugin {
+            if (requested.id.id.equals("com.replaymod.preprocess")) {
+                useModule("com.github.FlorianMichael:preprocessor:${requested.version}")
+            }
+        }
     }
 }
 
 rootProject.name = 'iCommon'
+include 'iCommon-API-Configuration'
 include 'iCommon-API'
 // include 'iCommon-Fabric-1.17'
 // include 'iCommon-Fabric-1.18'
@@ -23,3 +35,4 @@ include 'iCommon-Fabric-1.20.5'
 include 'iCommon-Fabric-1.21'
 include 'iCommon-Fabric-1.21.4'
 include 'iCommon-Fabric-bundle'
+//include 'iCommon-preprocess'

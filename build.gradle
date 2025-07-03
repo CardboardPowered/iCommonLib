@@ -1,17 +1,52 @@
+/*
+plugins {
+	id "com.replaymod.preprocess" version "fad42fb94c"
+}
+
+preprocess {
+	// Task
+}
+*/
+
 subprojects {
+
+	if (name == 'iCommon-preprocess') {
+		/*
+		plugins {
+			id("com.replaymod.preprocess") version "fad42fb94c" apply true
+		}
+		*/
+	}
+
+	plugins.withId('fabric-loom', { _ -> 
+	
+		if (name != 'iCommon-API') {
+			dependencies {
+				include(project(":iCommon-API-Configuration"))
+			}
+		}
+	})
+
     plugins.withId('java-library', { _ ->
-        sourceSets {
-            main {
-                java {
-                    srcDir("src/main/java")
-                    srcDir("${rootProject.projectDir}/iCommon-API/src/main/java")
-                    srcDir("${rootProject.projectDir}/iCommon-API-Configuration/src/main/java")
-                }
-                resources {
-                    //srcDir("src/main/resources")
-                    srcDir("${rootProject.projectDir}/iCommon-API/src/main/resources")
-                }
-            }
-        }
+        
+		if (name != 'iCommon-API-Configuration' && name != 'iCommon-Fabric-bundle') {
+			dependencies {
+				implementation(project(":iCommon-API-Configuration"))
+			}
+
+			sourceSets {
+				main {
+					java {
+						srcDir("src/main/java")
+						srcDir("${rootProject.projectDir}/iCommon-API/src/main/java")
+						// srcDir("${rootProject.projectDir}/iCommon-API-Configuration/src/main/java")
+					}
+					resources {
+						//srcDir("src/main/resources")
+						srcDir("${rootProject.projectDir}/iCommon-API/src/main/resources")
+					}
+				}
+			}
+		}
     })
 }

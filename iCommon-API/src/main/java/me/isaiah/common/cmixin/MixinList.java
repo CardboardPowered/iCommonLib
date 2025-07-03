@@ -15,6 +15,7 @@ public class MixinList {
               "    MinecraftServer",
               "    BlockState",
               "    BlockItem",
+              "    NetherPortalBlock",
               "",
               "MCVER=1.16,1.17",
               "    World",
