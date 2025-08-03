@@ -1,9 +1,9 @@
 package me.isaiah.common.cmixin;
 
-import net.minecraft.world.ForcedChunkState;
+// import net.minecraft.world.ForcedChunkState;
 
 public interface IMixinPersistentStateManager {
 
-    public ForcedChunkState Iget();
+    public Object Iget();
 
 }

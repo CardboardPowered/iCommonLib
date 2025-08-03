@@ -20,7 +20,7 @@ subprojects {
 
 	plugins.withId('fabric-loom', { _ -> 
 	
-		if (name != 'iCommon-API') {
+		if (name != 'iCommon-API' && name != 'iCommon-Fabric-bundle') {
 			dependencies {
 				include(project(":iCommon-API-Configuration"))
 			}

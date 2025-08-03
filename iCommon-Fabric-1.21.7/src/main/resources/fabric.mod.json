@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
   "id": "icommon",
-  "version": "1.21.4",
+  "version": "1.21.7",
 
-  "name": "iCommonLib 1.21.4",
+  "name": "iCommonLib 1.21.5/1.21.7",
   "description": "Common API for multi-version functions. ",
   "authors": [
-    "Me!"
+    "Isaiah"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://cardboardpowered.org/icommon",
+    "sources": "https://github.com/CardboardPowered/iCommonLib"
   },
 
   "license": "CC0-1.0",
@@ -29,6 +29,6 @@
 
   "depends": {
     "fabricloader": ">=0.7.4",
-    "minecraft": ">=1.21.3- <1.21.5-"
+    "minecraft": ">=1.21.5"
   }
 }

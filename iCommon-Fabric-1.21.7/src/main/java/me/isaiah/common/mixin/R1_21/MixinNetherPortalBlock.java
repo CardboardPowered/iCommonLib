@@ -1,4 +1,4 @@
-package me.isaiah.common.mixin;
+package me.isaiah.common.mixin.R1_21;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -11,11 +11,12 @@ import me.isaiah.common.event.entity.EntityPortalCollideEvent;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.NetherPortalBlock;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityCollisionHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-@MixinInfo(minVersion = "1.18.2", maxVersion = "1.21.4")
+@MixinInfo(minVersion = "1.21.5", maxVersion = "FUTURE")
 @Mixin(NetherPortalBlock.class)
 public class MixinNetherPortalBlock {
 
@@ -23,7 +24,7 @@ public class MixinNetherPortalBlock {
 	 * TODO: 1.21.5+ adds extra EntityCollisionHandler after Entity
 	 */
 	@Inject(at = @At("HEAD"), method = "onEntityCollision", cancellable = true)
-	private void onEntityCollision( BlockState state, World world, BlockPos pos, Entity entity, CallbackInfo ci) {
+	private void onEntityCollision( BlockState state, World world, BlockPos pos, Entity entity, EntityCollisionHandler h, CallbackInfo ci) {
 		if (!(entity instanceof ServerPlayerEntity)) {
 			return;
 		}

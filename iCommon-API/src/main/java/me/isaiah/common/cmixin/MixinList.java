@@ -43,7 +43,9 @@ public class MixinList {
               "    BeaconBlockEntity",
               "    MobEntity",
               "MCVER=1.18,1.19,1.20,1.21",
-              "    World_18"
+              "    World_18",
+              "MCVER=1.21",
+              "    NetherPortalBlock"
             );
 
 }
