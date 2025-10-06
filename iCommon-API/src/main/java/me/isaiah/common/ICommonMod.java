@@ -18,7 +18,7 @@ public class ICommonMod implements ModInitializer {
 	 * Details:
 	 * 0.4: Add World API for isTheEnd & getSpawnPoint, add checkVersion
      */
-    private static final double API_VERSION = 0.4;
+    private static final double API_VERSION = 0.5;
 
     public enum SupportStatus {
     	REQUIRE("requires", "REQUIRED"),

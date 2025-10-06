@@ -31,14 +31,14 @@ dependencies {
 	
 	// bundle jars
 	include(project(":iCommon-Fabric-1.18.2"))
-	include(project(":iCommon-Fabric-1.19"))
+	include(project(":iCommon-Fabric-1.19.2"))
 	include(project(":iCommon-Fabric-1.19.4"))
 	include(project(":iCommon-Fabric-1.20.1"))
-	include(project(":iCommon-Fabric-1.20.2"))
-	include(project(":iCommon-Fabric-1.20.5"))
-	include(project(":iCommon-Fabric-1.21"))
+	include(project(":iCommon-Fabric-1.20.4"))
+	include(project(":iCommon-Fabric-1.20.6"))
+	include(project(":iCommon-Fabric-1.21.1"))
 	include(project(":iCommon-Fabric-1.21.4"))
-	include(project(":iCommon-Fabric-1.21.7"))
+	include(project(":iCommon-Fabric-1.21.8"))
 
 	annotationProcessor("com.pkware.jabel:jabel-javac-plugin:1.0.1-1")
     compileOnly("com.pkware.jabel:jabel-javac-plugin:1.0.1-1")

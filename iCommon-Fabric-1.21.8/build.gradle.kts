@@ -13,7 +13,7 @@ java {
 
 base {
     archivesBaseName = "iCommon-Fabric"
-    version = "1.21.7"
+    version = "1.21.8"
     group = "com.javazilla.mods"
 }
 
@@ -28,9 +28,14 @@ dependencies {
     implementation(project(mapOf("path" to ":iCommon-API")))
 
 	// 1.21.5 - 1.21.7
-    minecraft("com.mojang:minecraft:1.21.5")
-    mappings("net.fabricmc:yarn:1.21.5+build.1")
-    modImplementation("net.fabricmc:fabric-loader:0.16.7")
+    // minecraft("com.mojang:minecraft:1.21.5")
+    // mappings("net.fabricmc:yarn:1.21.5+build.1")
+    // modImplementation("net.fabricmc:fabric-loader:0.16.7")
+	
+	// 1.21.8
+	minecraft("com.mojang:minecraft:1.21.8")
+    mappings("net.fabricmc:yarn:1.21.8+build.1")
+    modImplementation("net.fabricmc:fabric-loader:0.17.2")
 }
 
 sourceSets {

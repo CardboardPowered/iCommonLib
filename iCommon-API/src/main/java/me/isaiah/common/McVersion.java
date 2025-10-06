@@ -21,7 +21,8 @@ public class McVersion {
 	public static McVersion R1206 = new McVersion(120.6, "1.20.5", "1.20.6"); // aka 1.20.5
 	public static McVersion R1211 = new McVersion(121.1, "1.21.1", "1.21.2");
 	public static McVersion R1214 = new McVersion(121.4, "1.21.3", "1.21.4");
-	public static McVersion R1215 = new McVersion(121.5, "1.21.5", "1.21.6", "1.21.7");
+	public static McVersion R1215 = new McVersion(121.5, "1.21.5", "1.21.6", "1.21.7", "1.21.8");
+	public static McVersion R1219 = new McVersion(121.9, "1.21.9", "1.21.10");
 	public static McVersion FUTURE = new McVersion(299.9);
 	
 	private double id;
