@@ -27,13 +27,14 @@ dependencies {
 	// bundle jars
 	include(project(":iCommon-Fabric-1.18.2"))
 	include(project(":iCommon-Fabric-1.19.2"))
-	include(project(":iCommon-Fabric-1.19.4"))
+	// include(project(":iCommon-Fabric-1.19.4"))
 	include(project(":iCommon-Fabric-1.20.1"))
 	include(project(":iCommon-Fabric-1.20.4"))
 	include(project(":iCommon-Fabric-1.20.6"))
 	include(project(":iCommon-Fabric-1.21.1"))
 	include(project(":iCommon-Fabric-1.21.4"))
 	include(project(":iCommon-Fabric-1.21.8"))
+	include(project(":iCommon-Fabric-1.21.9"))
 
 	annotationProcessor("com.pkware.jabel:jabel-javac-plugin:1.0.1-1")
     compileOnly("com.pkware.jabel:jabel-javac-plugin:1.0.1-1")
@@ -93,13 +94,31 @@ tasks.withType<Jar> { duplicatesStrategy = DuplicatesStrategy.INHERIT }
 tasks.getByName<ProcessResources>("processResources") {
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
     filesMatching("fabric.mod.json") {
-        expand(
-            mutableMapOf(
-                "version" to "1.1"
-            )
-        )
+		if(null != System.getenv("BUILD_NUMBER")){
+			expand(mutableMapOf("version" to System.getenv("BUILD_NUMBER").toString()))
+		} else {
+			expand(mutableMapOf("version" to "bundle"))
+		}
     }
 }
+
+/*
+processResources {
+    inputs.property "version", project.version
+
+	duplicatesStrategy = DuplicatesStrategy.INCLUDE
+    from(sourceSets.main.resources.srcDirs) {
+        include "fabric.mod.json"
+        if(System.env.BUILD_NUMBER){
+            expand "version": System.env.BUILD_NUMBER
+        }
+    }
+
+    from(sourceSets.main.resources.srcDirs) {
+        exclude "fabric.mod.json"
+    }
+}
+*/
 
 val remapJar = tasks.getByName<RemapJarTask>("remapJar")
 
@@ -107,11 +126,11 @@ publishing {
     publications {
         create<MavenPublication>("mavenJava") {
             groupId = project.group.toString()
-            artifactId = project.name.toLowerCase()
+            artifactId = project.name.lowercase()
             version = project.version.toString()
             
             pom {
-                name.set(project.name.toLowerCase())
+                name.set(project.name.lowercase())
                 description.set("A concise description of my library")
                 url.set("http://www.example.com/")
             }

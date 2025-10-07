@@ -73,11 +73,11 @@ tasks.withType<Jar> { duplicatesStrategy = DuplicatesStrategy.INHERIT }
 tasks.getByName<ProcessResources>("processResources") {
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
     filesMatching("fabric.mod.json") {
-        expand(
-            mutableMapOf(
-                "version" to "1.1"
-            )
-        )
+        if(null != System.getenv("BUILD_NUMBER")){
+			expand(mutableMapOf("version" to System.getenv("BUILD_NUMBER").toString()))
+		} else {
+			expand(mutableMapOf("version" to "dev"))
+		}
     }
 }
 

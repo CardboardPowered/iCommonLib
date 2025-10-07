@@ -23,9 +23,14 @@ public class McVersion {
 	public static McVersion R1214 = new McVersion(121.4, "1.21.3", "1.21.4");
 	public static McVersion R1215 = new McVersion(121.5, "1.21.5", "1.21.6", "1.21.7", "1.21.8");
 	public static McVersion R1219 = new McVersion(121.9, "1.21.9", "1.21.10");
+	
 	public static McVersion FUTURE = new McVersion(299.9);
 	
 	private double id;
+	
+	private double major;
+	private double minor;
+	
 	
 	public McVersion(double id, String... strs) {
 		this.id = id;
@@ -51,6 +56,10 @@ public class McVersion {
 	public double id() {
 		return id;
 	}
+
+	public String string() {
+		return strList.toString();
+	}
 	
 	public static McVersion string(String mcver) {
 		if (strList.containsKey(mcver)) {
@@ -60,11 +69,21 @@ public class McVersion {
 		return FUTURE;
 	}
 	
+	// test
+	public static void main(String[] args) {
+		McVersion running = getRunning();
+		System.out.println(running.id());
+	}
+	
 	public static McVersion getRunning() {
 		String mcver = FabricLoader.getInstance().getModContainer("minecraft").get().getMetadata().getVersion().getFriendlyString();
 		
 		String ver2 = mcver.replaceFirst(Pattern.quote("."), "");
 		
+		if (strList.containsKey(mcver)) {
+			return strList.get(mcver);
+		}
+
 		try {
 			double d = Double.valueOf(ver2);
 			if (!verList.containsKey(d)) {

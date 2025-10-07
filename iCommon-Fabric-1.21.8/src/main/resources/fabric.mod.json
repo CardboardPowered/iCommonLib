@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "icommon",
-  "version": "1.21.8",
+  "version": "${version}+1.21.8",
 
   "name": "iCommonLib 1.21.8",
   "description": "Common API for multi-version functions.",

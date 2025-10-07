@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
   "id": "icommon",
-  "version": "1.21.4",
+  "version": "${version}+1.21.4",
 
   "name": "iCommonLib 1.21.4",
   "description": "Common API for multi-version functions. ",
   "authors": [
-    "Me!"
+    "isaiah"
   ],
   "contact": {
     "homepage": "https://fabricmc.net/",

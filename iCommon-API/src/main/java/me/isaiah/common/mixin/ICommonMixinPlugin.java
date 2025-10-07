@@ -79,8 +79,7 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
         String mixin = mixinClassName.substring(MIXIN_PACKAGE_ROOT.length()).trim();
 
         String relTar = getGameVersion().getReleaseTarget();
-        boolean six = relTar.startsWith("1.16");
-        boolean sev = relTar.startsWith("1.17");
+
         boolean r8  = relTar.startsWith("1.18");
         boolean r9  = relTar.startsWith("1.19");
 		boolean r20 = relTar.startsWith("1.20");
@@ -141,15 +140,9 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
 			e.printStackTrace();
 		}
 
-        if (mixin.contains("1_16")) {
-            if (six)
-                logger.info("Applying mixin: " + mixin + "...");
-            return six;
-        }
-        if (mixin.contains("1_17")) {
-            if (sev)
-                logger.info("Applying mixin: " + mixin + "...");
-            return sev;
+        if (mixin.contains("1_16") || mixin.contains("1_17")) {
+            // 1.16 & 1.17 Discontinued
+            return false;
         }
 
         if (mixin.contains("1_18")) {
@@ -193,11 +186,6 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
     			logger.info("Applied " + mixin_apply_count + " mixins.");
     		}
     	}
-    }
-
-    public void wait(int ms, String s) {
-        try { Thread.sleep(ms*10); } catch (InterruptedException e) {}
-        if (s != null) logger.info(s);
     }
 
     @Override
