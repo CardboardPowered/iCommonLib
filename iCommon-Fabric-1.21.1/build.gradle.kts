@@ -1,7 +1,7 @@
 import net.fabricmc.loom.task.RemapJarTask
 
 plugins {
-    id ("fabric-loom") version "1.6-SNAPSHOT"
+    id ("fabric-loom")
     id ("maven-publish")
 	id ("java-library")
 }
@@ -12,8 +12,8 @@ java {
 }
 
 base {
-    archivesBaseName = "iCommon-Fabric"
-    version = "1.21"
+    archivesName = "iCommon-Fabric"
+    version = "1.21.1"
     group = "com.javazilla.mods"
 }
 
@@ -27,15 +27,10 @@ dependencies {
     implementation(project(mapOf("path" to ":iCommon-API")))
     implementation(project(mapOf("path" to ":iCommon-API")))
 
-	// 1.20
-    //minecraft("com.mojang:minecraft:1.20.5")
-    //mappings("net.fabricmc:yarn:1.20.5+build.1")
-    //modImplementation("net.fabricmc:fabric-loader:0.15.10")
-	
-	// 1.20
+	// 1.21.1
     minecraft("com.mojang:minecraft:1.21.1")
     mappings("net.fabricmc:yarn:1.21.1+build.3")
-    modImplementation("net.fabricmc:fabric-loader:0.16.7")
+    modImplementation("net.fabricmc:fabric-loader:" + project.property("loader_version"))
 }
 
 sourceSets {
@@ -92,11 +87,11 @@ publishing {
     publications {
         create<MavenPublication>("mavenJava") {
             groupId = project.group.toString()
-            artifactId = project.name.toLowerCase()
+            artifactId = project.name.lowercase()
             version = project.version.toString()
             
             pom {
-                name.set(project.name.toLowerCase())
+                name.set(project.name.lowercase())
                 description.set("A concise description of my library")
                 url.set("http://www.example.com/")
             }

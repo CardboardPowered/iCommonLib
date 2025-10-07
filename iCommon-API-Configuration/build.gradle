@@ -2,11 +2,11 @@ plugins {
 	id "java-library"
 }
 
-group 'me.isaiah' // Defines the group ID for your project
-version '1.0' // Sets the project version
+group = 'me.isaiah' // Defines the group ID for your project
+version = '1.0' // Sets the project version
 
 base {
-    archivesBaseName = "icommon-configuration"
+    archivesName = "icommon-configuration"
     version = "1.0"
     group = "me.isaiah"
 }

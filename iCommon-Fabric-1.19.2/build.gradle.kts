@@ -1,7 +1,7 @@
 import net.fabricmc.loom.task.RemapJarTask
 
 plugins {
-    id ("fabric-loom") version "1.6-SNAPSHOT"
+    id ("fabric-loom")
     id ("maven-publish")
 	id ("java-library")
 }
@@ -12,23 +12,17 @@ java {
 }
 
 base {
-    archivesBaseName = "iCommon-Fabric"
+    archivesName = "iCommon-Fabric"
     version = "1.19.2"
     group = "com.javazilla.mods"
 }
 
 
 dependencies {
-
     // 1.19.2
     minecraft("com.mojang:minecraft:1.19.2") 
     mappings("net.fabricmc:yarn:1.19.2+build.28:v2")
-    modImplementation("net.fabricmc:fabric-loader:0.14.9")
-	
-	// 1.19.3
-    // minecraft("com.mojang:minecraft:1.19.3") 
-    // mappings("net.fabricmc:yarn:1.19.3+build.3:v2")
-    // modImplementation("net.fabricmc:fabric-loader:0.14.11")
+    modImplementation("net.fabricmc:fabric-loader:" + project.property("loader_version"))
 
 	annotationProcessor("com.pkware.jabel:jabel-javac-plugin:1.0.1-1")
     compileOnly("com.pkware.jabel:jabel-javac-plugin:1.0.1-1")
@@ -50,11 +44,6 @@ sourceSets {
     main {
         java {
             srcDir("${rootProject.projectDir}/iCommon-API/src/main/java/com")
-            //srcDir("${rootProject.projectDir}/iCommon-Fabric-1.17/src/main/java")
-
-            // Needs fixing for 1.18:
-            //exclude("**/MixinWorld.java")
-            
             srcDir("src/main/java")
         }
         resources {
@@ -62,21 +51,6 @@ sourceSets {
         }
     }
 }
-
-/*configure([tasks.compileJava]) {
-    sourceCompatibility = 16 // for the IDE support
-    options.release = 8
-
-    javaCompiler = javaToolchains.compilerFor {
-        languageVersion = JavaLanguageVersion.of(16)
-    }
-}*/
-
-//tasks.getByName("compileJava") {
-    //sourceCompatibility = 16
-    //options.release = 8
-//}
-
 
 tasks.withType<Jar> { duplicatesStrategy = DuplicatesStrategy.INHERIT }
 
@@ -97,11 +71,11 @@ publishing {
     publications {
         create<MavenPublication>("mavenJava") {
             groupId = project.group.toString()
-            artifactId = project.name.toLowerCase()
+            artifactId = project.name.lowercase()
             version = project.version.toString()
             
             pom {
-                name.set(project.name.toLowerCase())
+                name.set(project.name.lowercase())
                 description.set("A concise description of my library")
                 url.set("http://www.example.com/")
             }
