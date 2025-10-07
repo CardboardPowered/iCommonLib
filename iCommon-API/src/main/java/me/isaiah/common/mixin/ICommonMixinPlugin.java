@@ -86,6 +86,7 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
 		boolean r20 = relTar.startsWith("1.20");
 		boolean r21 = relTar.startsWith("1.21");
 
+
         if (mixin.length() < 7 || mixin.startsWith("RALL") || mixin.startsWith("R.") || mixin.contains("MCVER") || mixin.equalsIgnoreCase("R1_16.Mixin")
                 || (mixin.contains("R1_") && mixin.length() < 12)) {
             return false;
@@ -106,7 +107,7 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
         		return false;
         	}
         }
-        
+
         try {
 			Class<?> cl = Class.forName(mixinClassName);
 			MixinInfo in = cl.getDeclaredAnnotation(MixinInfo.class);
@@ -134,6 +135,7 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
 			}
         } catch (ClassNotFoundException e) {
         	// Ignore
+        	return false;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
