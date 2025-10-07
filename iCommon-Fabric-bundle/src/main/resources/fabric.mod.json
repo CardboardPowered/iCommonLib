@@ -6,7 +6,7 @@
   "name": "iCommonLib-bundle",
   "description": "Common API for multi-version functions. ",
   "authors": [
-    "Me!"
+    "isaiah"
   ],
   "contact": {
     "homepage": "https://fabricmc.net/",
@@ -23,6 +23,6 @@
   },
 
   "depends": {
-    "fabricloader": ">=0.7.4"
+    "fabricloader": ">=0.13.0"
   }
 }
