@@ -45,7 +45,8 @@ public class MixinList {
               "MCVER=1.18,1.19,1.20,1.21",
               "    World_18",
               "MCVER=1.21",
-              "    NetherPortalBlock"
+              "    NetherPortalBlock",
+              "    NetherPortalBlock_10"
             );
 
 }

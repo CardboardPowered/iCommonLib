@@ -16,15 +16,18 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-@MixinInfo(minVersion = "1.21.5", maxVersion = "1.21.9")
+@MixinInfo(minVersion = "1.21.10", maxVersion = "FUTURE")
 @Mixin(NetherPortalBlock.class)
-public class MixinNetherPortalBlock {
+public class MixinNetherPortalBlock_10 {
 
 	/**
-	 * TODO: 1.21.5+ adds extra EntityCollisionHandler after Entity
+	 * 1.21.5+ adds extra EntityCollisionHandler after Entity
+	 * 1.21.10 adds an extra boolean
+	 * 
+	 * You'd think Mixin would be smart enough to handle this.
 	 */
-	@Inject(at = @At("HEAD"), method = "Lnet/minecraft/block/AbstractBlock;onEntityCollision(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/Entity;Lnet/minecraft/entity/EntityCollisionHandler;)V", cancellable = true)
-	private void onEntityCollision_21_9( BlockState state, World world, BlockPos pos, Entity entity, EntityCollisionHandler h, CallbackInfo ci) {
+	@Inject(at = @At("HEAD"), method = "Lnet/minecraft/block/AbstractBlock;method_9548(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/Entity;Lnet/minecraft/entity/EntityCollisionHandler;Z)V", cancellable = true)
+	private void onEntityCollision_21_10( BlockState state, World world, BlockPos pos, Entity entity, EntityCollisionHandler h, boolean bool, CallbackInfo ci) {
 		if (!(entity instanceof ServerPlayerEntity)) {
 			return;
 		}
