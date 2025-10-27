@@ -7,15 +7,21 @@ import me.isaiah.common.cmixin.IMixinTameableEntity;
 import me.isaiah.common.entity.EntityType;
 import me.isaiah.common.entity.IEntity;
 import me.isaiah.common.entity.IRemoveReason;
+import me.isaiah.common.fabric.FabricServer;
 import net.minecraft.entity.Entity;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
+import net.minecraft.world.World;
+import me.isaiah.common.world.IWorld;
 
 public class FabricEntity implements IEntity {
 
     public Entity mc;
     public FabricEntity(Entity mc) {
         this.mc = mc;
+    }
+    
+    private IMixinEntity imixin() {
+    	return (IMixinEntity) mc;
     }
 
     @Override
@@ -28,6 +34,13 @@ public class FabricEntity implements IEntity {
     public Entity getMC() {
         return mc;
     }
+    
+    @Override
+    public IWorld getIWorld() {
+    	World world = this.imixin().ic$getWorld();
+    	return FabricServer.getInstance().getIWorldForMinecraftWorld(world);
+    }
+ 
 
     @Override
     public String getDisplayedName() {

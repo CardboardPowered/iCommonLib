@@ -22,6 +22,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.TeleportTarget;
+import net.minecraft.world.World;
 
 @SupportedVersion({"1.17"})
 @Mixin(Entity.class)
@@ -145,5 +146,10 @@ public class MixinEntity implements IMixinEntity {
             thiz.requestTeleport(destX, destY, destZ);
         }
     }
+    
+	@Override
+	public World ic$getWorld() {
+		return ((Entity) (Object) this).getWorld();
+	}
 
 }

@@ -7,7 +7,6 @@ import org.spongepowered.asm.mixin.Shadow;
 
 import me.isaiah.common.ICommonMod;
 import me.isaiah.common.cmixin.IMixinEntity;
-import me.isaiah.common.cmixin.SupportedVersion;
 import me.isaiah.common.entity.IEntity;
 import me.isaiah.common.entity.IRemoveReason;
 import net.minecraft.entity.Entity;
@@ -18,15 +17,12 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.command.CommandOutput;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ChunkTicketType;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
-import net.minecraft.world.TeleportTarget;
 import net.minecraft.world.World;
 
-@SupportedVersion({"1.17"})
 @Mixin(Entity.class)
 public class MixinEntity implements IMixinEntity {
 
@@ -168,5 +164,10 @@ public class MixinEntity implements IMixinEntity {
             thiz.requestTeleport(destX, destY, destZ);
         }
     }
+    
+	@Override
+	public World ic$getWorld() {
+		return ((Entity) (Object) this).getEntityWorld();
+	}
 
 }

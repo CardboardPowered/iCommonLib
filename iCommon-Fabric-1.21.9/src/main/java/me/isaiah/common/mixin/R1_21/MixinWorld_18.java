@@ -23,6 +23,7 @@ import net.minecraft.item.map.MapState;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.IndexedIterable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
@@ -69,7 +70,8 @@ public class MixinWorld_18 implements IMixinWorld {
         }
         ICommonMod.LOGGER.info("Setting IWorld for world \"" + name + "\"");
         this.icommon =  new FabricWorld(name, (World)(Object)this);
-        ((FabricServer)ICommonMod.getIServer()).world(icommon, name);
+        Identifier id = nms.getRegistryKey().getValue();
+        ((FabricServer)ICommonMod.getIServer()).world(icommon, name, id);
 
         // ServerWorldInitEvent
         EventRegistery.invoke(ServerWorldInitEvent.class, new ServerWorldInitEvent(icommon));

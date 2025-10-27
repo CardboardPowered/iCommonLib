@@ -17,6 +17,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
+import net.minecraft.world.World;
 
 public interface IMixinEntity {
 
@@ -42,7 +43,9 @@ public interface IMixinEntity {
 
     /**
      * @reason 1.16 & 1.17 differ in entity removal
+     * @deprecated We only support 1.18+
      */
+    @Deprecated
     public void Iremove(IRemoveReason r);
 
     /**
@@ -53,7 +56,9 @@ public interface IMixinEntity {
     /**
      * 1.16 - removed
      * 1.17 - isRemoved()
+     * @deprecated We only support 1.18+
      */
+    @Deprecated
     public boolean ic_isRemoved();
 
     /**
@@ -82,5 +87,11 @@ public interface IMixinEntity {
      * >= 1.20: Entity.teleportTo(TeleportTarget)
      */
     public void IC$teleport(ServerWorld world, double x, double y, double z);
+    
+    /**
+     * You Just Had to Break getWorld()...
+     * https://fabricmc.net/2025/09/23/1219.html
+     */
+    public World ic$getWorld();
 
 }

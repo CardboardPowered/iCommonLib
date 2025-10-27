@@ -7,7 +7,6 @@ import org.spongepowered.asm.mixin.Shadow;
 
 import me.isaiah.common.ICommonMod;
 import me.isaiah.common.cmixin.IMixinEntity;
-import me.isaiah.common.cmixin.SupportedVersion;
 import me.isaiah.common.entity.IEntity;
 import me.isaiah.common.entity.IRemoveReason;
 import net.minecraft.entity.Entity;
@@ -17,8 +16,8 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.world.World;
 
-@SupportedVersion({"1.17"})
 @Mixin(Entity.class)
 public class MixinEntity implements IMixinEntity {
 
@@ -122,6 +121,11 @@ public class MixinEntity implements IMixinEntity {
 	@Override
 	public void IC$teleport(ServerWorld world, double x, double y, double z) {
 		((Entity) (Object) this).teleport(x, y, z);
+	}
+	
+	@Override
+	public World ic$getWorld() {
+		return ((Entity) (Object) this).getWorld();
 	}
 
 }

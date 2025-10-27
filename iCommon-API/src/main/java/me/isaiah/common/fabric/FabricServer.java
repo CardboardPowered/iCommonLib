@@ -13,26 +13,44 @@ import me.isaiah.common.IDatapack;
 import me.isaiah.common.IServer;
 import me.isaiah.common.Side;
 import me.isaiah.common.cmixin.IMixinMinecraftServer;
+import me.isaiah.common.cmixin.IMixinWorld;
 import me.isaiah.common.world.IWorld;
 import net.minecraft.MinecraftVersion;
 import net.minecraft.item.ItemStack;
 import net.minecraft.resource.ResourcePackProfile;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.village.TradeOffer;
+import net.minecraft.world.World;
 
 public class FabricServer implements IServer {
 
+	private static FabricServer INSTANCE;
+	
+	public static FabricServer getInstance() {
+		return INSTANCE;
+	}
+	
     private MinecraftServer mc;
     public HashMap<String, IWorld> worlds;
+    public HashMap<String, IWorld> worldsMap;
 
     public FabricServer(MinecraftServer mc) {
+    	FabricServer.INSTANCE = this;
         this.mc = mc;
         this.worlds = new HashMap<>();
+        this.worldsMap = new HashMap<>();
     }
 
-    public void world(IWorld icommon, String name) {
+    public void world(IWorld icommon, String name, Identifier worldId) {
         worlds.put(name, icommon);
+        worldsMap.put(worldId.toString(), icommon);
+    }
+    
+    public IWorld getIWorldForMinecraftWorld(World world) {
+    	return worldsMap.get(world.getRegistryKey().getValue().toString());
     }
 
     @Override
@@ -43,6 +61,11 @@ public class FabricServer implements IServer {
     @Override
     public Collection<IWorld> getWorlds() {
         return worlds.values();
+    }
+    
+    @Override
+    public IWorld getWorld(Identifier id) {
+    	return worldsMap.get(id.toString());
     }
 
     @Override

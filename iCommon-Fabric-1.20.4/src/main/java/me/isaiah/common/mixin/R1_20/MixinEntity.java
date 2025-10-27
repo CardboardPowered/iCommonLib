@@ -18,6 +18,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
+import net.minecraft.world.World;
 
 @SupportedVersion({"1.17"})
 @Mixin(Entity.class)
@@ -123,6 +124,11 @@ public class MixinEntity implements IMixinEntity {
 	@Override
 	public void IC$teleport(ServerWorld world, double x, double y, double z) {
 		((Entity) (Object) this).teleport(x, y, z);
+	}
+	
+	@Override
+	public World ic$getWorld() {
+		return ((Entity) (Object) this).getWorld();
 	}
 
 }
