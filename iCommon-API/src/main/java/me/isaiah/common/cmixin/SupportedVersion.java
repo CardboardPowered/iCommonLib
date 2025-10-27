@@ -10,6 +10,6 @@ import java.lang.annotation.Target;
 @Deprecated
 public @interface SupportedVersion {
 
-    public String[] value();
+    // public String[] value1();
 
 }

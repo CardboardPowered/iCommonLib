@@ -12,7 +12,6 @@ import com.mojang.authlib.GameProfile;
 
 import me.isaiah.common.Gamemode;
 import me.isaiah.common.cmixin.IMixinEntity;
-import me.isaiah.common.cmixin.SupportedVersion;
 import me.isaiah.common.entity.IPlayer;
 import me.isaiah.common.event.EventRegistery;
 import me.isaiah.common.event.entity.player.PlayerGamemodeChangeEvent;
@@ -26,7 +25,6 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Util;
 import net.minecraft.world.GameMode;
 
-@SupportedVersion({"1.17", "1.17.1"})
 @Mixin(ServerPlayerEntity.class)
 public class MixinPlayer extends MixinEntity {
 

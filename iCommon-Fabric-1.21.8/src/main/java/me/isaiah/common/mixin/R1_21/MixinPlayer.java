@@ -1,35 +1,27 @@
 package me.isaiah.common.mixin.R1_21;
 
 import com.mojang.authlib.GameProfile;
-import me.isaiah.common.Gamemode;
 import me.isaiah.common.cmixin.IMixinEntity;
-import me.isaiah.common.cmixin.SupportedVersion;
 import me.isaiah.common.entity.IPlayer;
 import me.isaiah.common.event.EventRegistery;
-import me.isaiah.common.event.entity.player.PlayerGamemodeChangeEvent;
 import me.isaiah.common.event.entity.player.ServerPlayerInitEvent;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.packet.c2s.common.SyncedClientOptions;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
-import net.minecraft.world.GameMode;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.UUID;
 
-@SupportedVersion({"1.19.1", "1.19.2"})
 @Mixin(ServerPlayerEntity.class)
 public class MixinPlayer extends MixinEntity {
 
 	@Override
 	public void IsendText(Text text, UUID id) {
-		// ((ServerPlayerEntity)IgetMCEntity()).sendMessage(text, MessageType.CHAT, null == id ? Util.NIL_UUID : id);
 		((ServerPlayerEntity) IgetMCEntity()).sendMessage(text, false);
 	}
 

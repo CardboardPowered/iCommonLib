@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import net.minecraft.item.ItemGroup;
 // import net.minecraft.registry.Registries;
 // import net.minecraft.registry.Registry;
 // import net.minecraft.registry.RegistryKey;
@@ -17,13 +16,6 @@ public class AttributeMappings {
 
 
     public AttributeMappings() {
-    	
-    	// Identifier group_id;
-    	
-		// Registry.register(Registries.ITEM_GROUP, group_id, GROUP);
-
-		// RegistryKey<ItemGroup> gkey = RegistryKey.of(Registries.ITEM_GROUP.getKey(), group_id);
-    	
     }
 
     public static Identifier uuid_to_key(UUID uuid) {

@@ -3,7 +3,6 @@ package me.isaiah.common.mixin.R1_21;
 import com.mojang.authlib.GameProfile;
 import me.isaiah.common.Gamemode;
 import me.isaiah.common.cmixin.IMixinEntity;
-import me.isaiah.common.cmixin.SupportedVersion;
 import me.isaiah.common.entity.IPlayer;
 import me.isaiah.common.event.EventRegistery;
 import me.isaiah.common.event.entity.player.PlayerGamemodeChangeEvent;
@@ -23,7 +22,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.UUID;
 
-@SupportedVersion({"1.19.1", "1.19.2"})
 @Mixin(ServerPlayerEntity.class)
 public class MixinPlayer extends MixinEntity {
 

@@ -1,7 +1,5 @@
 package me.isaiah.common.mixin.R1_21;
 
-import java.util.function.Supplier;
-
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -9,7 +7,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import me.isaiah.common.ICommonMod;
 import me.isaiah.common.cmixin.IMixinWorld;
-import me.isaiah.common.cmixin.SupportedVersion;
 import me.isaiah.common.event.EventRegistery;
 import me.isaiah.common.event.server.ServerWorldInitEvent;
 import me.isaiah.common.fabric.FabricServer;
@@ -27,7 +24,6 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.IndexedIterable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
-import net.minecraft.util.profiler.Profiler;
 import net.minecraft.world.MutableWorldProperties;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProperties;
@@ -41,7 +37,6 @@ import net.minecraft.world.dimension.DimensionTypes;
 import net.minecraft.world.level.ServerWorldProperties;
 import net.minecraft.registry.DynamicRegistryManager;
 
-@SupportedVersion({"1.18", "1.19", "1.19.4", "1.20.5"})
 @Mixin(World.class)
 public class MixinWorld_18 implements IMixinWorld {
 

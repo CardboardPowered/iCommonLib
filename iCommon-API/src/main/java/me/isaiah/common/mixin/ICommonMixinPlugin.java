@@ -65,10 +65,10 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
         if (!start) {
             GameVersion ver = getGameVersion();
-            logger.info("-------------------------------------------------");
-            logger.info(" iCommon - Isaiah's common library for mods.");
+            logger.info("-------------------------------------");
+            logger.info(" iCommon - Common Code for mods.");
             logger.info(" Copyright (c) 2018-2025 Isaiah. Running on MC " + ver.getReleaseTarget());
-            logger.info("-------------------------------------------------");
+            logger.info("-------------------------------------");
         }
         start = true;
 
@@ -136,13 +136,11 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
         	// Ignore
         	return false;
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
         if (mixin.contains("1_16") || mixin.contains("1_17")) {
-            // 1.16 & 1.17 Discontinued
-            return false;
+            return false; // 1.16 & 1.17 Discontinued
         }
 
         if (mixin.contains("1_18")) {

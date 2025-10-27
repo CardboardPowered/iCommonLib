@@ -7,7 +7,7 @@ import net.fabricmc.api.ModInitializer;
 import net.minecraft.world.WorldAccess;
 
 /**
- * iCommon
+ * iCommon Mod
  */
 public class ICommonMod implements ModInitializer {
 
@@ -16,9 +16,10 @@ public class ICommonMod implements ModInitializer {
 	 * Dependents can use this as a compatibility check
 	 * 
 	 * Details:
+	 * 0.6: Add getIWorld
 	 * 0.4: Add World API for isTheEnd & getSpawnPoint, add checkVersion
      */
-    private static final double API_VERSION = 0.5;
+    private static final double API_VERSION = 0.6;
 
     public enum SupportStatus {
     	REQUIRE("requires", "REQUIRED"),

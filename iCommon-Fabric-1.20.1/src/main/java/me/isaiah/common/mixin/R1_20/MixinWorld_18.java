@@ -9,7 +9,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import me.isaiah.common.ICommonMod;
 import me.isaiah.common.cmixin.IMixinWorld;
-import me.isaiah.common.cmixin.SupportedVersion;
 import me.isaiah.common.event.EventRegistery;
 import me.isaiah.common.event.server.ServerWorldInitEvent;
 import me.isaiah.common.fabric.FabricServer;
@@ -39,7 +38,6 @@ import net.minecraft.world.dimension.DimensionTypes;
 import net.minecraft.world.level.ServerWorldProperties;
 import net.minecraft.registry.DynamicRegistryManager;
 
-@SupportedVersion({"1.18", "1.19", "1.19.4"})
 @Mixin(World.class)
 public class MixinWorld_18 implements IMixinWorld {
 

@@ -43,6 +43,7 @@ public interface IServer {
      * 
      * @return {@link Side#SERVER} - If DedicatedServer
      * @return {@link Side#CLIENT} - If IntegratedServer
+     * @see {@link #isDedicated()}
      */
     public Side getSide();
 
@@ -75,5 +76,9 @@ public interface IServer {
 	/**
 	 */
 	IDatapack get_datapack(ResourcePackProfile handler);
+
+	/**
+	 */
+	boolean isDedicated();
 	
 }

@@ -13,13 +13,11 @@ import me.isaiah.common.IDatapack;
 import me.isaiah.common.IServer;
 import me.isaiah.common.Side;
 import me.isaiah.common.cmixin.IMixinMinecraftServer;
-import me.isaiah.common.cmixin.IMixinWorld;
 import me.isaiah.common.world.IWorld;
 import net.minecraft.MinecraftVersion;
 import net.minecraft.item.ItemStack;
 import net.minecraft.resource.ResourcePackProfile;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.village.TradeOffer;
@@ -99,8 +97,14 @@ public class FabricServer implements IServer {
     }
 
     @Override
+    @Deprecated
     public Side getSide() {
         return mc.isDedicated() ? Side.SERVER : Side.CLIENT;
+    }
+    
+    @Override
+    public boolean isDedicated() {
+    	return mc.isDedicated();
     }
 
     @Override
