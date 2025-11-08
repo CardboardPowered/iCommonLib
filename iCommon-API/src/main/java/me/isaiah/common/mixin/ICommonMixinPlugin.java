@@ -65,10 +65,7 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
         if (!start) {
             GameVersion ver = getGameVersion();
-            logger.info("-------------------------------------");
-            logger.info(" iCommon - Common Code for mods.");
-            logger.info(" Copyright (c) 2018-2025 Isaiah. Running on MC " + ver.getReleaseTarget());
-            logger.info("-------------------------------------");
+            logger.info(" iCommonLib (for " + ver.getReleaseTarget() + ") - Common Code for mods. Copyright (c) 2018-2025 Isaiah.");
         }
         start = true;
 
@@ -84,6 +81,12 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
         boolean r9  = relTar.startsWith("1.19");
 		boolean r20 = relTar.startsWith("1.20");
 		boolean r21 = relTar.startsWith("1.21");
+		
+		boolean snap = McVersion.getRunning() == McVersion.FUTURE || McVersion.getRunning() == McVersion.R12111;
+		
+		if (snap) {
+			r21 = true;
+		}
 
 
         if (mixin.length() < 7 || mixin.startsWith("RALL") || mixin.startsWith("R.") || mixin.contains("MCVER") || mixin.equalsIgnoreCase("R1_16.Mixin")

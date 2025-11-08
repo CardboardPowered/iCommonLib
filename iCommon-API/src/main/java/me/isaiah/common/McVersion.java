@@ -24,6 +24,7 @@ public class McVersion {
 	public static McVersion R1215 = new McVersion(121.5, "1.21.5", "1.21.6", "1.21.7", "1.21.8");
 	public static McVersion R1219 = new McVersion(121.9, "1.21.9");
 	public static McVersion R12110 = new McVersion(121.91, "1.21.10");
+	public static McVersion R12111 = new McVersion(121.91, "1.21.11", "1.21.11-a");
 	
 	public static McVersion FUTURE = new McVersion(299.9);
 	
@@ -80,6 +81,10 @@ public class McVersion {
 		String mcver = FabricLoader.getInstance().getModContainer("minecraft").get().getMetadata().getVersion().getFriendlyString();
 		
 		String ver2 = mcver.replaceFirst(Pattern.quote("."), "");
+		
+		if (ver2.contains("-alpha")) {
+			ver2 = ver2.split("lpha")[0];
+		}
 		
 		if (strList.containsKey(mcver)) {
 			return strList.get(mcver);

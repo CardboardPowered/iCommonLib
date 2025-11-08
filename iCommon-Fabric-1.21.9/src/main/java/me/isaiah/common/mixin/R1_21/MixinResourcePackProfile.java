@@ -12,6 +12,7 @@ import net.minecraft.resource.ResourcePack;
 import net.minecraft.resource.ResourcePackProfile;
 import net.minecraft.resource.metadata.PackResourceMetadata;
 
+@Deprecated
 @Mixin(ResourcePackProfile.class)
 public class MixinResourcePackProfile implements IMixinResourcePackProfile {
 
@@ -25,7 +26,7 @@ public class MixinResourcePackProfile implements IMixinResourcePackProfile {
 		try (ResourcePack pack = packFactory.open(handle.getInfo())) {
         	return pack;
 			//this.resourcePackInfo = pack.parseMetadata(PackResourceMetadata.SERIALIZER);
-        } catch (Exception e) { // This is already called in NMS then if in NMS not happen is secure this not throw here
+        } catch (Exception e) {
         	throw new RuntimeException(e);
         }
 	}
@@ -36,7 +37,7 @@ public class MixinResourcePackProfile implements IMixinResourcePackProfile {
 		try (ResourcePack pack = packFactory.open(handle.getInfo())) {
 			
         	return pack.parseMetadata(PackResourceMetadata.SERVER_DATA_SERIALIZER);
-        } catch (IOException e) { // This is already called in NMS then if in NMS not happen is secure this not throw here
+        } catch (IOException e) {
         	throw new RuntimeException(e);
         }
 	}

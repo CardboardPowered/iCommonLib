@@ -3,6 +3,11 @@ package me.isaiah.common.cmixin;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.chunk.Chunk;
 
+/**
+ * Old 1.16/1.17
+ * @deprecated Removed in Cardboard 1.21.10
+ */
+@Deprecated
 public interface IMixinHeightmap {
 
     /**
