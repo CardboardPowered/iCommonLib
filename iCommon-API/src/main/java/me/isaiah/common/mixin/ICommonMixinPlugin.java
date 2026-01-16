@@ -27,7 +27,7 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
     private static final String MIXIN_PACKAGE_ROOT = "me.isaiah.common.mixin.";
     private final Logger logger = LogManager.getLogger("iCommon");
 
-    public static boolean EXTRA_VERBOSE = false;
+    public static boolean EXTRA_VERBOSE = true;
     public static int mixin_apply_count = 0;
     
     @Override
@@ -65,7 +65,7 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
         if (!start) {
             GameVersion ver = getGameVersion();
-            logger.info(" iCommonLib (for " + ver.getReleaseTarget() + ") - Common Code for mods. Copyright (c) 2018-2025 Isaiah.");
+            logger.info(" iCommonLib (for " + ver.getReleaseTarget() + ") - Common Code for mods. Copyright (c) 2018-2026 Isaiah.");
         }
         start = true;
 
