@@ -27,7 +27,7 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
     private static final String MIXIN_PACKAGE_ROOT = "me.isaiah.common.mixin.";
     private final Logger logger = LogManager.getLogger("iCommon");
 
-    public static boolean EXTRA_VERBOSE = true;
+    public static boolean EXTRA_VERBOSE = false;
     public static int mixin_apply_count = 0;
     
     @Override
