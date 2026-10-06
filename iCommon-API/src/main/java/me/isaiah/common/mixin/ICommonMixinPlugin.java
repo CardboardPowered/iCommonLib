@@ -71,6 +71,10 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
 
         return shouldApply(mixinClassName, "1");
     }
+    
+    public static boolean isRunningUnderConnector() {
+        return FabricLoader.getInstance().isModLoaded("connector");
+    }
 
     public boolean shouldApply(String mixinClassName, String output) {
         String mixin = mixinClassName.substring(MIXIN_PACKAGE_ROOT.length()).trim();
@@ -109,9 +113,14 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
         		return false;
         	}
         }
+        
+        if (mixin.contains("common.mixin.MixinMinecraftServer")) {
+        	logger.info("Applying mixin: " + mixin + "...");
+			return true;
+		}
 
         try {
-			Class<?> cl = Class.forName(mixinClassName);
+			Class<?> cl = Class.forName(mixinClassName, true, ICommonMixinPlugin.class.getClassLoader());
 			MixinInfo in = cl.getDeclaredAnnotation(MixinInfo.class);
 			
 			// logger.info("INF: " + in + " / " + mixinClassName);
@@ -137,7 +146,14 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
 			}
         } catch (ClassNotFoundException e) {
         	// Ignore
-        	return false;
+			// return false;
+        } catch (NoClassDefFoundError e) {
+        	// Ignore
+        	
+        	// Debug: print
+        	System.out.println("Error: " + e);
+        	
+        	// return false;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -199,9 +215,13 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
 
         String prefix = "";
         String[] forVer = {""};
+        
+        if (isRunningUnderConnector()) {
+        	// DEBUG
+        	EXTRA_VERBOSE = true;
+        }
 
         try {
-            
             List<String> l2 = MixinList.list;
             for (String s : l2) {
                 if (s.startsWith("#")) continue;
@@ -215,6 +235,8 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
                 
                 if (forVer.length == 1 && forVer[0].equalsIgnoreCase("ALL")) {
                 	if (!list.contains( prefix + s.trim() )) {
+                		// DEBUG: Print out the mixin being checked and the Minecraft version
+                    	// System.out.println("Checking mixin: " + prefix + s.trim() + " for MCVER: ALL/" + forVer[0]);
                         boolean should = shouldApply(MIXIN_PACKAGE_ROOT + prefix + s.trim(), "");
                         if (should) list.add(prefix + s.trim());
                     }
@@ -222,8 +244,13 @@ public class ICommonMixinPlugin implements IMixinConfigPlugin {
                 }
 
                 for (String mver : forVer) {
+                	
                     String pack = "R" + mver.replace('.', '_') + ".";
                     if (!list.contains( pack + prefix + s.trim() )) {
+                    	
+                    	// DEBUG: Print out the mixin being checked and the Minecraft version
+                    	// System.out.println("Checking mixin: " + prefix + s.trim() + " for MCVER: " + mver);
+                    	
                         boolean should = shouldApply(MIXIN_PACKAGE_ROOT + "R" + mver.replace('.', '_') + "." + prefix + s.trim(), "");
                         if (should) list.add(pack + prefix + s.trim());
                     }

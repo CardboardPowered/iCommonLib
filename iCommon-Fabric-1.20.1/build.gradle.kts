@@ -51,6 +51,15 @@ dependencies {
 	
 	annotationProcessor("com.pkware.jabel:jabel-javac-plugin:1.0.1-1")
     compileOnly("com.pkware.jabel:jabel-javac-plugin:1.0.1-1")
+	
+	setOf(
+		"fabric-api-base",
+		"fabric-lifecycle-events-v1",
+		"fabric-networking-api-v1"
+	).forEach {
+		// Add each module as a dependency
+		modImplementation(fabricApi.module(it, "0.92.11+1.20.1"))
+	}
 }
 
 // 1.20.5 now requires JDK 21

@@ -13,7 +13,7 @@ java {
 
 base {
     archivesName = "iCommon-Fabric"
-    version = "26.1.2"
+    version = "26.2"
     group = "com.javazilla.mods"
 }
 
@@ -28,8 +28,8 @@ dependencies {
     implementation(project(mapOf("path" to ":iCommon-API")))
     implementation(project(mapOf("path" to ":iCommon-API")))
 
-	// 26.1.2
-	minecraft("com.mojang:minecraft:26.1.2")
+	// 26.2
+	minecraft("com.mojang:minecraft:26.2")
     implementation("net.fabricmc:fabric-loader:" + project.property("loader_version"))
 	
 	setOf(
@@ -39,7 +39,7 @@ dependencies {
 		"fabric-networking-api-v1"
 	).forEach {
 		// Add each module as a dependency
-		implementation(fabricApi.module(it, "0.149.1+26.1.2"))
+		implementation(fabricApi.module(it, "0.161.0+26.2"))
 	}
 	
 	// (Experimental) Neoforge Support

@@ -1,0 +1,66 @@
+package me.isaiah.common.mixin.R1_21;
+
+import com.mojang.authlib.GameProfile;
+import me.isaiah.common.cmixin.IMixinEntity;
+import me.isaiah.common.entity.IPlayer;
+import me.isaiah.common.event.EventRegistery;
+import me.isaiah.common.event.entity.player.ServerPlayerInitEvent;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.level.ClientInformation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import java.util.UUID;
+
+@Mixin(ServerPlayer.class)
+public class MixinPlayer extends MixinEntity {
+
+	@Override
+	public void IsendText(Component text, UUID id) {
+		// ((ServerPlayerEntity)IgetMCEntity()).sendMessage(text, MessageType.CHAT, null == id ? Util.NIL_UUID : id);
+		((ServerPlayer) IgetMCEntity()).sendSystemMessage(text, false);
+	}
+
+	@Inject(method = "<init>", at = @At("TAIL"))
+	// public void init(MinecraftServer server, ServerWorld world, GameProfile profile, PlayerPublicKey key, CallbackInfo ci) {
+	// public void init(MinecraftServer server, ServerWorld world, GameProfile profile, CallbackInfo ci) {
+	public void init(MinecraftServer server, ServerLevel world, GameProfile profile, ClientInformation clientOptions, CallbackInfo ci) {
+		EventRegistery.invoke(ServerPlayerInitEvent.class, new ServerPlayerInitEvent((IPlayer) ((IMixinEntity) IgetMCEntity()).getAsICommon()));
+	}
+	
+	/*
+	// Note: 1.20.5=readGameModeNbt, <=1.20.4=setGameMode
+	@Inject(at = @At("HEAD"), method = "readGameModeNbt", cancellable = true)
+	public void setGameMode(NbtCompound nbt, CallbackInfo ci) {
+		net.minecraft.world.GameMode gm = gameModeFromNbt(nbt, "playerGameType");
+		GameMode old = ((ServerPlayerEntity) (Object) this).interactionManager.getGameMode();
+		if(null == old) {
+			return;
+		}
+		if(gm == old)
+			ci.cancel();
+
+		if(null != gm) {
+			PlayerGamemodeChangeEvent event = new PlayerGamemodeChangeEvent(
+					(IPlayer) ((IMixinEntity) IgetMCEntity()).getAsICommon(),
+					Gamemode.getById(old.getIndex()), Gamemode.getById(gm.getIndex())
+			);
+
+			event = (PlayerGamemodeChangeEvent) EventRegistery.invoke(PlayerGamemodeChangeEvent.class, event);
+			if(event.isCanceled())
+				ci.cancel();
+		}
+	}
+	
+	@Shadow
+	private static net.minecraft.world.GameMode gameModeFromNbt(NbtCompound tag, String key) {
+		return null;
+	}
+	*/
+
+}

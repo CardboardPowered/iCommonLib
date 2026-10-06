@@ -33,7 +33,6 @@ dependencies {
 	
 	setOf(
 		"fabric-api-base",
-		// "fabric-command-api-v1",
 		"fabric-lifecycle-events-v1",
 		"fabric-networking-api-v1"
 	).forEach {

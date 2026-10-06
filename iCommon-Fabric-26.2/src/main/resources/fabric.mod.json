@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "id": "icommon",
-  "version": "${version}+26.1",
-  "name": "iCommonLib 26.1",
+  "version": "${version}+26.2",
+  "name": "iCommonLib 26.2",
   "description": "Common API for multi-version functions. ",
   "authors": [
     "Isaiah"
@@ -28,6 +28,6 @@
 
   "depends": {
     "fabricloader": ">=0.18.0",
-    "minecraft": ">=26.1 <26.2"
+    "minecraft": ">=26.2"
   }
 }
